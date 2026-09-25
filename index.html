@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b7a36"
+    >
+
+    <meta
+        name="description"
+        content="Download Vegg Basket Customer App"
+    >
+
+    <title>Vegg Basket | Customer App</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background: #f4f8f5;
+
+            color: #17231a;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           APP
+        ===================================================== */
+
+        .app {
+            width: 100%;
+            max-width: 480px;
+
+            min-height: 100vh;
+
+            margin: auto;
+
+            background: #f4f8f5;
+
+            position: relative;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            min-height: 425px;
+
+            padding:
+                55px
+                22px
+                45px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0b7a36 0%,
+                    #149347 55%,
+                    #22a653 100%
+                );
+
+            border-radius:
+                0
+                0
+                42px
+                42px;
+
+            color: white;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 40px
+                rgba(11, 122, 54, 0.20);
+        }
+
+
+        /* =====================================================
+           DECORATIVE CIRCLES
+        ===================================================== */
+
+        .circle {
+            position: absolute;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+            width: 190px;
+            height: 190px;
+
+            top: -90px;
+            right: -65px;
+        }
+
+
+        .circle.two {
+            width: 130px;
+            height: 130px;
+
+            bottom: -65px;
+            left: -55px;
+        }
+
+
+        .circle.three {
+            width: 75px;
+            height: 75px;
+
+            top: 115px;
+            left: -35px;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo-box {
+            position: relative;
+
+            width: 105px;
+            height: 105px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 29px;
+
+            background: white;
+
+            padding: 5px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.18);
+
+            z-index: 2;
+        }
+
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+            position: relative;
+
+            font-size: 33px;
+
+            line-height: 1.1;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+            z-index: 2;
+        }
+
+
+        .brand-subtitle {
+            position: relative;
+
+            margin-top: 9px;
+
+            font-size: 14px;
+
+            color:
+                rgba(255, 255, 255, 0.88);
+
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           OWNER / DEVELOPER
+        ===================================================== */
+
+        .owner-developer {
+            position: relative;
+
+            margin-top: 13px;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            color:
+                rgba(255, 255, 255, 0.78);
+
+            z-index: 2;
+
+            letter-spacing: 0.15px;
+        }
+
+
+        .owner-developer .divider {
+            margin:
+                0
+                5px;
+
+            color:
+                rgba(255, 255, 255, 0.45);
+        }
+
+
+        .owner-developer .developer {
+            color: #ffffff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+
+        .owner-developer .developer:hover {
+            text-decoration: underline;
+        }
+
+
+        .owner-developer .developer:active {
+            opacity: 0.75;
+        }
+
+
+        /* =====================================================
+           VERSION BADGE
+        ===================================================== */
+
+        .version-badge {
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 18px;
+
+            padding:
+                8px
+                14px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255, 255, 255, 0.15);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.20);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            z-index: 2;
+        }
+
+
+        .version-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #b9ffca;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .content {
+            padding:
+                22px
+                16px
+                35px;
+        }
+
+
+        /* =====================================================
+           DOWNLOAD CARD
+        ===================================================== */
+
+        .download-card {
+            margin-top: -5px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding:
+                22px
+                18px
+                19px;
+
+            border:
+                1px solid
+                #e4ece6;
+
+            box-shadow:
+                0 10px 35px
+                rgba(25, 70, 38, 0.08);
+        }
+
+
+        .download-title {
+            text-align: center;
+
+            font-size: 21px;
+
+            font-weight: 850;
+
+            color: #1d3824;
+        }
+
+
+        .download-description {
+            text-align: center;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            color: #78837b;
+
+            margin-top: 7px;
+
+            padding:
+                0
+                5px;
+        }
+
+
+        /* =====================================================
+           DOWNLOAD BUTTON
+        ===================================================== */
+
+        .download-button {
+            width: 100%;
+
+            min-height: 61px;
+
+            margin-top: 20px;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 11px;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c8038,
+                    #18a34d
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(13, 133, 57, 0.25);
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+
+        .download-button:hover {
+            box-shadow:
+                0 13px 30px
+                rgba(13, 133, 57, 0.32);
+        }
+
+
+        .download-button:active {
+            transform: scale(0.97);
+        }
+
+
+        .download-icon {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.18);
+
+            font-size: 19px;
+        }
+
+
+        .download-text {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+
+        .download-main {
+            font-size: 16px;
+
+            line-height: 1.2;
+        }
+
+
+        .download-small {
+            font-size: 10px;
+
+            font-weight: 500;
+
+            opacity: 0.82;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           FILE INFORMATION
+        ===================================================== */
+
+        .file-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+
+            margin-top: 14px;
+        }
+
+
+        .file-item {
+            background: #f7faf7;
+
+            border:
+                1px solid
+                #e8eee9;
+
+            border-radius: 13px;
+
+            padding:
+                12px
+                5px;
+
+            text-align: center;
+        }
+
+
+        .file-label {
+            font-size: 9px;
+
+            color: #8a948d;
+
+            font-weight: 600;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .file-value {
+            margin-top: 4px;
+
+            font-size: 13px;
+
+            color: #31563b;
+
+            font-weight: 850;
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+            display: none;
+
+            margin-top: 12px;
+
+            padding: 11px;
+
+            border-radius: 12px;
+
+            background: #eaf8ee;
+
+            color: #26753d;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status.show {
+            display: block;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .section-card {
+            margin-top: 15px;
+
+            background: white;
+
+            border:
+                1px solid
+                #e4ece6;
+
+            border-radius: 23px;
+
+            padding:
+                19px
+                17px;
+
+            box-shadow:
+                0 7px 25px
+                rgba(25, 70, 38, 0.05);
+        }
+
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+
+        .section-title {
+            font-size: 16px;
+
+            font-weight: 850;
+
+            color: #203d28;
+        }
+
+
+        .section-count {
+            font-size: 10px;
+
+            color: #258443;
+
+            background: #eaf7ee;
+
+            padding:
+                5px
+                9px;
+
+            border-radius: 20px;
+
+            font-weight: 700;
+        }
+
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding:
+                8px
+                0;
+
+            color: #68736c;
+
+            font-size: 13px;
+        }
+
+
+        .feature-icon {
+            width: 27px;
+            height: 27px;
+
+            min-width: 27px;
+
+            border-radius: 9px;
+
+            background: #eaf7ee;
+
+            color: #198340;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 12px;
+
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           INSTALLATION CARD
+        ===================================================== */
+
+        .install-card {
+            margin-top: 15px;
+
+            padding: 17px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff9e8,
+                    #fffdf5
+                );
+
+            border:
+                1px solid
+                #f0e4bd;
+        }
+
+
+        .install-heading {
+            font-size: 14px;
+
+            color: #735b22;
+
+            font-weight: 850;
+
+            margin-bottom: 9px;
+        }
+
+
+        .install-step {
+            display: flex;
+
+            gap: 9px;
+
+            margin-top: 7px;
+
+            font-size: 12px;
+
+            line-height: 1.45;
+
+            color: #82734c;
+        }
+
+
+        .step-number {
+            width: 19px;
+            height: 19px;
+
+            min-width: 19px;
+
+            border-radius: 50%;
+
+            background: #f4e7bb;
+
+            color: #735b22;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+
+            padding:
+                24px
+                5px
+                0;
+
+            color: #98a29b;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        .footer a {
+            color: #16883a;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 360px) {
+
+            .hero {
+                min-height: 405px;
+
+                padding-top: 45px;
+            }
+
+
+            .logo-box {
+                width: 88px;
+                height: 88px;
+            }
+
+
+            .brand {
+                font-size: 29px;
+            }
+
+
+            .owner-developer {
+                font-size: 9px;
+            }
+
+
+            .content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+
+            .download-title {
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+
+        <div class="circle one"></div>
+
+        <div class="circle two"></div>
+
+        <div class="circle three"></div>
+
+
+        <!-- LOGO -->
+
+        <div class="logo-box">
+
+            <img
+                id="logoImage"
+                src="assests/customer_app_logo-demo-1.png"
+                alt="Vegg Basket Logo"
+            >
+
+        </div>
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+            Vegg Basket
+        </div>
+
+
+        <div class="brand-subtitle">
+            Fresh • Fast • Delivered
+        </div>
+
+
+        <!-- OWNER / DEVELOPER -->
+
+        <div class="owner-developer">
+
+            <span>
+                Owned by Vegg Basket
+            </span>
+
+            <span class="divider">
+                |
+            </span>
+
+            <a
+                class="developer"
+                href="https://gouthaman-developer.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Developed by Dark Web Studios
+            </a>
+
+        </div>
+
+
+        <!-- VERSION -->
+
+        <div class="version-badge">
+
+            <span class="version-dot"></span>
+
+            Android App • v1.0.0
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="content">
+
+
+        <!-- DOWNLOAD CARD -->
+
+        <section class="download-card">
+
+
+            <h1 class="download-title">
+                Get the Vegg Basket App
+            </h1>
+
+
+            <p class="download-description">
+
+                Shop fresh vegetables, fruits and daily essentials
+                directly from your mobile.
+
+            </p>
+
+
+            <!-- DOWNLOAD BUTTON -->
+
+            <a
+                id="downloadButton"
+                class="download-button"
+                href="https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.0.0/Vegg-Basket-App.apk"
+            >
+
+                <span class="download-icon">
+                    ↓
+                </span>
+
+
+                <span class="download-text">
+
+                    <span class="download-main">
+                        Download Android App
+                    </span>
+
+                    <span class="download-small">
+                        APK • 62.5 MB • v1.0.0
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <!-- STATUS -->
+
+            <div
+                id="status"
+                class="status"
+            >
+
+                ✓ Download started.
+                Check your Downloads folder.
+
+            </div>
+
+
+            <!-- FILE INFORMATION -->
+
+            <div class="file-info">
+
+
+                <div class="file-item">
+
+                    <div class="file-label">
+                        VERSION
+                    </div>
+
+                    <div class="file-value">
+                        1.0.0
+                    </div>
+
+                </div>
+
+
+                <div class="file-item">
+
+                    <div class="file-label">
+                        PLATFORM
+                    </div>
+
+                    <div class="file-value">
+                        Android
+                    </div>
+
+                </div>
+
+
+                <div class="file-item">
+
+                    <div class="file-label">
+                        SIZE
+                    </div>
+
+                    <div class="file-value">
+                        62.5 MB
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section class="section-card">
+
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    App Features
+                </div>
+
+
+                <div class="section-count">
+                    7 Features
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Customer Login & OTP Verification
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Product Browsing & Search
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Cart & Wishlist
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Online Payment & Cash on Delivery
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Order Tracking
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Delivery Address Management
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Push Notifications
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================================
+             INSTALLATION
+        ====================================================== -->
+
+        <section class="install-card">
+
+
+            <div class="install-heading">
+                📱 Installation Guide
+            </div>
+
+
+            <div class="install-step">
+
+                <span class="step-number">
+                    1
+                </span>
+
+                <span>
+                    Tap the Download Android App button.
+                </span>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span class="step-number">
+                    2
+                </span>
+
+                <span>
+                    Open the APK from your Downloads folder.
+                </span>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span class="step-number">
+                    3
+                </span>
+
+                <span>
+                    Allow installation from this source if Android asks.
+                </span>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span class="step-number">
+                    4
+                </span>
+
+                <span>
+                    Tap Install and open Vegg Basket.
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="footer">
+
+            Vegg Basket Customer App
+
+            <br>
+
+            © 2026 Vegg Basket
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+
+    /* ========================================================
+       DOWNLOAD STATUS
+    ======================================================== */
+
+    const downloadButton =
+        document.getElementById("downloadButton");
+
+
+    const status =
+        document.getElementById("status");
+
+
+    downloadButton.addEventListener(
+        "click",
+        function () {
+
+            status.classList.add("show");
+
+
+            setTimeout(
+                function () {
+
+                    status.classList.remove("show");
+
+                },
+                6000
+            );
+
+        }
+    );
+
+
+    /* ========================================================
+       LOGO FALLBACK
+    ======================================================== */
+
+    const logo =
+        document.getElementById("logoImage");
+
+
+    logo.addEventListener(
+        "error",
+        function () {
+
+            this.src =
+                "data:image/svg+xml;charset=UTF-8," +
+                encodeURIComponent(`
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="200"
+                        height="200"
+                        viewBox="0 0 200 200"
+                    >
+
+                        <rect
+                            width="200"
+                            height="200"
+                            rx="40"
+                            fill="#16883a"
+                        />
+
+                        <text
+                            x="100"
+                            y="125"
+                            text-anchor="middle"
+                            font-size="80"
+                        >
+                            🥬
+                        </text>
+
+                    </svg>
+                `);
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+</html>
