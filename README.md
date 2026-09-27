@@ -29,4 +29,4 @@ Current Release: v1.0.0
 The latest Android APK is available under GitHub Releases.
 
 
-**© All Rights Reserved By Vegg Basket | Developed By Dark Web Studios**
+**© All Rights Reserved By Vegg Basket | Developed By [Dark Web Studios](https://gouthaman-developer.netlify.app/)**
