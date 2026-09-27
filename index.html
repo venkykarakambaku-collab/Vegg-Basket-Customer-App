@@ -1,1315 +1,3192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
 
-    <meta
-        name="theme-color"
-        content="#0b7a36"
-    >
+    <meta name="theme-color" content="#16a34a" />
 
-    <meta
-        name="description"
-        content="Download Vegg Basket Customer App"
-    >
-
-    <title>Vegg Basket | Customer App</title>
-
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-            width: 100%;
-            min-height: 100vh;
-
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Arial,
-                sans-serif;
-
-            background: #f4f8f5;
-
-            color: #17231a;
-
-            overflow-x: hidden;
-        }
-
-
-        /* =====================================================
-           APP
-        ===================================================== */
-
-        .app {
-            width: 100%;
-            max-width: 480px;
-
-            min-height: 100vh;
-
-            margin: auto;
-
-            background: #f4f8f5;
-
-            position: relative;
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .hero {
-            position: relative;
-
-            min-height: 425px;
-
-            padding:
-                55px
-                22px
-                45px;
-
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #0b7a36 0%,
-                    #149347 55%,
-                    #22a653 100%
-                );
-
-            border-radius:
-                0
-                0
-                42px
-                42px;
-
-            color: white;
-
-            text-align: center;
-
-            box-shadow:
-                0 15px 40px
-                rgba(11, 122, 54, 0.20);
-        }
-
-
-        /* =====================================================
-           DECORATIVE CIRCLES
-        ===================================================== */
-
-        .circle {
-            position: absolute;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255, 255, 255, 0.07);
-
-            pointer-events: none;
-        }
-
-
-        .circle.one {
-            width: 190px;
-            height: 190px;
-
-            top: -90px;
-            right: -65px;
-        }
-
-
-        .circle.two {
-            width: 130px;
-            height: 130px;
-
-            bottom: -65px;
-            left: -55px;
-        }
-
-
-        .circle.three {
-            width: 75px;
-            height: 75px;
-
-            top: 115px;
-            left: -35px;
-        }
-
-
-        /* =====================================================
-           LOGO
-        ===================================================== */
-
-        .logo-box {
-            position: relative;
-
-            width: 105px;
-            height: 105px;
-
-            margin: 0 auto 20px;
-
-            border-radius: 29px;
-
-            background: white;
-
-            padding: 5px;
-
-            box-shadow:
-                0 12px 30px
-                rgba(0, 0, 0, 0.18);
-
-            z-index: 2;
-        }
-
-
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            border-radius: 24px;
-
-            display: block;
-        }
-
-
-        /* =====================================================
-           BRAND
-        ===================================================== */
-
-        .brand {
-            position: relative;
-
-            font-size: 33px;
-
-            line-height: 1.1;
-
-            font-weight: 900;
-
-            letter-spacing: -1px;
-
-            z-index: 2;
-        }
-
-
-        .brand-subtitle {
-            position: relative;
-
-            margin-top: 9px;
-
-            font-size: 14px;
-
-            color:
-                rgba(255, 255, 255, 0.88);
-
-            z-index: 2;
-        }
-
-
-        /* =====================================================
-           OWNER / DEVELOPER
-        ===================================================== */
-
-        .owner-developer {
-            position: relative;
-
-            margin-top: 13px;
-
-            font-size: 10px;
-
-            line-height: 1.5;
-
-            color:
-                rgba(255, 255, 255, 0.78);
-
-            z-index: 2;
-
-            letter-spacing: 0.15px;
-        }
-
-
-        .owner-developer .divider {
-            margin:
-                0
-                5px;
-
-            color:
-                rgba(255, 255, 255, 0.45);
-        }
-
-
-        .owner-developer .developer {
-            color: #ffffff;
-
-            font-weight: 700;
-
-            text-decoration: none;
-
-            cursor: pointer;
-        }
-
-
-        .owner-developer .developer:hover {
-            text-decoration: underline;
-        }
-
-
-        .owner-developer .developer:active {
-            opacity: 0.75;
-        }
-
-
-        /* =====================================================
-           VERSION BADGE
-        ===================================================== */
-
-        .version-badge {
-            position: relative;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 7px;
-
-            margin-top: 18px;
-
-            padding:
-                8px
-                14px;
-
-            border-radius: 50px;
-
-            background:
-                rgba(255, 255, 255, 0.15);
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.20);
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            z-index: 2;
-        }
-
-
-        .version-dot {
-            width: 7px;
-            height: 7px;
-
-            border-radius: 50%;
-
-            background: #b9ffca;
-        }
-
-
-        /* =====================================================
-           MAIN CONTENT
-        ===================================================== */
-
-        .content {
-            padding:
-                22px
-                16px
-                35px;
-        }
-
-
-        /* =====================================================
-           DOWNLOAD CARD
-        ===================================================== */
-
-        .download-card {
-            margin-top: -5px;
-
-            background: white;
-
-            border-radius: 25px;
-
-            padding:
-                22px
-                18px
-                19px;
-
-            border:
-                1px solid
-                #e4ece6;
-
-            box-shadow:
-                0 10px 35px
-                rgba(25, 70, 38, 0.08);
-        }
-
-
-        .download-title {
-            text-align: center;
-
-            font-size: 21px;
-
-            font-weight: 850;
-
-            color: #1d3824;
-        }
-
-
-        .download-description {
-            text-align: center;
-
-            font-size: 13px;
-
-            line-height: 1.6;
-
-            color: #78837b;
-
-            margin-top: 7px;
-
-            padding:
-                0
-                5px;
-        }
-
-
-        /* =====================================================
-           DOWNLOAD BUTTON
-        ===================================================== */
-
-        .download-button {
-            width: 100%;
-
-            min-height: 61px;
-
-            margin-top: 20px;
-
-            border-radius: 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 11px;
-
-            text-decoration: none;
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0c8038,
-                    #18a34d
-                );
-
-            box-shadow:
-                0 10px 25px
-                rgba(13, 133, 57, 0.25);
-
-            font-size: 16px;
-
-            font-weight: 800;
-
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
-        }
-
-
-        .download-button:hover {
-            box-shadow:
-                0 13px 30px
-                rgba(13, 133, 57, 0.32);
-        }
-
-
-        .download-button:active {
-            transform: scale(0.97);
-        }
-
-
-        .download-icon {
-            width: 32px;
-            height: 32px;
-
-            border-radius: 10px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            background:
-                rgba(255, 255, 255, 0.18);
-
-            font-size: 19px;
-        }
-
-
-        .download-text {
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: flex-start;
-        }
-
-
-        .download-main {
-            font-size: 16px;
-
-            line-height: 1.2;
-        }
-
-
-        .download-small {
-            font-size: 10px;
-
-            font-weight: 500;
-
-            opacity: 0.82;
-
-            margin-top: 3px;
-        }
-
-
-        /* =====================================================
-           FILE INFORMATION
-        ===================================================== */
-
-        .file-info {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 8px;
-
-            margin-top: 14px;
-        }
-
-
-        .file-item {
-            background: #f7faf7;
-
-            border:
-                1px solid
-                #e8eee9;
-
-            border-radius: 13px;
-
-            padding:
-                12px
-                5px;
-
-            text-align: center;
-        }
-
-
-        .file-label {
-            font-size: 9px;
-
-            color: #8a948d;
-
-            font-weight: 600;
-
-            letter-spacing: 0.3px;
-        }
-
-
-        .file-value {
-            margin-top: 4px;
-
-            font-size: 13px;
-
-            color: #31563b;
-
-            font-weight: 850;
-        }
-
-
-        /* =====================================================
-           STATUS
-        ===================================================== */
-
-        .status {
-            display: none;
-
-            margin-top: 12px;
-
-            padding: 11px;
-
-            border-radius: 12px;
-
-            background: #eaf8ee;
-
-            color: #26753d;
-
-            text-align: center;
-
-            font-size: 12px;
-
-            font-weight: 700;
-        }
-
-
-        .status.show {
-            display: block;
-        }
-
-
-        /* =====================================================
-           FEATURES
-        ===================================================== */
-
-        .section-card {
-            margin-top: 15px;
-
-            background: white;
-
-            border:
-                1px solid
-                #e4ece6;
-
-            border-radius: 23px;
-
-            padding:
-                19px
-                17px;
-
-            box-shadow:
-                0 7px 25px
-                rgba(25, 70, 38, 0.05);
-        }
-
-
-        .section-header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 10px;
-        }
-
-
-        .section-title {
-            font-size: 16px;
-
-            font-weight: 850;
-
-            color: #203d28;
-        }
-
-
-        .section-count {
-            font-size: 10px;
-
-            color: #258443;
-
-            background: #eaf7ee;
-
-            padding:
-                5px
-                9px;
-
-            border-radius: 20px;
-
-            font-weight: 700;
-        }
-
-
-        .feature {
-            display: flex;
-
-            align-items: center;
-
-            gap: 11px;
-
-            padding:
-                8px
-                0;
-
-            color: #68736c;
-
-            font-size: 13px;
-        }
-
-
-        .feature-icon {
-            width: 27px;
-            height: 27px;
-
-            min-width: 27px;
-
-            border-radius: 9px;
-
-            background: #eaf7ee;
-
-            color: #198340;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            font-size: 12px;
-
-            font-weight: 900;
-        }
-
-
-        /* =====================================================
-           INSTALLATION CARD
-        ===================================================== */
-
-        .install-card {
-            margin-top: 15px;
-
-            padding: 17px;
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff9e8,
-                    #fffdf5
-                );
-
-            border:
-                1px solid
-                #f0e4bd;
-        }
-
-
-        .install-heading {
-            font-size: 14px;
-
-            color: #735b22;
-
-            font-weight: 850;
-
-            margin-bottom: 9px;
-        }
-
-
-        .install-step {
-            display: flex;
-
-            gap: 9px;
-
-            margin-top: 7px;
-
-            font-size: 12px;
-
-            line-height: 1.45;
-
-            color: #82734c;
-        }
-
-
-        .step-number {
-            width: 19px;
-            height: 19px;
-
-            min-width: 19px;
-
-            border-radius: 50%;
-
-            background: #f4e7bb;
-
-            color: #735b22;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            font-size: 10px;
-
-            font-weight: 800;
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        .footer {
-            text-align: center;
-
-            padding:
-                24px
-                5px
-                0;
-
-            color: #98a29b;
-
-            font-size: 10px;
-
-            line-height: 1.7;
-        }
-
-
-        .footer a {
-            color: #16883a;
-
-            text-decoration: none;
-
-            font-weight: 700;
-        }
-
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
-
-        @media (max-width: 360px) {
-
-            .hero {
-                min-height: 405px;
-
-                padding-top: 45px;
-            }
-
-
-            .logo-box {
-                width: 88px;
-                height: 88px;
-            }
-
-
-            .brand {
-                font-size: 29px;
-            }
-
-
-            .owner-developer {
-                font-size: 9px;
-            }
-
-
-            .content {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-
-
-            .download-title {
-                font-size: 19px;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<div class="app">
-
+    <title>Vegg Basket - Customer App</title>
 
     <!-- =====================================================
-         HERO
+         TAILWIND CSS
     ====================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <section class="hero">
+    <!-- =====================================================
+         REMIX ICON
+    ====================================================== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-        <div class="circle one"></div>
+      html {
+        scroll-behavior: smooth;
+      }
 
-        <div class="circle two"></div>
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
 
-        <div class="circle three"></div>
+      button,
+      a,
+      input,
+      textarea,
+      select {
+        -webkit-tap-highlight-color: transparent;
+      }
 
+      .hero-pattern {
+        background-image: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.16) 0,
+          rgba(255, 255, 255, 0.16) 2px,
+          transparent 3px
+        );
 
-        <!-- LOGO -->
+        background-size: 25px 25px;
+      }
 
-        <div class="logo-box">
+      .modal-bg {
+        background: rgba(15, 23, 42, 0.72);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+      }
 
+      .input-field {
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .input-field:focus {
+        outline: none;
+        border-color: #22c55e;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+      }
+
+      .release-card {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      @media (hover: hover) {
+        .release-card:hover {
+          transform: translateY(-3px);
+        }
+      }
+
+      /*
+       * Official Customer App secret trigger.
+       * Looks like a normal badge to customers.
+       */
+      .official-trigger {
+        cursor: pointer;
+        user-select: none;
+        border: 0;
+        font: inherit;
+      }
+
+      .official-trigger:focus {
+        outline: none;
+      }
+
+      .official-trigger:focus-visible {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.25s ease forwards;
+      }
+
+      .scale-in {
+        animation: scaleIn 0.22s ease forwards;
+      }
+
+      .slide-up {
+        animation: slideUp 0.25s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scrollbar::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      .scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 999px;
+      }
+
+      .safe-bottom {
+        padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+      }
+
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-50 text-slate-900">
+
+    <!-- ============================================================
+         HERO
+    ============================================================= -->
+
+    <header
+      class="relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 text-white"
+    >
+      <div class="absolute inset-0 hero-pattern opacity-50"></div>
+
+      <div
+        class="relative mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      >
+        <div class="flex flex-col items-center text-center">
+
+          <!-- ======================================================
+               APP LOGO
+          ======================================================= -->
+
+          <div
+            class="mb-5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.7rem] border-4 border-white/30 bg-white shadow-2xl sm:h-28 sm:w-28 lg:h-32 lg:w-32"
+          >
             <img
-                id="logoImage"
-                src="customer_app_logo-demo-1.png"
-                alt="Vegg Basket Logo"
+              id="heroLogo"
+              src="customer_app_logo-demo-1.png"
+              alt="Vegg Basket Logo"
+              class="h-full w-full object-cover"
+              onerror="
+                this.style.display = 'none';
+                document
+                  .getElementById('heroLogoFallback')
+                  .classList.remove('hidden');
+              "
+            />
+
+            <div
+              id="heroLogoFallback"
+              class="hidden h-full w-full items-center justify-center bg-green-50 text-green-600"
             >
+              <i class="ri-shopping-basket-2-fill text-5xl sm:text-6xl"></i>
+            </div>
+          </div>
 
-        </div>
+          <!-- ======================================================
+               OFFICIAL BADGE
+               
+               SECRET DEVELOPER LOGIN TRIGGER
+          ======================================================= -->
 
+          <button
+            id="officialCustomerAppButton"
+            type="button"
+            class="official-trigger mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3.5 py-2 text-xs font-bold text-white backdrop-blur transition hover:bg-white/20 sm:text-sm"
+            aria-label="Official Customer App"
+            title="Official Customer App"
+          >
+            <span
+              class="h-2 w-2 animate-pulse rounded-full bg-lime-300"
+            ></span>
 
-        <!-- BRAND -->
+            Official Customer App
+          </button>
 
-        <div class="brand">
+          <!-- ======================================================
+               TITLE
+          ======================================================= -->
+
+          <h1
+            class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl"
+          >
             Vegg Basket
-        </div>
+          </h1>
 
+          <p
+            class="mt-3 max-w-xl px-2 text-sm leading-6 text-green-50 sm:text-base sm:leading-7 lg:text-lg"
+          >
+            Fresh vegetables, fruits, groceries and everyday essentials
+            delivered to your doorstep.
+          </p>
 
-        <div class="brand-subtitle">
-            Fresh • Fast • Delivered
-        </div>
+          <!-- ======================================================
+               BADGES
+          ======================================================= -->
 
+          <div
+            class="mt-6 flex w-full flex-wrap items-center justify-center gap-2"
+          >
+            <div
+              class="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-black text-green-700 shadow-lg sm:text-sm"
+            >
+              <i class="ri-android-fill text-base"></i>
+              Android App
+            </div>
 
-        <!-- OWNER / DEVELOPER -->
+            <div
+              id="heroVersionBadge"
+              class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-bold backdrop-blur sm:text-sm"
+            >
+              <i class="ri-price-tag-3-line"></i>
+              Latest Version
+            </div>
+          </div>
 
-        <div class="owner-developer">
+          <!-- ======================================================
+               TOP OWNER / DEVELOPER
+          ======================================================= -->
 
-            <span>
-                Owned by KAMESWARI VEGETABLES
-            </span>
+          <div
+            class="mt-6 flex flex-col items-center gap-1.5 text-xs text-green-100 sm:text-sm"
+          >
+            <div>
+              Owned by
+              <span class="font-black text-white">Vegg Basket</span>
+            </div>
 
-            <span class="divider">
-                |
-            </span>
+            <div>
+              Developed by
 
-            <a
-                class="developer"
+              <a
                 href="https://gouthaman-developer.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-            >
-                Developed by Dark Web Studios
-            </a>
+                class="font-black text-white underline decoration-white/50 underline-offset-4 transition hover:text-lime-200"
+              >
+                Dark Web Studios
+                <i class="ri-external-link-line ml-0.5"></i>
+              </a>
+            </div>
+          </div>
 
         </div>
+      </div>
+    </header>
 
+    <!-- ============================================================
+         MAIN
+    ============================================================= -->
 
-        <!-- VERSION -->
+    <main
+      class="mx-auto w-full max-w-6xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
+    >
 
-        <div class="version-badge">
+      <!-- ========================================================
+           LATEST VERSION
+      ========================================================= -->
 
-            <span class="version-dot"></span>
+      <section>
 
-            Android App • v1.0.0
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
-    <main class="content">
-
-
-        <!-- DOWNLOAD CARD -->
-
-        <section class="download-card">
-
-
-            <h1 class="download-title">
-                Get the Vegg Basket App
-            </h1>
-
-
-            <p class="download-description">
-
-                Shop fresh vegetables, fruits and daily essentials
-                directly from your mobile.
-
-            </p>
-
-
-            <!-- DOWNLOAD BUTTON -->
-
-            <a
-                id="downloadButton"
-                class="download-button"
-                href="https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.0.0/Vegg-Basket-App.apk"
-            >
-
-                <span class="download-icon">
-                    ↓
-                </span>
-
-
-                <span class="download-text">
-
-                    <span class="download-main">
-                        Download Android App
-                    </span>
-
-                    <span class="download-small">
-                        APK • 62.5 MB • v1.0.0
-                    </span>
-
-                </span>
-
-            </a>
-
-
-            <!-- STATUS -->
+        <div
+          class="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
 
             <div
-                id="status"
-                class="status"
+              class="mb-2 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-green-600 sm:text-sm"
+            >
+              <i class="ri-download-cloud-2-line"></i>
+              Download
+            </div>
+
+            <h2
+              class="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl"
+            >
+              Latest Version
+            </h2>
+
+            <p
+              class="mt-1.5 max-w-xl text-sm leading-6 text-slate-500 sm:text-base"
+            >
+              Download the latest Vegg Basket customer application.
+            </p>
+
+          </div>
+
+          <div
+            id="releaseCount"
+            class="text-xs font-bold text-slate-400 sm:text-sm"
+          ></div>
+        </div>
+
+        <div id="latestReleaseContainer"></div>
+
+      </section>
+
+      <!-- ========================================================
+           PREVIOUS RELEASES
+      ========================================================= -->
+
+      <section class="mt-12 sm:mt-16">
+
+        <div
+          class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        >
+
+          <div>
+            <h2 class="text-xl font-black sm:text-2xl">
+              Previous Versions
+            </h2>
+
+            <p class="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+              Older versions of the Vegg Basket app.
+            </p>
+          </div>
+
+          <div class="relative w-full sm:w-64">
+
+            <i
+              class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            ></i>
+
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search version..."
+              class="input-field w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm"
+            />
+
+          </div>
+
+        </div>
+
+        <div id="previousReleasesContainer"></div>
+
+      </section>
+
+      <!-- ========================================================
+           FEATURES
+      ========================================================= -->
+
+      <section class="mt-14 sm:mt-16">
+
+        <div class="mb-6 text-center sm:mb-8">
+
+          <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
+            Why Use Vegg Basket?
+          </h2>
+
+          <p
+            class="mx-auto mt-2 max-w-xl text-xs leading-5 text-slate-500 sm:text-sm"
+          >
+            Everything you need for a simple grocery shopping experience.
+          </p>
+
+        </div>
+
+        <div
+          class="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4"
+        >
+
+          <!-- FEATURE 1 -->
+
+          <div
+            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+          >
+
+            <div
+              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-xl text-green-600"
+            >
+              <i class="ri-leaf-line"></i>
+            </div>
+
+            <h3 class="font-black">
+              Fresh Products
+            </h3>
+
+            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+              Fresh vegetables, fruits and grocery essentials.
+            </p>
+
+          </div>
+
+          <!-- FEATURE 2 -->
+
+          <div
+            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+          >
+
+            <div
+              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl text-blue-600"
+            >
+              <i class="ri-truck-line"></i>
+            </div>
+
+            <h3 class="font-black">
+              Fast Delivery
+            </h3>
+
+            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+              Track your order from confirmation to delivery.
+            </p>
+
+          </div>
+
+          <!-- FEATURE 3 -->
+
+          <div
+            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+          >
+
+            <div
+              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-xl text-purple-600"
+            >
+              <i class="ri-secure-payment-line"></i>
+            </div>
+
+            <h3 class="font-black">
+              Easy Payments
+            </h3>
+
+            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+              Choose from the available secure payment options.
+            </p>
+
+          </div>
+
+          <!-- FEATURE 4 -->
+
+          <div
+            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+          >
+
+            <div
+              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-xl text-orange-600"
+            >
+              <i class="ri-heart-3-line"></i>
+            </div>
+
+            <h3 class="font-black">
+              Easy Shopping
+            </h3>
+
+            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+              Wishlist, cart, offers and simple checkout.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================================
+           INSTALLATION
+      ========================================================= -->
+
+      <section class="mt-14 sm:mt-16">
+
+        <div
+          class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl"
+        >
+
+          <div class="p-6 sm:p-8 lg:p-10">
+
+            <div
+              class="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between"
             >
 
-                ✓ Download started.
-                Check your Downloads folder.
+              <div class="max-w-xl">
 
-            </div>
+                <div
+                  class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-green-300 sm:text-xs"
+                >
+                  <i class="ri-smartphone-line"></i>
+                  Installation
+                </div>
 
+                <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
+                  How to install?
+                </h2>
 
-            <!-- FILE INFORMATION -->
+                <p
+                  class="mt-2.5 text-xs leading-6 text-slate-300 sm:text-sm sm:leading-7"
+                >
+                  Download the APK and install it on your Android device.
+                  If Android asks for permission to install from unknown
+                  sources, allow it for your browser or file manager.
+                </p>
 
-            <div class="file-info">
+              </div>
 
+              <div
+                class="grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:w-[520px]"
+              >
 
-                <div class="file-item">
+                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
 
-                    <div class="file-label">
-                        VERSION
-                    </div>
+                  <div class="mb-2.5 text-xl text-green-400">
+                    <i class="ri-download-2-line"></i>
+                  </div>
 
-                    <div class="file-value">
-                        1.0.0
-                    </div>
+                  <div class="text-xs font-black sm:text-sm">
+                    01. Download
+                  </div>
+
+                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                    Download the APK.
+                  </div>
 
                 </div>
 
+                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
 
-                <div class="file-item">
+                  <div class="mb-2.5 text-xl text-green-400">
+                    <i class="ri-folder-open-line"></i>
+                  </div>
 
-                    <div class="file-label">
-                        PLATFORM
-                    </div>
+                  <div class="text-xs font-black sm:text-sm">
+                    02. Open
+                  </div>
 
-                    <div class="file-value">
-                        Android
-                    </div>
-
-                </div>
-
-
-                <div class="file-item">
-
-                    <div class="file-label">
-                        SIZE
-                    </div>
-
-                    <div class="file-value">
-                        62.5 MB
-                    </div>
+                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                    Open the downloaded APK.
+                  </div>
 
                 </div>
 
+                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
 
-            </div>
+                  <div class="mb-2.5 text-xl text-green-400">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </div>
 
+                  <div class="text-xs font-black sm:text-sm">
+                    03. Install
+                  </div>
 
-        </section>
+                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                    Complete installation.
+                  </div>
 
-
-        <!-- =====================================================
-             FEATURES
-        ====================================================== -->
-
-        <section class="section-card">
-
-
-            <div class="section-header">
-
-                <div class="section-title">
-                    App Features
                 </div>
 
-
-                <div class="section-count">
-                    7 Features
-                </div>
+              </div>
 
             </div>
 
+          </div>
 
-            <div class="feature">
+        </div>
 
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Customer Login & OTP Verification
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Product Browsing & Search
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Cart & Wishlist
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Online Payment & Cash on Delivery
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Order Tracking
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Delivery Address Management
-
-            </div>
-
-
-            <div class="feature">
-
-                <span class="feature-icon">
-                    ✓
-                </span>
-
-                Push Notifications
-
-            </div>
-
-
-        </section>
-
-
-        <!-- =====================================================
-             INSTALLATION
-        ====================================================== -->
-
-        <section class="install-card">
-
-
-            <div class="install-heading">
-                📱 Installation Guide
-            </div>
-
-
-            <div class="install-step">
-
-                <span class="step-number">
-                    1
-                </span>
-
-                <span>
-                    Tap the Download Android App button.
-                </span>
-
-            </div>
-
-
-            <div class="install-step">
-
-                <span class="step-number">
-                    2
-                </span>
-
-                <span>
-                    Open the APK from your Downloads folder.
-                </span>
-
-            </div>
-
-
-            <div class="install-step">
-
-                <span class="step-number">
-                    3
-                </span>
-
-                <span>
-                    Allow installation from this source if Android asks.
-                </span>
-
-            </div>
-
-
-            <div class="install-step">
-
-                <span class="step-number">
-                    4
-                </span>
-
-                <span>
-                    Tap Install and open Vegg Basket.
-                </span>
-
-            </div>
-
-
-        </section>
-
-
-        <!-- =====================================================
-             FOOTER
-        ====================================================== -->
-
-        <footer class="footer">
-
-            Vegg Basket Customer App
-
-            <br>
-
-            © 2026 Vegg Basket
-
-        </footer>
-
+      </section>
 
     </main>
 
+    <!-- ============================================================
+         FOOTER
+         
+         Developer / owner line removed.
+    ============================================================= -->
 
-</div>
+    <footer class="border-t border-slate-200 bg-white">
+
+      <div
+        class="safe-bottom mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-7 text-center sm:px-6 sm:py-8 lg:px-8"
+      >
+
+        <!-- BRAND -->
+
+        <div>
+
+          <div
+            class="flex items-center justify-center gap-2 text-lg font-black text-slate-900"
+          >
+
+            <span
+              class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
+            >
+              <i class="ri-shopping-basket-2-fill"></i>
+            </span>
+
+            Vegg Basket
+
+          </div>
+
+          <div class="mt-1 text-xs text-slate-400">
+            Customer Application
+          </div>
+
+        </div>
+
+        <!-- COPYRIGHT ONLY -->
+
+        <div class="text-xs text-slate-500 sm:text-sm">
+
+          ©
+          <span id="currentYear"></span>
+
+          <span class="font-bold text-slate-700">
+            Vegg Basket
+          </span>
+
+          · All Rights Reserved
+
+        </div>
+
+      </div>
+
+    </footer>
+
+    <!-- ============================================================
+         LOGIN MODAL
+    ============================================================= -->
+
+    <div
+      id="loginModal"
+      class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-5"
+    >
+
+      <div
+        class="scale-in max-h-[92vh] w-full overflow-y-auto rounded-t-[2rem] bg-white shadow-2xl sm:max-w-md sm:rounded-3xl"
+      >
+
+        <!-- HEADER -->
+
+        <div class="border-b border-slate-100 p-5 sm:p-7">
+
+          <div class="flex items-start justify-between">
+
+            <div>
+
+              <div
+                class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg text-white"
+              >
+                <i class="ri-lock-password-line"></i>
+              </div>
+
+              <h2 class="text-xl font-black sm:text-2xl">
+                Developer Login
+              </h2>
+
+              <p class="mt-1 text-xs text-slate-500 sm:text-sm">
+                Access version management.
+              </p>
+
+            </div>
+
+            <button
+              id="closeLoginButton"
+              type="button"
+              aria-label="Close"
+              class="flex h-9 w-9 items-center justify-center rounded-xl text-xl text-slate-400 hover:bg-slate-100"
+            >
+              <i class="ri-close-line"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form
+          id="loginForm"
+          class="space-y-4 p-5 sm:p-7"
+        >
+
+          <!-- EMAIL -->
+
+          <div>
+
+            <label
+              class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
+            >
+              Login ID
+            </label>
+
+            <div class="relative">
+
+              <i
+                class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              ></i>
+
+              <input
+                id="loginEmail"
+                type="email"
+                autocomplete="username"
+                placeholder="Developer email"
+                required
+                class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm"
+              />
+
+            </div>
+
+          </div>
+
+          <!-- PASSWORD -->
+
+          <div>
+
+            <label
+              class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
+            >
+              Password
+            </label>
+
+            <div class="relative">
+
+              <i
+                class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              ></i>
+
+              <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Developer password"
+                required
+                class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-12 text-sm"
+              />
+
+              <button
+                id="togglePassword"
+                type="button"
+                aria-label="Show password"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-slate-400"
+              >
+                <i class="ri-eye-line"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- ERROR -->
+
+          <div
+            id="loginError"
+            class="hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-xs font-bold text-red-600"
+          ></div>
+
+          <!-- LOGIN -->
+
+          <button
+            type="submit"
+            class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-black text-white shadow-lg"
+          >
+            <i class="ri-login-box-line"></i>
+            Login
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         DEVELOPER DASHBOARD
+    ============================================================= -->
+
+    <div
+      id="dashboardModal"
+      class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-4"
+    >
+
+      <div
+        class="slide-up flex max-h-[96vh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-slate-50 shadow-2xl sm:max-h-[94vh] sm:max-w-6xl sm:rounded-3xl"
+      >
+
+        <!-- HEADER -->
+
+        <div
+          class="border-b border-slate-200 bg-white px-4 py-3.5 sm:px-7 sm:py-4"
+        >
+
+          <div class="flex items-center justify-between gap-3">
+
+            <div class="flex min-w-0 items-center gap-3">
+
+              <div
+                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900 text-base text-white sm:h-11 sm:w-11 sm:text-lg"
+              >
+                <i class="ri-settings-3-line"></i>
+              </div>
+
+              <div class="min-w-0">
+
+                <h2 class="truncate text-sm font-black sm:text-base">
+                  Developer Dashboard
+                </h2>
+
+                <p class="truncate text-[10px] text-slate-500 sm:text-xs">
+                  Manage customer app releases
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="flex flex-shrink-0 items-center gap-1.5">
+
+              <button
+                id="logoutButton"
+                type="button"
+                class="flex h-9 items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 text-[10px] font-bold text-slate-700 sm:px-3 sm:text-xs"
+              >
+                <i class="ri-logout-box-r-line"></i>
+
+                <span class="hidden sm:inline">
+                  Logout
+                </span>
+              </button>
+
+              <button
+                id="closeDashboardButton"
+                type="button"
+                aria-label="Close"
+                class="flex h-9 w-9 items-center justify-center rounded-lg text-xl text-slate-400 hover:bg-slate-100"
+              >
+                <i class="ri-close-line"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- BODY -->
+
+        <div class="scrollbar overflow-y-auto p-4 sm:p-6 lg:p-7">
+
+          <div
+            class="grid grid-cols-1 gap-5 lg:grid-cols-[400px_1fr]"
+          >
+
+            <!-- ==================================================
+                 FORM
+            =================================================== -->
+
+            <section>
+
+              <div
+                class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+              >
+
+                <div class="mb-5">
+
+                  <div
+                    id="formIcon"
+                    class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
+                  >
+                    <i class="ri-add-line"></i>
+                  </div>
+
+                  <h3
+                    id="releaseFormTitle"
+                    class="text-lg font-black sm:text-xl"
+                  >
+                    Add New Version
+                  </h3>
+
+                  <p class="mt-1 text-xs text-slate-500 sm:text-sm">
+                    Add and publish a new APK release.
+                  </p>
+
+                </div>
+
+                <form
+                  id="releaseForm"
+                  class="space-y-3.5"
+                >
+
+                  <input
+                    id="editingId"
+                    type="hidden"
+                  />
+
+                  <!-- VERSION -->
+
+                  <div>
+
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                    >
+                      App Version
+                    </label>
+
+                    <input
+                      id="versionInput"
+                      type="text"
+                      placeholder="Example: 2.0.0"
+                      required
+                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold"
+                    />
+
+                    <p class="mt-1 text-[10px] text-slate-400">
+                      Example: 2.0.0
+                    </p>
+
+                  </div>
+
+                  <!-- RELEASE DATE -->
+
+                  <div>
+
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                    >
+                      Release Date
+                    </label>
+
+                    <input
+                      id="releaseDateInput"
+                      type="date"
+                      required
+                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    />
+
+                  </div>
+
+                  <!-- APK URL -->
+
+                  <div>
+
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                    >
+                      APK Download URL
+                    </label>
+
+                    <input
+                      id="apkUrlInput"
+                      type="url"
+                      placeholder="https://github.com/..."
+                      required
+                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    />
+
+                    <p class="mt-1 text-[10px] leading-4 text-slate-400">
+                      Paste the direct GitHub APK release asset URL.
+                    </p>
+
+                  </div>
+
+                  <!-- SIZE + PLATFORM -->
+
+                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+                    <div>
+
+                      <label
+                        class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                      >
+                        APK Size
+                      </label>
+
+                      <input
+                        id="apkSizeInput"
+                        type="text"
+                        placeholder="62.5 MB"
+                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                      />
+
+                    </div>
+
+                    <div>
+
+                      <label
+                        class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                      >
+                        Platform
+                      </label>
+
+                      <select
+                        id="platformInput"
+                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                      >
+
+                        <option value="Android">
+                          Android
+                        </option>
+
+                        <option value="iOS">
+                          iOS
+                        </option>
+
+                        <option value="Windows">
+                          Windows
+                        </option>
+
+                        <option value="Other">
+                          Other
+                        </option>
+
+                      </select>
+
+                    </div>
+
+                  </div>
+
+                  <!-- RELEASE NOTES -->
+
+                  <div>
+
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                    >
+                      Release Notes
+                    </label>
+
+                    <textarea
+                      id="releaseNotesInput"
+                      rows="4"
+                      placeholder="What's new in this version?"
+                      class="input-field w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    ></textarea>
+
+                  </div>
+
+                  <!-- PUBLISH -->
+
+                  <label
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-green-100 bg-green-50 p-3.5"
+                  >
+
+                    <input
+                      id="publishedInput"
+                      type="checkbox"
+                      checked
+                      class="mt-0.5 h-4 w-4 accent-green-600"
+                    />
+
+                    <div>
+
+                      <div
+                        class="text-xs font-black text-green-800 sm:text-sm"
+                      >
+                        Publish this version
+                      </div>
+
+                      <div
+                        class="mt-0.5 text-[10px] leading-4 text-green-700 sm:text-xs"
+                      >
+                        Published releases are visible to customers.
+                      </div>
+
+                    </div>
+
+                  </label>
+
+                  <!-- BUTTONS -->
+
+                  <div class="flex gap-2">
+
+                    <button
+                      id="saveReleaseButton"
+                      type="submit"
+                      class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-xs font-black text-white shadow-lg shadow-green-600/20 sm:text-sm"
+                    >
+                      <i class="ri-upload-cloud-2-line"></i>
+                      Publish Version
+                    </button>
+
+                    <button
+                      id="cancelEditButton"
+                      type="button"
+                      class="hidden rounded-xl bg-slate-100 px-4 py-3 text-xs font-bold text-slate-700"
+                    >
+                      Cancel
+                    </button>
+
+                  </div>
+
+                </form>
+
+              </div>
+
+            </section>
+
+            <!-- ==================================================
+                 RELEASE HISTORY
+            =================================================== -->
+
+            <section>
+
+              <div class="mb-4 flex items-center justify-between">
+
+                <div>
+
+                  <h3 class="text-lg font-black sm:text-xl">
+                    Release History
+                  </h3>
+
+                  <p class="mt-1 text-[10px] text-slate-500 sm:text-xs">
+                    Newest release appears first.
+                  </p>
+
+                </div>
+
+                <div
+                  id="dashboardReleaseCount"
+                  class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600"
+                ></div>
+
+              </div>
+
+              <div
+                id="dashboardReleases"
+                class="space-y-2.5"
+              ></div>
+
+            </section>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         TOAST
+    ============================================================= -->
+
+    <div
+      id="toast"
+      class="pointer-events-none fixed bottom-4 left-1/2 z-[100] hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2"
+    >
+
+      <div
+        id="toastContent"
+        class="flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm"
+      >
+
+        <i
+          id="toastIcon"
+          class="ri-checkbox-circle-fill text-lg text-green-400"
+        ></i>
+
+        <span id="toastMessage"></span>
+
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT
+    ============================================================= -->
+
+    <script>
+
+      /* ============================================================
+         CONFIG
+      ============================================================= */
+
+      const STORAGE_KEY =
+        "vegg_basket_releases_v2";
+
+      const LOGIN_KEY =
+        "vegg_basket_developer_logged_in";
+
+      /*
+       * Frontend-only credentials.
+       *
+       * IMPORTANT:
+       * This is NOT secure production authentication.
+       */
+
+      const DEVELOPER_EMAIL =
+        "developer@dws.com";
+
+      const DEVELOPER_PASSWORD =
+        "Dark-Web-Studios@060422";
 
 
-<script>
+      /* ============================================================
+         DEFAULT RELEASES
+      ============================================================= */
+
+      const DEFAULT_RELEASES = [
+
+        {
+          id: "release-191",
+
+          version: "1.9.1",
+
+          releaseDate: "2026-09-27",
+
+          apkUrl:
+            "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/Vegg-Basket-App-v1.9.1.apk",
+
+          apkSize: "",
+
+          platform: "Android",
+
+          releaseNotes:
+            "Latest Vegg Basket customer app release.",
+
+          published: true,
+
+          createdAt:
+            "2026-09-27T10:00:00",
+        },
+
+        {
+          id: "release-100",
+
+          version: "1.0.0",
+
+          releaseDate: "2026-09-25",
+
+          apkUrl:
+            "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.0.0/Vegg-Basket-App.apk",
+
+          apkSize: "",
+
+          platform: "Android",
+
+          releaseNotes:
+            "Initial customer application release.",
+
+          published: true,
+
+          createdAt:
+            "2026-09-25T10:00:00",
+        },
+
+      ];
 
 
-    /* ========================================================
-       DOWNLOAD STATUS
-    ======================================================== */
+      /* ============================================================
+         STATE
+      ============================================================= */
 
-    const downloadButton =
-        document.getElementById("downloadButton");
+      let releases = [];
 
-
-    const status =
-        document.getElementById("status");
+      let toastTimer = null;
 
 
-    downloadButton.addEventListener(
-        "click",
-        function () {
+      /* ============================================================
+         SHORT SELECTOR
+      ============================================================= */
 
-            status.classList.add("show");
+      const $ = (id) =>
+        document.getElementById(id);
 
 
-            setTimeout(
-                function () {
+      /* ============================================================
+         LOAD RELEASES
+      ============================================================= */
 
-                    status.classList.remove("show");
+      function loadReleases() {
 
-                },
-                6000
+        try {
+
+          const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+          if (!saved) {
+
+            releases =
+              structuredClone(DEFAULT_RELEASES);
+
+            saveReleases();
+
+            return;
+          }
+
+          const parsed =
+            JSON.parse(saved);
+
+          if (Array.isArray(parsed)) {
+
+            releases = parsed;
+
+          } else {
+
+            releases =
+              structuredClone(DEFAULT_RELEASES);
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "Release load error:",
+            error
+          );
+
+          releases =
+            structuredClone(DEFAULT_RELEASES);
+        }
+      }
+
+
+      /* ============================================================
+         SAVE RELEASES
+      ============================================================= */
+
+      function saveReleases() {
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(releases)
+        );
+
+      }
+
+
+      /* ============================================================
+         VERSION SORT
+      ============================================================= */
+
+      function compareVersions(a, b) {
+
+        const pa =
+          String(a)
+            .replace(/^v/i, "")
+            .split(".")
+            .map(Number);
+
+        const pb =
+          String(b)
+            .replace(/^v/i, "")
+            .split(".")
+            .map(Number);
+
+        for (
+          let i = 0;
+          i < Math.max(pa.length, pb.length);
+          i++
+        ) {
+
+          const na =
+            pa[i] || 0;
+
+          const nb =
+            pb[i] || 0;
+
+          if (na > nb) {
+            return 1;
+          }
+
+          if (na < nb) {
+            return -1;
+          }
+        }
+
+        return 0;
+      }
+
+
+      function getSortedReleases(
+        list = releases
+      ) {
+
+        return [...list].sort(
+          (a, b) => {
+
+            const dateA =
+              new Date(
+                a.releaseDate || 0
+              ).getTime();
+
+            const dateB =
+              new Date(
+                b.releaseDate || 0
+              ).getTime();
+
+            if (dateB !== dateA) {
+              return dateB - dateA;
+            }
+
+            return compareVersions(
+              b.version,
+              a.version
+            );
+          }
+        );
+      }
+
+
+      /* ============================================================
+         FORMAT DATE
+      ============================================================= */
+
+      function formatDate(dateString) {
+
+        if (!dateString) {
+          return "Date unavailable";
+        }
+
+        const date =
+          new Date(
+            dateString + "T00:00:00"
+          );
+
+        if (
+          Number.isNaN(
+            date.getTime()
+          )
+        ) {
+          return dateString;
+        }
+
+        return date.toLocaleDateString(
+          "en-IN",
+          {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }
+        );
+      }
+
+
+      /* ============================================================
+         ESCAPE HTML
+      ============================================================= */
+
+      function escapeHTML(value) {
+
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+
+      /* ============================================================
+         NORMALIZE VERSION
+      ============================================================= */
+
+      function normalizeVersion(version) {
+
+        return String(version || "")
+          .trim()
+          .replace(/^v/i, "");
+      }
+
+
+      /* ============================================================
+         PUBLIC PAGE
+      ============================================================= */
+
+      function renderPublicPage() {
+
+        const published =
+          getSortedReleases(
+            releases.filter(
+              (release) =>
+                release.published !== false
+            )
+          );
+
+        $("releaseCount").textContent =
+          `${published.length} release${
+            published.length === 1
+              ? ""
+              : "s"
+          }`;
+
+
+        if (!published.length) {
+
+          $("latestReleaseContainer")
+            .innerHTML = `
+
+              <div
+                class="rounded-3xl border border-dashed border-slate-300 bg-white p-8 text-center sm:p-10"
+              >
+
+                <div
+                  class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-2xl text-slate-400"
+                >
+                  <i class="ri-download-cloud-line"></i>
+                </div>
+
+                <h3 class="font-black">
+                  No releases available
+                </h3>
+
+                <p class="mt-1 text-xs text-slate-500 sm:text-sm">
+                  Please check again later.
+                </p>
+
+              </div>
+
+            `;
+
+          $("previousReleasesContainer")
+            .innerHTML = "";
+
+          $("heroVersionBadge")
+            .innerHTML = `
+              <i class="ri-price-tag-3-line"></i>
+              No release
+            `;
+
+          return;
+        }
+
+
+        const latest =
+          published[0];
+
+
+        $("heroVersionBadge")
+          .innerHTML = `
+            <i class="ri-price-tag-3-line"></i>
+            v${escapeHTML(
+              latest.version
+            )}
+          `;
+
+
+        $("latestReleaseContainer")
+          .innerHTML =
+          createLatestReleaseCard(
+            latest
+          );
+
+
+        renderPreviousReleases(
+          published.slice(1)
+        );
+
+      }
+
+
+      /* ============================================================
+         LATEST RELEASE CARD
+      ============================================================= */
+
+      function createLatestReleaseCard(
+        release
+      ) {
+
+        return `
+
+          <article
+            class="release-card overflow-hidden rounded-3xl border border-green-200 bg-white shadow-lg shadow-green-900/5"
+          >
+
+            <div
+              class="bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 p-5 text-white sm:p-7 lg:p-8"
+            >
+
+              <div class="flex flex-col gap-6">
+
+                <div>
+
+                  <div
+                    class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider backdrop-blur sm:text-xs"
+                  >
+                    <i class="ri-sparkling-2-fill"></i>
+                    Latest Version
+                  </div>
+
+                  <div
+                    class="flex flex-wrap items-center gap-2.5"
+                  >
+
+                    <h3
+                      class="text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl"
+                    >
+                      v${escapeHTML(
+                        release.version
+                      )}
+                    </h3>
+
+                    <span
+                      class="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-black backdrop-blur sm:text-xs"
+                    >
+                      ${escapeHTML(
+                        release.platform ||
+                        "Android"
+                      )}
+                    </span>
+
+                  </div>
+
+                  <div
+                    class="mt-3 flex flex-col gap-1.5 text-xs text-green-50 sm:flex-row sm:flex-wrap sm:gap-x-5"
+                  >
+
+                    <span
+                      class="inline-flex items-center gap-1.5"
+                    >
+                      <i class="ri-calendar-line"></i>
+
+                      Released on
+                      ${formatDate(
+                        release.releaseDate
+                      )}
+                    </span>
+
+                    ${
+                      release.apkSize
+                        ? `
+                          <span
+                            class="inline-flex items-center gap-1.5"
+                          >
+                            <i class="ri-file-download-line"></i>
+                            ${escapeHTML(
+                              release.apkSize
+                            )}
+                          </span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- DOWNLOAD -->
+
+                <a
+                  href="${escapeHTML(
+                    release.apkUrl
+                  )}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onclick="handleDownload('${escapeHTML(
+                    release.id
+                  )}')"
+                  class="inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-2xl bg-white px-6 py-3.5 text-sm font-black text-green-700 shadow-xl transition hover:bg-green-50 sm:w-auto sm:self-start"
+                >
+
+                  <i class="ri-download-2-fill text-lg"></i>
+
+                  Download APK
+
+                </a>
+
+              </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="p-5 sm:p-7 lg:p-8">
+
+              <div class="flex flex-col gap-5">
+
+                <div>
+
+                  <h4
+                    class="mb-2 flex items-center gap-2 text-sm font-black text-slate-800"
+                  >
+                    <i
+                      class="ri-file-list-3-line text-green-600"
+                    ></i>
+
+                    What's new
+                  </h4>
+
+                  <p
+                    class="text-xs leading-6 text-slate-500 sm:text-sm sm:leading-7"
+                  >
+                    ${escapeHTML(
+                      release.releaseNotes ||
+                      "Latest improvements and updates."
+                    )}
+                  </p>
+
+                </div>
+
+
+                <div
+                  class="grid grid-cols-2 gap-2.5"
+                >
+
+                  <div
+                    class="rounded-xl bg-green-50 p-3"
+                  >
+
+                    <div
+                      class="text-[10px] font-bold text-green-600"
+                    >
+                      Version
+                    </div>
+
+                    <div
+                      class="mt-0.5 text-sm font-black text-green-800"
+                    >
+                      v${escapeHTML(
+                        release.version
+                      )}
+                    </div>
+
+                  </div>
+
+
+                  <div
+                    class="rounded-xl bg-slate-50 p-3"
+                  >
+
+                    <div
+                      class="text-[10px] font-bold text-slate-400"
+                    >
+                      Platform
+                    </div>
+
+                    <div
+                      class="mt-0.5 text-sm font-black text-slate-700"
+                    >
+                      ${escapeHTML(
+                        release.platform ||
+                        "Android"
+                      )}
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        `;
+      }
+
+
+      /* ============================================================
+         PREVIOUS RELEASES
+      ============================================================= */
+
+      function renderPreviousReleases(
+        previousReleases,
+        searchTerm = ""
+      ) {
+
+        const container =
+          $("previousReleasesContainer");
+
+        let filtered =
+          previousReleases;
+
+
+        if (searchTerm.trim()) {
+
+          const query =
+            searchTerm
+              .trim()
+              .toLowerCase();
+
+          filtered =
+            previousReleases.filter(
+              (release) => {
+
+                return (
+                  String(
+                    release.version
+                  )
+                    .toLowerCase()
+                    .includes(query) ||
+
+                  String(
+                    release.releaseNotes ||
+                    ""
+                  )
+                    .toLowerCase()
+                    .includes(query) ||
+
+                  String(
+                    release.platform ||
+                    ""
+                  )
+                    .toLowerCase()
+                    .includes(query)
+                );
+              }
+            );
+        }
+
+
+        if (!filtered.length) {
+
+          container.innerHTML = `
+
+            <div
+              class="rounded-2xl border border-dashed border-slate-300 bg-white p-7 text-center sm:p-8"
+            >
+
+              <div
+                class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-xl text-slate-400"
+              >
+                <i class="ri-search-line"></i>
+              </div>
+
+              <div
+                class="text-sm font-black text-slate-700"
+              >
+                No previous versions found
+              </div>
+
+              <p class="mt-1 text-xs text-slate-400">
+                Try another version number.
+              </p>
+
+            </div>
+
+          `;
+
+          return;
+        }
+
+
+        container.innerHTML =
+          filtered
+            .map(
+              createPreviousReleaseCard
+            )
+            .join("");
+
+      }
+
+
+      /* ============================================================
+         PREVIOUS RELEASE CARD
+      ============================================================= */
+
+      function createPreviousReleaseCard(
+        release
+      ) {
+
+        return `
+
+          <article
+            class="release-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+          >
+
+            <div
+              class="flex flex-col gap-4"
+            >
+
+              <div
+                class="flex items-start gap-3"
+              >
+
+                <div
+                  class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg text-slate-500"
+                >
+                  <i class="ri-android-line"></i>
+                </div>
+
+
+                <div class="min-w-0 flex-1">
+
+                  <div
+                    class="flex flex-wrap items-center gap-2"
+                  >
+
+                    <h3
+                      class="text-base font-black sm:text-lg"
+                    >
+                      v${escapeHTML(
+                        release.version
+                      )}
+                    </h3>
+
+                    <span
+                      class="rounded-full bg-slate-100 px-2 py-1 text-[9px] font-black uppercase tracking-wide text-slate-500"
+                    >
+                      ${escapeHTML(
+                        release.platform ||
+                        "Android"
+                      )}
+                    </span>
+
+                  </div>
+
+
+                  <div
+                    class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-400 sm:text-xs"
+                  >
+
+                    <span>
+                      <i class="ri-calendar-line"></i>
+
+                      ${formatDate(
+                        release.releaseDate
+                      )}
+                    </span>
+
+
+                    ${
+                      release.apkSize
+                        ? `
+                          <span>
+                            <i class="ri-file-line"></i>
+                            ${escapeHTML(
+                              release.apkSize
+                            )}
+                          </span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+
+                  ${
+                    release.releaseNotes
+                      ? `
+                        <p
+                          class="line-clamp-2 mt-2 text-xs leading-5 text-slate-500 sm:text-sm"
+                        >
+                          ${escapeHTML(
+                            release.releaseNotes
+                          )}
+                        </p>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+              </div>
+
+
+              <a
+                href="${escapeHTML(
+                  release.apkUrl
+                )}"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="handleDownload('${escapeHTML(
+                  release.id
+                )}')"
+                class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-2.5 text-xs font-black text-green-700 transition hover:bg-green-100 sm:w-auto sm:self-end sm:px-5 sm:text-sm"
+              >
+
+                <i class="ri-download-2-line"></i>
+
+                Download
+
+              </a>
+
+            </div>
+
+          </article>
+
+        `;
+      }
+
+
+      /* ============================================================
+         DOWNLOAD
+      ============================================================= */
+
+      function handleDownload(id) {
+
+        console.log(
+          "Download:",
+          id
+        );
+
+      }
+
+
+      /* ============================================================
+         LOGIN
+      ============================================================= */
+
+      function openLoginModal() {
+
+        $("loginModal")
+          .classList
+          .remove("hidden");
+
+        $("loginModal")
+          .classList
+          .add("flex");
+
+        $("loginError")
+          .classList
+          .add("hidden");
+
+        setTimeout(
+          () =>
+            $("loginEmail").focus(),
+          100
+        );
+
+      }
+
+
+      function closeLoginModal() {
+
+        $("loginModal")
+          .classList
+          .add("hidden");
+
+        $("loginModal")
+          .classList
+          .remove("flex");
+
+        $("loginError")
+          .classList
+          .add("hidden");
+
+        $("loginError")
+          .textContent = "";
+
+      }
+
+
+      function isDeveloperLoggedIn() {
+
+        return (
+          sessionStorage.getItem(
+            LOGIN_KEY
+          ) === "true"
+        );
+
+      }
+
+
+      function setDeveloperLoggedIn(
+        value
+      ) {
+
+        if (value) {
+
+          sessionStorage.setItem(
+            LOGIN_KEY,
+            "true"
+          );
+
+        } else {
+
+          sessionStorage.removeItem(
+            LOGIN_KEY
+          );
+
+        }
+
+      }
+
+
+      /* ============================================================
+         DASHBOARD
+      ============================================================= */
+
+      function openDashboard() {
+
+        $("dashboardModal")
+          .classList
+          .remove("hidden");
+
+        $("dashboardModal")
+          .classList
+          .add("flex");
+
+        renderDashboardReleases();
+
+      }
+
+
+      function closeDashboard() {
+
+        $("dashboardModal")
+          .classList
+          .add("hidden");
+
+        $("dashboardModal")
+          .classList
+          .remove("flex");
+
+      }
+
+
+      /* ============================================================
+         DASHBOARD RELEASE LIST
+      ============================================================= */
+
+      function renderDashboardReleases() {
+
+        const container =
+          $("dashboardReleases");
+
+        const sorted =
+          getSortedReleases();
+
+
+        $("dashboardReleaseCount")
+          .textContent =
+          `${sorted.length} total`;
+
+
+        if (!sorted.length) {
+
+          container.innerHTML = `
+
+            <div
+              class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center"
+            >
+
+              <i
+                class="ri-inbox-line text-3xl text-slate-300"
+              ></i>
+
+              <div
+                class="mt-3 text-sm font-black"
+              >
+                No releases
+              </div>
+
+            </div>
+
+          `;
+
+          return;
+        }
+
+
+        container.innerHTML =
+          sorted
+            .map(
+              createDashboardRelease
+            )
+            .join("");
+
+      }
+
+
+      /* ============================================================
+         DASHBOARD CARD
+      ============================================================= */
+
+      function createDashboardRelease(
+        release,
+        index
+      ) {
+
+        const isLatest =
+          index === 0 &&
+          release.published !== false;
+
+
+        return `
+
+          <div
+            class="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm sm:p-4"
+          >
+
+            <div
+              class="flex items-center gap-3"
+            >
+
+              <div
+                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${
+                  isLatest
+                    ? "bg-green-100 text-green-600"
+                    : "bg-slate-100 text-slate-500"
+                }"
+              >
+
+                <i
+                  class="${
+                    isLatest
+                      ? "ri-star-fill"
+                      : "ri-history-line"
+                  }"
+                ></i>
+
+              </div>
+
+
+              <div
+                class="min-w-0 flex-1"
+              >
+
+                <div
+                  class="flex flex-wrap items-center gap-1.5"
+                >
+
+                  <span
+                    class="text-sm font-black"
+                  >
+                    v${escapeHTML(
+                      release.version
+                    )}
+                  </span>
+
+
+                  ${
+                    isLatest
+                      ? `
+                        <span
+                          class="rounded-full bg-green-100 px-1.5 py-0.5 text-[8px] font-black uppercase text-green-700"
+                        >
+                          Latest
+                        </span>
+                      `
+                      : ""
+                  }
+
+
+                  ${
+                    release.published === false
+                      ? `
+                        <span
+                          class="rounded-full bg-amber-100 px-1.5 py-0.5 text-[8px] font-black uppercase text-amber-700"
+                        >
+                          Draft
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+
+                <div
+                  class="mt-0.5 flex flex-wrap gap-x-3 text-[9px] text-slate-400"
+                >
+
+                  <span>
+                    ${formatDate(
+                      release.releaseDate
+                    )}
+                  </span>
+
+                  <span>
+                    ${escapeHTML(
+                      release.platform ||
+                      "Android"
+                    )}
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- ACTIONS -->
+
+              <div
+                class="flex flex-shrink-0 items-center gap-1"
+              >
+
+                <button
+                  type="button"
+                  onclick="editRelease('${escapeHTML(
+                    release.id
+                  )}')"
+                  title="Edit"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600"
+                >
+                  <i class="ri-edit-line"></i>
+                </button>
+
+
+                <button
+                  type="button"
+                  onclick="togglePublished('${escapeHTML(
+                    release.id
+                  )}')"
+                  title="Publish / Unpublish"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg ${
+                    release.published === false
+                      ? "bg-green-50 text-green-600"
+                      : "bg-amber-50 text-amber-600"
+                  }"
+                >
+
+                  <i
+                    class="${
+                      release.published === false
+                        ? "ri-eye-line"
+                        : "ri-eye-off-line"
+                    }"
+                  ></i>
+
+                </button>
+
+
+                <button
+                  type="button"
+                  onclick="deleteRelease('${escapeHTML(
+                    release.id
+                  )}')"
+                  title="Delete"
+                  class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600"
+                >
+                  <i class="ri-delete-bin-line"></i>
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* ============================================================
+         RESET FORM
+      ============================================================= */
+
+      function resetReleaseForm() {
+
+        $("releaseForm").reset();
+
+        $("editingId").value = "";
+
+        $("publishedInput").checked =
+          true;
+
+        $("releaseFormTitle")
+          .textContent =
+          "Add New Version";
+
+        $("formIcon").innerHTML =
+          `<i class="ri-add-line"></i>`;
+
+        $("saveReleaseButton")
+          .innerHTML =
+          `<i class="ri-upload-cloud-2-line"></i> Publish Version`;
+
+        $("cancelEditButton")
+          .classList
+          .add("hidden");
+
+      }
+
+
+      /* ============================================================
+         EDIT RELEASE
+      ============================================================= */
+
+      function editRelease(id) {
+
+        const release =
+          releases.find(
+            (item) =>
+              item.id === id
+          );
+
+        if (!release) {
+          return;
+        }
+
+
+        $("editingId").value =
+          release.id;
+
+        $("versionInput").value =
+          release.version || "";
+
+        $("releaseDateInput").value =
+          release.releaseDate || "";
+
+        $("apkUrlInput").value =
+          release.apkUrl || "";
+
+        $("apkSizeInput").value =
+          release.apkSize || "";
+
+        $("platformInput").value =
+          release.platform ||
+          "Android";
+
+        $("releaseNotesInput").value =
+          release.releaseNotes || "";
+
+        $("publishedInput").checked =
+          release.published !== false;
+
+
+        $("releaseFormTitle")
+          .textContent =
+          "Edit Version";
+
+        $("formIcon").innerHTML =
+          `<i class="ri-edit-line"></i>`;
+
+        $("saveReleaseButton")
+          .innerHTML =
+          `<i class="ri-save-3-line"></i> Save Changes`;
+
+        $("cancelEditButton")
+          .classList
+          .remove("hidden");
+
+
+        $("versionInput").focus();
+
+      }
+
+
+      /* ============================================================
+         SAVE RELEASE
+      ============================================================= */
+
+      function saveRelease(event) {
+
+        event.preventDefault();
+
+
+        const version =
+          normalizeVersion(
+            $("versionInput").value
+          );
+
+        const releaseDate =
+          $("releaseDateInput").value;
+
+        const apkUrl =
+          $("apkUrlInput")
+            .value
+            .trim();
+
+        const apkSize =
+          $("apkSizeInput")
+            .value
+            .trim();
+
+        const platform =
+          $("platformInput").value;
+
+        const releaseNotes =
+          $("releaseNotesInput")
+            .value
+            .trim();
+
+        const published =
+          $("publishedInput").checked;
+
+        const editingId =
+          $("editingId").value;
+
+
+        /* VALIDATION */
+
+        if (!version) {
+
+          showToast(
+            "Please enter app version.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (
+          !/^\d+(\.\d+){0,3}$/.test(
+            version
+          )
+        ) {
+
+          showToast(
+            "Version example: 2.0.0",
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (!releaseDate) {
+
+          showToast(
+            "Please select release date.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (!apkUrl) {
+
+          showToast(
+            "Please enter APK URL.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        /* DUPLICATE */
+
+        const duplicate =
+          releases.find(
+            (release) =>
+              String(
+                release.version
+              ).toLowerCase() ===
+                version.toLowerCase() &&
+              release.id !==
+                editingId
+          );
+
+
+        if (duplicate) {
+
+          showToast(
+            `Version ${version} already exists.`,
+            "error"
+          );
+
+          return;
+        }
+
+
+        /* ======================================================
+           UPDATE EXISTING
+        ======================================================= */
+
+        if (editingId) {
+
+          const index =
+            releases.findIndex(
+              (release) =>
+                release.id ===
+                editingId
             );
 
+
+          if (index !== -1) {
+
+            releases[index] = {
+
+              ...releases[index],
+
+              version,
+
+              releaseDate,
+
+              apkUrl,
+
+              apkSize,
+
+              platform,
+
+              releaseNotes,
+
+              published,
+
+            };
+
+          }
+
+
+          saveReleases();
+
+          renderPublicPage();
+
+          renderDashboardReleases();
+
+          resetReleaseForm();
+
+
+          showToast(
+            `Version ${version} updated.`,
+            "success"
+          );
+
+          return;
         }
-    );
 
 
-    /* ========================================================
-       LOGO FALLBACK
-    ======================================================== */
+        /* ======================================================
+           CREATE NEW RELEASE
+        ======================================================= */
 
-    const logo =
-        document.getElementById("logoImage");
+        const newRelease = {
+
+          id:
+            "release-" +
+            Date.now(),
+
+          version,
+
+          releaseDate,
+
+          apkUrl,
+
+          apkSize,
+
+          platform,
+
+          releaseNotes,
+
+          published,
+
+          createdAt:
+            new Date().toISOString(),
+
+        };
 
 
-    logo.addEventListener(
-        "error",
-        function () {
+        releases.push(
+          newRelease
+        );
 
-            this.src =
-                "data:image/svg+xml;charset=UTF-8," +
-                encodeURIComponent(`
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="200"
-                        height="200"
-                        viewBox="0 0 200 200"
-                    >
 
-                        <rect
-                            width="200"
-                            height="200"
-                            rx="40"
-                            fill="#16883a"
-                        />
+        saveReleases();
 
-                        <text
-                            x="100"
-                            y="125"
-                            text-anchor="middle"
-                            font-size="80"
-                        >
-                            🥬
-                        </text>
+        renderPublicPage();
 
-                    </svg>
-                `);
+        renderDashboardReleases();
+
+        resetReleaseForm();
+
+
+        showToast(
+          `Version ${version} published successfully.`,
+          "success"
+        );
+
+      }
+
+
+      /* ============================================================
+         PUBLISH / UNPUBLISH
+      ============================================================= */
+
+      function togglePublished(id) {
+
+        const release =
+          releases.find(
+            (item) =>
+              item.id === id
+          );
+
+        if (!release) {
+          return;
+        }
+
+
+        release.published =
+          release.published === false;
+
+
+        saveReleases();
+
+        renderPublicPage();
+
+        renderDashboardReleases();
+
+
+        showToast(
+          release.published
+            ? `v${release.version} published.`
+            : `v${release.version} unpublished.`,
+          "success"
+        );
+
+      }
+
+
+      /* ============================================================
+         DELETE
+      ============================================================= */
+
+      function deleteRelease(id) {
+
+        const release =
+          releases.find(
+            (item) =>
+              item.id === id
+          );
+
+        if (!release) {
+          return;
+        }
+
+
+        const confirmed =
+          confirm(
+            `Delete version v${release.version}?\n\nThis cannot be undone.`
+          );
+
+
+        if (!confirmed) {
+          return;
+        }
+
+
+        releases =
+          releases.filter(
+            (item) =>
+              item.id !== id
+          );
+
+
+        saveReleases();
+
+        renderPublicPage();
+
+        renderDashboardReleases();
+
+
+        showToast(
+          `Version ${release.version} deleted.`,
+          "success"
+        );
+
+      }
+
+
+      /* ============================================================
+         TOAST
+      ============================================================= */
+
+      function showToast(
+        message,
+        type = "success"
+      ) {
+
+        clearTimeout(
+          toastTimer
+        );
+
+
+        const toast =
+          $("toast");
+
+        const content =
+          $("toastContent");
+
+        const icon =
+          $("toastIcon");
+
+
+        $("toastMessage")
+          .textContent =
+          message;
+
+
+        if (type === "error") {
+
+          content.className =
+            "flex items-center gap-3 rounded-xl bg-red-600 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
+
+          icon.className =
+            "ri-error-warning-fill text-lg text-white";
+
+        } else {
+
+          content.className =
+            "flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
+
+          icon.className =
+            "ri-checkbox-circle-fill text-lg text-green-400";
 
         }
-    );
 
 
-</script>
+        toast.classList.remove(
+          "hidden"
+        );
 
 
-</body>
+        toastTimer =
+          setTimeout(
+            () => {
+              toast.classList.add(
+                "hidden"
+              );
+            },
+            3000
+          );
+
+      }
+
+
+      /* ============================================================
+         EVENT LISTENERS
+      ============================================================= */
+
+      /*
+       * SECRET DEVELOPER ENTRY
+       *
+       * Customer sees only:
+       *
+       * Official Customer App
+       *
+       * Clicking it opens developer login.
+       */
+
+      $("officialCustomerAppButton")
+        .addEventListener(
+          "click",
+          () => {
+
+            if (
+              isDeveloperLoggedIn()
+            ) {
+
+              openDashboard();
+
+            } else {
+
+              openLoginModal();
+
+            }
+
+          }
+        );
+
+
+      /* CLOSE LOGIN */
+
+      $("closeLoginButton")
+        .addEventListener(
+          "click",
+          closeLoginModal
+        );
+
+
+      /* CLOSE DASHBOARD */
+
+      $("closeDashboardButton")
+        .addEventListener(
+          "click",
+          closeDashboard
+        );
+
+
+      /* LOGIN */
+
+      $("loginForm")
+        .addEventListener(
+          "submit",
+          function (event) {
+
+            event.preventDefault();
+
+
+            const email =
+              $("loginEmail")
+                .value
+                .trim();
+
+            const password =
+              $("loginPassword")
+                .value;
+
+
+            if (
+              email ===
+                DEVELOPER_EMAIL &&
+              password ===
+                DEVELOPER_PASSWORD
+            ) {
+
+              setDeveloperLoggedIn(
+                true
+              );
+
+
+              closeLoginModal();
+
+              openDashboard();
+
+              $("loginForm")
+                .reset();
+
+
+              showToast(
+                "Developer login successful.",
+                "success"
+              );
+
+            } else {
+
+              $("loginError")
+                .textContent =
+                "Invalid developer ID or password.";
+
+              $("loginError")
+                .classList
+                .remove("hidden");
+
+            }
+
+          }
+        );
+
+
+      /* PASSWORD TOGGLE */
+
+      $("togglePassword")
+        .addEventListener(
+          "click",
+          () => {
+
+            const input =
+              $("loginPassword");
+
+            const icon =
+              $("togglePassword")
+                .querySelector("i");
+
+
+            if (
+              input.type ===
+              "password"
+            ) {
+
+              input.type =
+                "text";
+
+              icon.className =
+                "ri-eye-off-line";
+
+            } else {
+
+              input.type =
+                "password";
+
+              icon.className =
+                "ri-eye-line";
+
+            }
+
+          }
+        );
+
+
+      /* LOGOUT */
+
+      $("logoutButton")
+        .addEventListener(
+          "click",
+          () => {
+
+            setDeveloperLoggedIn(
+              false
+            );
+
+            closeDashboard();
+
+            showToast(
+              "Logged out successfully.",
+              "success"
+            );
+
+          }
+        );
+
+
+      /* RELEASE FORM */
+
+      $("releaseForm")
+        .addEventListener(
+          "submit",
+          saveRelease
+        );
+
+
+      /* CANCEL EDIT */
+
+      $("cancelEditButton")
+        .addEventListener(
+          "click",
+          resetReleaseForm
+        );
+
+
+      /* SEARCH */
+
+      $("searchInput")
+        .addEventListener(
+          "input",
+          function () {
+
+            const published =
+              getSortedReleases(
+                releases.filter(
+                  (release) =>
+                    release.published !==
+                    false
+                )
+              );
+
+
+            renderPreviousReleases(
+              published.slice(1),
+              this.value
+            );
+
+          }
+        );
+
+
+      /* LOGIN OUTSIDE CLICK */
+
+      $("loginModal")
+        .addEventListener(
+          "click",
+          function (event) {
+
+            if (
+              event.target === this
+            ) {
+
+              closeLoginModal();
+
+            }
+
+          }
+        );
+
+
+      /* DASHBOARD OUTSIDE CLICK */
+
+      $("dashboardModal")
+        .addEventListener(
+          "click",
+          function (event) {
+
+            if (
+              event.target === this
+            ) {
+
+              closeDashboard();
+
+            }
+
+          }
+        );
+
+
+      /* ESC */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          if (
+            event.key !==
+            "Escape"
+          ) {
+            return;
+          }
+
+
+          if (
+            !$("loginModal")
+              .classList
+              .contains("hidden")
+          ) {
+
+            closeLoginModal();
+
+          }
+
+
+          if (
+            !$("dashboardModal")
+              .classList
+              .contains("hidden")
+          ) {
+
+            closeDashboard();
+
+          }
+
+        }
+      );
+
+
+      /* ============================================================
+         INITIALIZE
+      ============================================================= */
+
+      function initialize() {
+
+        loadReleases();
+
+        renderPublicPage();
+
+        $("currentYear")
+          .textContent =
+          new Date()
+            .getFullYear();
+
+      }
+
+
+      initialize();
+
+    </script>
+
+  </body>
 </html>
