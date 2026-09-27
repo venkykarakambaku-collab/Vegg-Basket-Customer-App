@@ -12,14 +12,8 @@
 
     <title>Vegg Basket - Customer App</title>
 
-    <!-- =====================================================
-         TAILWIND CSS
-    ====================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- =====================================================
-         REMIX ICON
-    ====================================================== -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
@@ -63,7 +57,6 @@
           rgba(255, 255, 255, 0.16) 2px,
           transparent 3px
         );
-
         background-size: 25px 25px;
       }
 
@@ -99,10 +92,6 @@
         }
       }
 
-      /*
-       * Official Customer App secret trigger.
-       * Looks like a normal badge to customers.
-       */
       .official-trigger {
         cursor: pointer;
         user-select: none;
@@ -134,7 +123,6 @@
         from {
           opacity: 0;
         }
-
         to {
           opacity: 1;
         }
@@ -145,7 +133,6 @@
           opacity: 0;
           transform: scale(0.96);
         }
-
         to {
           opacity: 1;
           transform: scale(1);
@@ -157,7 +144,6 @@
           opacity: 0;
           transform: translateY(18px);
         }
-
         to {
           opacity: 1;
           transform: translateY(0);
@@ -207,9 +193,7 @@
       >
         <div class="flex flex-col items-center text-center">
 
-          <!-- ======================================================
-               APP LOGO
-          ======================================================= -->
+          <!-- LOGO -->
 
           <div
             class="mb-5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.7rem] border-4 border-white/30 bg-white shadow-2xl sm:h-28 sm:w-28 lg:h-32 lg:w-32"
@@ -235,11 +219,7 @@
             </div>
           </div>
 
-          <!-- ======================================================
-               OFFICIAL BADGE
-               
-               SECRET DEVELOPER LOGIN TRIGGER
-          ======================================================= -->
+          <!-- OFFICIAL BADGE -->
 
           <button
             id="officialCustomerAppButton"
@@ -255,9 +235,7 @@
             Official Customer App
           </button>
 
-          <!-- ======================================================
-               TITLE
-          ======================================================= -->
+          <!-- TITLE -->
 
           <h1
             class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl"
@@ -272,9 +250,7 @@
             delivered to your doorstep.
           </p>
 
-          <!-- ======================================================
-               BADGES
-          ======================================================= -->
+          <!-- BADGES -->
 
           <div
             class="mt-6 flex w-full flex-wrap items-center justify-center gap-2"
@@ -295,16 +271,14 @@
             </div>
           </div>
 
-          <!-- ======================================================
-               TOP OWNER / DEVELOPER
-          ======================================================= -->
+          <!-- OWNER / DEVELOPER -->
 
           <div
             class="mt-6 flex flex-col items-center gap-1.5 text-xs text-green-100 sm:text-sm"
           >
             <div>
               Owned by
-              <span class="font-black text-white">KAMESWARI VEGETABLES</span>
+              <span class="font-black text-white">Vegg Basket</span>
             </div>
 
             <div>
@@ -321,10 +295,10 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </header>
+
 
     <!-- ============================================================
          MAIN
@@ -334,17 +308,13 @@
       class="mx-auto w-full max-w-6xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
     >
 
-      <!-- ========================================================
-           LATEST VERSION
-      ========================================================= -->
+      <!-- LATEST VERSION -->
 
       <section>
-
         <div
           class="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-
             <div
               class="mb-2 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-green-600 sm:text-sm"
             >
@@ -363,7 +333,6 @@
             >
               Download the latest Vegg Basket customer application.
             </p>
-
           </div>
 
           <div
@@ -373,19 +342,15 @@
         </div>
 
         <div id="latestReleaseContainer"></div>
-
       </section>
 
-      <!-- ========================================================
-           PREVIOUS RELEASES
-      ========================================================= -->
+
+      <!-- PREVIOUS RELEASES -->
 
       <section class="mt-12 sm:mt-16">
-
         <div
           class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
         >
-
           <div>
             <h2 class="text-xl font-black sm:text-2xl">
               Previous Versions
@@ -397,7 +362,6 @@
           </div>
 
           <div class="relative w-full sm:w-64">
-
             <i
               class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
             ></i>
@@ -408,23 +372,17 @@
               placeholder="Search version..."
               class="input-field w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm"
             />
-
           </div>
-
         </div>
 
         <div id="previousReleasesContainer"></div>
-
       </section>
 
-      <!-- ========================================================
-           FEATURES
-      ========================================================= -->
+
+      <!-- FEATURES -->
 
       <section class="mt-14 sm:mt-16">
-
         <div class="mb-6 text-center sm:mb-8">
-
           <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
             Why Use Vegg Basket?
           </h2>
@@ -434,121 +392,93 @@
           >
             Everything you need for a simple grocery shopping experience.
           </p>
-
         </div>
 
         <div
           class="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4"
         >
 
-          <!-- FEATURE 1 -->
-
           <div
             class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
           >
-
             <div
               class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-xl text-green-600"
             >
               <i class="ri-leaf-line"></i>
             </div>
 
-            <h3 class="font-black">
-              Fresh Products
-            </h3>
+            <h3 class="font-black">Fresh Products</h3>
 
             <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
               Fresh vegetables, fruits and grocery essentials.
             </p>
-
           </div>
 
-          <!-- FEATURE 2 -->
 
           <div
             class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
           >
-
             <div
               class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl text-blue-600"
             >
               <i class="ri-truck-line"></i>
             </div>
 
-            <h3 class="font-black">
-              Fast Delivery
-            </h3>
+            <h3 class="font-black">Fast Delivery</h3>
 
             <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
               Track your order from confirmation to delivery.
             </p>
-
           </div>
 
-          <!-- FEATURE 3 -->
 
           <div
             class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
           >
-
             <div
               class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-xl text-purple-600"
             >
               <i class="ri-secure-payment-line"></i>
             </div>
 
-            <h3 class="font-black">
-              Easy Payments
-            </h3>
+            <h3 class="font-black">Easy Payments</h3>
 
             <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
               Choose from the available secure payment options.
             </p>
-
           </div>
 
-          <!-- FEATURE 4 -->
 
           <div
             class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
           >
-
             <div
               class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-xl text-orange-600"
             >
               <i class="ri-heart-3-line"></i>
             </div>
 
-            <h3 class="font-black">
-              Easy Shopping
-            </h3>
+            <h3 class="font-black">Easy Shopping</h3>
 
             <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
               Wishlist, cart, offers and simple checkout.
             </p>
-
           </div>
 
         </div>
-
       </section>
 
-      <!-- ========================================================
-           INSTALLATION
-      ========================================================= -->
+
+      <!-- INSTALLATION -->
 
       <section class="mt-14 sm:mt-16">
-
         <div
           class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl"
         >
-
           <div class="p-6 sm:p-8 lg:p-10">
-
             <div
               class="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between"
             >
-
               <div class="max-w-xl">
 
                 <div
@@ -565,11 +495,10 @@
                 <p
                   class="mt-2.5 text-xs leading-6 text-slate-300 sm:text-sm sm:leading-7"
                 >
-                  Download the APK and install it on your Android device.
-                  If Android asks for permission to install from unknown
-                  sources, allow it for your browser or file manager.
+                  Download the APK and install it on your Android device. If
+                  Android asks for permission to install from unknown sources,
+                  allow it for your browser or file manager.
                 </p>
-
               </div>
 
               <div
@@ -577,7 +506,6 @@
               >
 
                 <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-
                   <div class="mb-2.5 text-xl text-green-400">
                     <i class="ri-download-2-line"></i>
                   </div>
@@ -589,11 +517,9 @@
                   <div class="mt-1 text-[11px] leading-4 text-slate-400">
                     Download the APK.
                   </div>
-
                 </div>
 
                 <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-
                   <div class="mb-2.5 text-xl text-green-400">
                     <i class="ri-folder-open-line"></i>
                   </div>
@@ -605,11 +531,9 @@
                   <div class="mt-1 text-[11px] leading-4 text-slate-400">
                     Open the downloaded APK.
                   </div>
-
                 </div>
 
                 <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-
                   <div class="mb-2.5 text-xl text-green-400">
                     <i class="ri-checkbox-circle-line"></i>
                   </div>
@@ -621,41 +545,30 @@
                   <div class="mt-1 text-[11px] leading-4 text-slate-400">
                     Complete installation.
                   </div>
-
                 </div>
 
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
     </main>
 
+
     <!-- ============================================================
          FOOTER
-         
-         Developer / owner line removed.
     ============================================================= -->
 
     <footer class="border-t border-slate-200 bg-white">
-
       <div
         class="safe-bottom mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-7 text-center sm:px-6 sm:py-8 lg:px-8"
       >
 
-        <!-- BRAND -->
-
         <div>
-
           <div
             class="flex items-center justify-center gap-2 text-lg font-black text-slate-900"
           >
-
             <span
               class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
             >
@@ -663,19 +576,14 @@
             </span>
 
             Vegg Basket
-
           </div>
 
           <div class="mt-1 text-xs text-slate-400">
             Customer Application
           </div>
-
         </div>
 
-        <!-- COPYRIGHT ONLY -->
-
         <div class="text-xs text-slate-500 sm:text-sm">
-
           ©
           <span id="currentYear"></span>
 
@@ -684,12 +592,11 @@
           </span>
 
           · All Rights Reserved
-
         </div>
 
       </div>
-
     </footer>
+
 
     <!-- ============================================================
          LOGIN MODAL
@@ -699,19 +606,14 @@
       id="loginModal"
       class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-5"
     >
-
       <div
         class="scale-in max-h-[92vh] w-full overflow-y-auto rounded-t-[2rem] bg-white shadow-2xl sm:max-w-md sm:rounded-3xl"
       >
 
-        <!-- HEADER -->
-
         <div class="border-b border-slate-100 p-5 sm:p-7">
-
           <div class="flex items-start justify-between">
 
             <div>
-
               <div
                 class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg text-white"
               >
@@ -725,7 +627,6 @@
               <p class="mt-1 text-xs text-slate-500 sm:text-sm">
                 Access version management.
               </p>
-
             </div>
 
             <button
@@ -738,20 +639,12 @@
             </button>
 
           </div>
-
         </div>
 
-        <!-- FORM -->
 
-        <form
-          id="loginForm"
-          class="space-y-4 p-5 sm:p-7"
-        >
-
-          <!-- EMAIL -->
+        <form id="loginForm" class="space-y-4 p-5 sm:p-7">
 
           <div>
-
             <label
               class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
             >
@@ -759,7 +652,6 @@
             </label>
 
             <div class="relative">
-
               <i
                 class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
               ></i>
@@ -772,15 +664,11 @@
                 required
                 class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm"
               />
-
             </div>
-
           </div>
 
-          <!-- PASSWORD -->
 
           <div>
-
             <label
               class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
             >
@@ -788,7 +676,6 @@
             </label>
 
             <div class="relative">
-
               <i
                 class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
               ></i>
@@ -810,19 +697,15 @@
               >
                 <i class="ri-eye-line"></i>
               </button>
-
             </div>
-
           </div>
 
-          <!-- ERROR -->
 
           <div
             id="loginError"
             class="hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-xs font-bold text-red-600"
           ></div>
 
-          <!-- LOGIN -->
 
           <button
             type="submit"
@@ -835,8 +718,8 @@
         </form>
 
       </div>
-
     </div>
+
 
     <!-- ============================================================
          DEVELOPER DASHBOARD
@@ -846,21 +729,16 @@
       id="dashboardModal"
       class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-4"
     >
-
       <div
         class="slide-up flex max-h-[96vh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-slate-50 shadow-2xl sm:max-h-[94vh] sm:max-w-6xl sm:rounded-3xl"
       >
 
-        <!-- HEADER -->
-
         <div
           class="border-b border-slate-200 bg-white px-4 py-3.5 sm:px-7 sm:py-4"
         >
-
           <div class="flex items-center justify-between gap-3">
 
             <div class="flex min-w-0 items-center gap-3">
-
               <div
                 class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900 text-base text-white sm:h-11 sm:w-11 sm:text-lg"
               >
@@ -868,7 +746,6 @@
               </div>
 
               <div class="min-w-0">
-
                 <h2 class="truncate text-sm font-black sm:text-base">
                   Developer Dashboard
                 </h2>
@@ -876,10 +753,9 @@
                 <p class="truncate text-[10px] text-slate-500 sm:text-xs">
                   Manage customer app releases
                 </p>
-
               </div>
-
             </div>
+
 
             <div class="flex flex-shrink-0 items-center gap-1.5">
 
@@ -907,10 +783,8 @@
             </div>
 
           </div>
-
         </div>
 
-        <!-- BODY -->
 
         <div class="scrollbar overflow-y-auto p-4 sm:p-6 lg:p-7">
 
@@ -918,12 +792,9 @@
             class="grid grid-cols-1 gap-5 lg:grid-cols-[400px_1fr]"
           >
 
-            <!-- ==================================================
-                 FORM
-            =================================================== -->
+            <!-- FORM -->
 
             <section>
-
               <div
                 class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
               >
@@ -950,20 +821,16 @@
 
                 </div>
 
-                <form
-                  id="releaseForm"
-                  class="space-y-3.5"
-                >
+
+                <form id="releaseForm" class="space-y-3.5">
 
                   <input
                     id="editingId"
                     type="hidden"
                   />
 
-                  <!-- VERSION -->
 
                   <div>
-
                     <label
                       class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
@@ -981,13 +848,10 @@
                     <p class="mt-1 text-[10px] text-slate-400">
                       Example: 2.0.0
                     </p>
-
                   </div>
 
-                  <!-- RELEASE DATE -->
 
                   <div>
-
                     <label
                       class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
@@ -1000,13 +864,10 @@
                       required
                       class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
                     />
-
                   </div>
 
-                  <!-- APK URL -->
 
                   <div>
-
                     <label
                       class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
@@ -1024,15 +885,12 @@
                     <p class="mt-1 text-[10px] leading-4 text-slate-400">
                       Paste the direct GitHub APK release asset URL.
                     </p>
-
                   </div>
 
-                  <!-- SIZE + PLATFORM -->
 
                   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 
                     <div>
-
                       <label
                         class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                       >
@@ -1045,11 +903,10 @@
                         placeholder="62.5 MB"
                         class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
                       />
-
                     </div>
 
-                    <div>
 
+                    <div>
                       <label
                         class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                       >
@@ -1060,7 +917,6 @@
                         id="platformInput"
                         class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
                       >
-
                         <option value="Android">
                           Android
                         </option>
@@ -1076,17 +932,13 @@
                         <option value="Other">
                           Other
                         </option>
-
                       </select>
-
                     </div>
 
                   </div>
 
-                  <!-- RELEASE NOTES -->
 
                   <div>
-
                     <label
                       class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
@@ -1099,15 +951,12 @@
                       placeholder="What's new in this version?"
                       class="input-field w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
                     ></textarea>
-
                   </div>
 
-                  <!-- PUBLISH -->
 
                   <label
                     class="flex cursor-pointer items-start gap-3 rounded-xl border border-green-100 bg-green-50 p-3.5"
                   >
-
                     <input
                       id="publishedInput"
                       type="checkbox"
@@ -1116,7 +965,6 @@
                     />
 
                     <div>
-
                       <div
                         class="text-xs font-black text-green-800 sm:text-sm"
                       >
@@ -1128,12 +976,9 @@
                       >
                         Published releases are visible to customers.
                       </div>
-
                     </div>
-
                   </label>
 
-                  <!-- BUTTONS -->
 
                   <div class="flex gap-2">
 
@@ -1159,19 +1004,16 @@
                 </form>
 
               </div>
-
             </section>
 
-            <!-- ==================================================
-                 RELEASE HISTORY
-            =================================================== -->
+
+            <!-- RELEASE HISTORY -->
 
             <section>
 
               <div class="mb-4 flex items-center justify-between">
 
                 <div>
-
                   <h3 class="text-lg font-black sm:text-xl">
                     Release History
                   </h3>
@@ -1179,7 +1021,6 @@
                   <p class="mt-1 text-[10px] text-slate-500 sm:text-xs">
                     Newest release appears first.
                   </p>
-
                 </div>
 
                 <div
@@ -1201,8 +1042,8 @@
         </div>
 
       </div>
-
     </div>
+
 
     <!-- ============================================================
          TOAST
@@ -1212,51 +1053,47 @@
       id="toast"
       class="pointer-events-none fixed bottom-4 left-1/2 z-[100] hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2"
     >
-
       <div
         id="toastContent"
         class="flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm"
       >
-
         <i
           id="toastIcon"
           class="ri-checkbox-circle-fill text-lg text-green-400"
         ></i>
 
         <span id="toastMessage"></span>
-
       </div>
-
     </div>
+
 
     <!-- ============================================================
          JAVASCRIPT
     ============================================================= -->
 
     <script>
-
       /* ============================================================
          CONFIG
       ============================================================= */
 
-      const STORAGE_KEY =
-        "vegg_basket_releases_v2";
+      const STORAGE_KEY = "vegg_basket_releases_v2";
 
       const LOGIN_KEY =
         "vegg_basket_developer_logged_in";
-
-      /*
-       * Frontend-only credentials.
-       *
-       * IMPORTANT:
-       * This is NOT secure production authentication.
-       */
 
       const DEVELOPER_EMAIL =
         "developer@dws.com";
 
       const DEVELOPER_PASSWORD =
         "Dark-Web-Studios@060422";
+
+
+      /* ============================================================
+         APK URL
+      ============================================================= */
+
+      const LATEST_APK_URL =
+        "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/customer-app-v1.9.1.apk";
 
 
       /* ============================================================
@@ -1272,8 +1109,7 @@
 
           releaseDate: "2026-09-27",
 
-          apkUrl:
-            "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/customer-app-v1.9.1.apk",
+          apkUrl: LATEST_APK_URL,
 
           apkSize: "",
 
@@ -1324,7 +1160,7 @@
 
 
       /* ============================================================
-         SHORT SELECTOR
+         SELECTOR
       ============================================================= */
 
       const $ = (id) =>
@@ -1363,7 +1199,38 @@
 
             releases =
               structuredClone(DEFAULT_RELEASES);
+          }
 
+          /*
+           * IMPORTANT
+           *
+           * If an old v1.9.1 is already stored in
+           * localStorage with the old APK filename,
+           * automatically replace it with the new URL.
+           */
+
+          const latest191 =
+            releases.find(
+              (release) =>
+                normalizeVersion(
+                  release.version
+                ) === "1.9.1"
+            );
+
+          if (latest191) {
+
+            latest191.apkUrl =
+              LATEST_APK_URL;
+
+            latest191.version =
+              "1.9.1";
+
+            latest191.published = true;
+
+            latest191.releaseDate =
+              "2026-09-27";
+
+            saveReleases();
           }
 
         } catch (error) {
@@ -1380,7 +1247,7 @@
 
 
       /* ============================================================
-         SAVE RELEASES
+         SAVE
       ============================================================= */
 
       function saveReleases() {
@@ -1389,7 +1256,6 @@
           STORAGE_KEY,
           JSON.stringify(releases)
         );
-
       }
 
 
@@ -1413,7 +1279,10 @@
 
         for (
           let i = 0;
-          i < Math.max(pa.length, pb.length);
+          i < Math.max(
+            pa.length,
+            pb.length
+          );
           i++
         ) {
 
@@ -1507,11 +1376,26 @@
       function escapeHTML(value) {
 
         return String(value ?? "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
+          .replace(
+            /&/g,
+            "&amp;"
+          )
+          .replace(
+            /</g,
+            "&lt;"
+          )
+          .replace(
+            />/g,
+            "&gt;"
+          )
+          .replace(
+            /"/g,
+            "&quot;"
+          )
+          .replace(
+            /'/g,
+            "&#039;"
+          );
       }
 
 
@@ -1519,11 +1403,18 @@
          NORMALIZE VERSION
       ============================================================= */
 
-      function normalizeVersion(version) {
+      function normalizeVersion(
+        version
+      ) {
 
-        return String(version || "")
+        return String(
+          version || ""
+        )
           .trim()
-          .replace(/^v/i, "");
+          .replace(
+            /^v/i,
+            ""
+          );
       }
 
 
@@ -1541,7 +1432,8 @@
             )
           );
 
-        $("releaseCount").textContent =
+        $("releaseCount")
+          .textContent =
           `${published.length} release${
             published.length === 1
               ? ""
@@ -1612,7 +1504,6 @@
         renderPreviousReleases(
           published.slice(1)
         );
-
       }
 
 
@@ -1907,7 +1798,6 @@
               createPreviousReleaseCard
             )
             .join("");
-
       }
 
 
@@ -1977,7 +1867,6 @@
                         release.releaseDate
                       )}
                     </span>
-
 
                     ${
                       release.apkSize
@@ -2050,7 +1939,6 @@
           "Download:",
           id
         );
-
       }
 
 
@@ -2061,43 +1949,35 @@
       function openLoginModal() {
 
         $("loginModal")
-          .classList
-          .remove("hidden");
+          .classList.remove("hidden");
 
         $("loginModal")
-          .classList
-          .add("flex");
+          .classList.add("flex");
 
         $("loginError")
-          .classList
-          .add("hidden");
+          .classList.add("hidden");
 
         setTimeout(
           () =>
             $("loginEmail").focus(),
           100
         );
-
       }
 
 
       function closeLoginModal() {
 
         $("loginModal")
-          .classList
-          .add("hidden");
+          .classList.add("hidden");
 
         $("loginModal")
-          .classList
-          .remove("flex");
+          .classList.remove("flex");
 
         $("loginError")
-          .classList
-          .add("hidden");
+          .classList.add("hidden");
 
         $("loginError")
           .textContent = "";
-
       }
 
 
@@ -2108,7 +1988,6 @@
             LOGIN_KEY
           ) === "true"
         );
-
       }
 
 
@@ -2128,9 +2007,7 @@
           sessionStorage.removeItem(
             LOGIN_KEY
           );
-
         }
-
       }
 
 
@@ -2141,28 +2018,22 @@
       function openDashboard() {
 
         $("dashboardModal")
-          .classList
-          .remove("hidden");
+          .classList.remove("hidden");
 
         $("dashboardModal")
-          .classList
-          .add("flex");
+          .classList.add("flex");
 
         renderDashboardReleases();
-
       }
 
 
       function closeDashboard() {
 
         $("dashboardModal")
-          .classList
-          .add("hidden");
+          .classList.add("hidden");
 
         $("dashboardModal")
-          .classList
-          .remove("flex");
-
+          .classList.remove("flex");
       }
 
 
@@ -2177,7 +2048,6 @@
 
         const sorted =
           getSortedReleases();
-
 
         $("dashboardReleaseCount")
           .textContent =
@@ -2216,7 +2086,6 @@
               createDashboardRelease
             )
             .join("");
-
       }
 
 
@@ -2390,7 +2259,6 @@
           </div>
 
         `;
-
       }
 
 
@@ -2404,8 +2272,8 @@
 
         $("editingId").value = "";
 
-        $("publishedInput").checked =
-          true;
+        $("publishedInput")
+          .checked = true;
 
         $("releaseFormTitle")
           .textContent =
@@ -2416,12 +2284,11 @@
 
         $("saveReleaseButton")
           .innerHTML =
-          `<i class="ri-upload-cloud-2-line"></i> Publish Version`;
+          `<i class="ri-upload-cloud-2-line"></i>
+           Publish Version`;
 
         $("cancelEditButton")
-          .classList
-          .add("hidden");
-
+          .classList.add("hidden");
       }
 
 
@@ -2464,7 +2331,8 @@
         $("releaseNotesInput").value =
           release.releaseNotes || "";
 
-        $("publishedInput").checked =
+        $("publishedInput")
+          .checked =
           release.published !== false;
 
 
@@ -2477,15 +2345,15 @@
 
         $("saveReleaseButton")
           .innerHTML =
-          `<i class="ri-save-3-line"></i> Save Changes`;
+          `<i class="ri-save-3-line"></i>
+           Save Changes`;
 
         $("cancelEditButton")
-          .classList
-          .remove("hidden");
-
+          .classList.remove(
+            "hidden"
+          );
 
         $("versionInput").focus();
-
       }
 
 
@@ -2507,25 +2375,21 @@
           $("releaseDateInput").value;
 
         const apkUrl =
-          $("apkUrlInput")
-            .value
-            .trim();
+          $("apkUrlInput").value.trim();
 
         const apkSize =
-          $("apkSizeInput")
-            .value
-            .trim();
+          $("apkSizeInput").value.trim();
 
         const platform =
           $("platformInput").value;
 
         const releaseNotes =
           $("releaseNotesInput")
-            .value
-            .trim();
+            .value.trim();
 
         const published =
-          $("publishedInput").checked;
+          $("publishedInput")
+            .checked;
 
         const editingId =
           $("editingId").value;
@@ -2545,9 +2409,8 @@
 
 
         if (
-          !/^\d+(\.\d+){0,3}$/.test(
-            version
-          )
+          !/^\d+(\.\d+){0,3}$/
+            .test(version)
         ) {
 
           showToast(
@@ -2590,8 +2453,7 @@
                 release.version
               ).toLowerCase() ===
                 version.toLowerCase() &&
-              release.id !==
-                editingId
+              release.id !== editingId
           );
 
 
@@ -2606,9 +2468,7 @@
         }
 
 
-        /* ======================================================
-           UPDATE EXISTING
-        ======================================================= */
+        /* UPDATE */
 
         if (editingId) {
 
@@ -2639,9 +2499,7 @@
               releaseNotes,
 
               published,
-
             };
-
           }
 
 
@@ -2653,7 +2511,6 @@
 
           resetReleaseForm();
 
-
           showToast(
             `Version ${version} updated.`,
             "success"
@@ -2663,9 +2520,7 @@
         }
 
 
-        /* ======================================================
-           CREATE NEW RELEASE
-        ======================================================= */
+        /* CREATE */
 
         const newRelease = {
 
@@ -2688,15 +2543,14 @@
           published,
 
           createdAt:
-            new Date().toISOString(),
-
+            new Date()
+              .toISOString(),
         };
 
 
         releases.push(
           newRelease
         );
-
 
         saveReleases();
 
@@ -2706,12 +2560,10 @@
 
         resetReleaseForm();
 
-
         showToast(
           `Version ${version} published successfully.`,
           "success"
         );
-
       }
 
 
@@ -2744,12 +2596,13 @@
 
 
         showToast(
+
           release.published
             ? `v${release.version} published.`
             : `v${release.version} unpublished.`,
+
           "success"
         );
-
       }
 
 
@@ -2799,7 +2652,6 @@
           `Version ${release.version} deleted.`,
           "success"
         );
-
       }
 
 
@@ -2847,7 +2699,6 @@
 
           icon.className =
             "ri-checkbox-circle-fill text-lg text-green-400";
-
         }
 
 
@@ -2858,30 +2709,18 @@
 
         toastTimer =
           setTimeout(
-            () => {
+            () =>
               toast.classList.add(
                 "hidden"
-              );
-            },
+              ),
             3000
           );
-
       }
 
 
       /* ============================================================
          EVENT LISTENERS
       ============================================================= */
-
-      /*
-       * SECRET DEVELOPER ENTRY
-       *
-       * Customer sees only:
-       *
-       * Official Customer App
-       *
-       * Clicking it opens developer login.
-       */
 
       $("officialCustomerAppButton")
         .addEventListener(
@@ -2897,9 +2736,7 @@
             } else {
 
               openLoginModal();
-
             }
-
           }
         );
 
@@ -2934,8 +2771,7 @@
 
             const email =
               $("loginEmail")
-                .value
-                .trim();
+                .value.trim();
 
             const password =
               $("loginPassword")
@@ -2953,14 +2789,11 @@
                 true
               );
 
-
               closeLoginModal();
 
               openDashboard();
 
-              $("loginForm")
-                .reset();
-
+              $("loginForm").reset();
 
               showToast(
                 "Developer login successful.",
@@ -2974,11 +2807,10 @@
                 "Invalid developer ID or password.";
 
               $("loginError")
-                .classList
-                .remove("hidden");
-
+                .classList.remove(
+                  "hidden"
+                );
             }
-
           }
         );
 
@@ -2995,7 +2827,9 @@
 
             const icon =
               $("togglePassword")
-                .querySelector("i");
+                .querySelector(
+                  "i"
+                );
 
 
             if (
@@ -3016,9 +2850,7 @@
 
               icon.className =
                 "ri-eye-line";
-
             }
-
           }
         );
 
@@ -3040,7 +2872,6 @@
               "Logged out successfully.",
               "success"
             );
-
           }
         );
 
@@ -3084,7 +2915,6 @@
               published.slice(1),
               this.value
             );
-
           }
         );
 
@@ -3101,9 +2931,7 @@
             ) {
 
               closeLoginModal();
-
             }
-
           }
         );
 
@@ -3120,9 +2948,7 @@
             ) {
 
               closeDashboard();
-
             }
-
           }
         );
 
@@ -3148,7 +2974,6 @@
           ) {
 
             closeLoginModal();
-
           }
 
 
@@ -3159,9 +2984,7 @@
           ) {
 
             closeDashboard();
-
           }
-
         }
       );
 
@@ -3180,12 +3003,10 @@
           .textContent =
           new Date()
             .getFullYear();
-
       }
 
 
       initialize();
-
     </script>
 
   </body>
