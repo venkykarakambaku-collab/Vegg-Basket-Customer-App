@@ -1,1544 +1,1655 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
 
-    <meta name="theme-color" content="#16a34a" />
+  <meta name="theme-color" content="#16a34a" />
 
-    <title>Vegg Basket - Customer App</title>
+  <meta
+    name="description"
+    content="Official Vegg Basket Customer App download page."
+  />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Vegg Basket — Customer App</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+  <!-- Tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <style>
-      * {
-        box-sizing: border-box;
+  <!-- Remix Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    button,
+    a,
+    input,
+    textarea,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hero-pattern {
+      background-image: radial-gradient(
+        circle at 20% 20%,
+        rgba(255, 255, 255, 0.16) 0,
+        rgba(255, 255, 255, 0.16) 2px,
+        transparent 3px
+      );
+
+      background-size: 25px 25px;
+    }
+
+    .modal-bg {
+      background: rgba(15, 23, 42, 0.76);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .input-field {
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #22c55e;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+    }
+
+    .release-card {
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    @media (hover: hover) {
+      .release-card:hover {
+        transform: translateY(-3px);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .scale-in {
+      animation: scaleIn 0.22s ease forwards;
+    }
+
+    .slide-up {
+      animation: slideUp 0.25s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
 
-      html {
-        scroll-behavior: smooth;
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
       }
 
-      body {
-        margin: 0;
-        min-width: 320px;
-        overflow-x: hidden;
-        font-family:
-          Inter,
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
       }
 
-      button,
-      a,
-      input,
-      textarea,
-      select {
-        -webkit-tap-highlight-color: transparent;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      .hero-pattern {
-        background-image: radial-gradient(
-          circle at 20% 20%,
-          rgba(255, 255, 255, 0.16) 0,
-          rgba(255, 255, 255, 0.16) 2px,
-          transparent 3px
-        );
-        background-size: 25px 25px;
-      }
+    .scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
 
-      .modal-bg {
-        background: rgba(15, 23, 42, 0.72);
-        backdrop-filter: blur(7px);
-        -webkit-backdrop-filter: blur(7px);
-      }
+    .scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-      .input-field {
-        transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease,
-          background 0.2s ease;
-      }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 999px;
+    }
 
-      .input-field:focus {
-        outline: none;
-        border-color: #22c55e;
-        background: white;
-        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
-      }
+    .safe-bottom {
+      padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+    }
 
-      .release-card {
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-      }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
 
-      @media (hover: hover) {
-        .release-card:hover {
-          transform: translateY(-3px);
-        }
-      }
+<body class="bg-slate-50 text-slate-900">
 
-      .official-trigger {
-        cursor: pointer;
-        user-select: none;
-        border: 0;
-        font: inherit;
-      }
+  <!-- ============================================================
+       HERO
+  ============================================================= -->
 
-      .official-trigger:focus {
-        outline: none;
-      }
+  <header
+    class="relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 text-white"
+  >
+    <div class="absolute inset-0 hero-pattern opacity-50"></div>
 
-      .official-trigger:focus-visible {
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
-      }
-
-      .fade-in {
-        animation: fadeIn 0.25s ease forwards;
-      }
-
-      .scale-in {
-        animation: scaleIn 0.22s ease forwards;
-      }
-
-      .slide-up {
-        animation: slideUp 0.25s ease forwards;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes scaleIn {
-        from {
-          opacity: 0;
-          transform: scale(0.96);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(18px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .scrollbar::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-      }
-
-      .scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      .scrollbar::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 999px;
-      }
-
-      .safe-bottom {
-        padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
-      }
-
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-    </style>
-  </head>
-
-  <body class="bg-slate-50 text-slate-900">
-    <!-- ============================================================
-         HERO
-    ============================================================= -->
-
-    <header
-      class="relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 text-white"
+    <div
+      class="relative mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
     >
-      <div class="absolute inset-0 hero-pattern opacity-50"></div>
+      <div class="flex flex-col items-center text-center">
 
-      <div
-        class="relative mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
-      >
-        <div class="flex flex-col items-center text-center">
-          <!-- LOGO -->
+        <!-- LOGO -->
+
+        <div
+          class="mb-5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.7rem] border-4 border-white/30 bg-white shadow-2xl sm:h-28 sm:w-28 lg:h-32 lg:w-32"
+        >
+          <img
+            id="heroLogo"
+            src="customer_app_logo-demo-1.png"
+            alt="Vegg Basket Logo"
+            class="h-full w-full object-cover"
+            onerror="
+              this.style.display = 'none';
+              document
+                .getElementById('heroLogoFallback')
+                .classList.remove('hidden');
+              document
+                .getElementById('heroLogoFallback')
+                .classList.add('flex');
+            "
+          />
 
           <div
-            class="mb-5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.7rem] border-4 border-white/30 bg-white shadow-2xl sm:h-28 sm:w-28 lg:h-32 lg:w-32"
+            id="heroLogoFallback"
+            class="hidden h-full w-full items-center justify-center bg-green-50 text-green-600"
           >
-            <img
-              id="heroLogo"
-              src="customer_app_logo-demo-1.png"
-              alt="Vegg Basket Logo"
-              class="h-full w-full object-cover"
-              onerror="
-                this.style.display = 'none';
-                document
-                  .getElementById('heroLogoFallback')
-                  .classList.remove('hidden');
-              "
-            />
+            <i class="ri-shopping-basket-2-fill text-5xl sm:text-6xl"></i>
+          </div>
+        </div>
 
-            <div
-              id="heroLogoFallback"
-              class="hidden h-full w-full items-center justify-center bg-green-50 text-green-600"
-            >
-              <i class="ri-shopping-basket-2-fill text-5xl sm:text-6xl"></i>
-            </div>
+        <!-- OFFICIAL CUSTOMER APP -->
+
+        <button
+          id="officialCustomerAppButton"
+          type="button"
+          class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-4 py-2 text-xs font-bold text-white backdrop-blur transition hover:bg-white/25 active:scale-95 sm:text-sm"
+        >
+          <span
+            class="h-2 w-2 animate-pulse rounded-full bg-lime-300"
+          ></span>
+
+          Official Customer App
+        </button>
+
+        <h1
+          class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl"
+        >
+          Vegg Basket
+        </h1>
+
+        <p
+          class="mt-3 max-w-xl px-2 text-sm leading-6 text-green-50 sm:text-base sm:leading-7 lg:text-lg"
+        >
+          Fresh vegetables, fruits, groceries and everyday essentials
+          delivered to your doorstep.
+        </p>
+
+        <!-- BADGES -->
+
+        <div
+          class="mt-6 flex w-full flex-wrap items-center justify-center gap-2"
+        >
+          <div
+            class="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-black text-green-700 shadow-lg sm:text-sm"
+          >
+            <i class="ri-android-fill text-base"></i>
+            Android App
           </div>
 
-          <!-- OFFICIAL BADGE -->
-
-          <button
-            id="officialCustomerAppButton"
-            type="button"
-            class="official-trigger mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3.5 py-2 text-xs font-bold text-white backdrop-blur transition hover:bg-white/20 sm:text-sm"
-            aria-label="Official Customer App"
-            title="Official Customer App"
-          >
-            <span class="h-2 w-2 animate-pulse rounded-full bg-lime-300"></span>
-
-            Official Customer App
-          </button>
-
-          <!-- TITLE -->
-
-          <h1
-            class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl"
-          >
-            Vegg Basket
-          </h1>
-
-          <p
-            class="mt-3 max-w-xl px-2 text-sm leading-6 text-green-50 sm:text-base sm:leading-7 lg:text-lg"
-          >
-            Fresh vegetables, fruits, groceries and everyday essentials
-            delivered to your doorstep.
-          </p>
-
-          <!-- BADGES -->
-
           <div
-            class="mt-6 flex w-full flex-wrap items-center justify-center gap-2"
+            id="heroVersionBadge"
+            class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-bold backdrop-blur sm:text-sm"
           >
-            <div
-              class="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-black text-green-700 shadow-lg sm:text-sm"
-            >
-              <i class="ri-android-fill text-base"></i>
-              Android App
-            </div>
+            <i class="ri-price-tag-3-line"></i>
+            Latest Version
+          </div>
+        </div>
 
-            <div
-              id="heroVersionBadge"
-              class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-bold backdrop-blur sm:text-sm"
-            >
-              <i class="ri-price-tag-3-line"></i>
-              Latest Version
-            </div>
+        <!-- OWNER -->
+
+        <div
+          class="mt-6 flex flex-col items-center gap-1.5 text-xs text-green-100 sm:text-sm"
+        >
+          <div>
+            Owned by
+            <span class="font-black text-white">
+              KAMESWARI VEGETABLES
+            </span>
           </div>
 
-          <!-- OWNER / DEVELOPER -->
+          <div>
+            Developed by
 
-          <div
-            class="mt-6 flex flex-col items-center gap-1.5 text-xs text-green-100 sm:text-sm"
-          >
-            <div>
-              Owned by
-              <span class="font-black text-white">KAMESWARI VEGETABLES</span>
-            </div>
-
-            <div>
-              Developed by
-
-              <a
-                href="https://gouthaman-developer.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-black text-white underline decoration-white/50 underline-offset-4 transition hover:text-lime-200"
-              >
-                DARK WEB STUDIOS
-                <i class="ri-external-link-line ml-0.5"></i>
-              </a>
-            </div>
+            <a
+              href="https://gouthaman-developer.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-black text-white underline decoration-white/50 underline-offset-4 hover:text-lime-200"
+            >
+              DARK WEB STUDIOS
+              <i class="ri-external-link-line ml-0.5"></i>
+            </a>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- ============================================================
-         MAIN
-    ============================================================= -->
 
-    <main
-      class="mx-auto w-full max-w-6xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
-    >
-      <!-- LATEST VERSION -->
+  <!-- ============================================================
+       MAIN
+  ============================================================= -->
 
-      <section>
-        <div
-          class="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:items-end sm:justify-between"
-        >
-          <div>
-            <div
-              class="mb-2 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-green-600 sm:text-sm"
-            >
-              <i class="ri-download-cloud-2-line"></i>
-              Download
-            </div>
+  <main
+    class="mx-auto w-full max-w-6xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
+  >
 
-            <h2
-              class="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl"
-            >
-              Latest Version
-            </h2>
+    <!-- LATEST VERSION -->
 
-            <p
-              class="mt-1.5 max-w-xl text-sm leading-6 text-slate-500 sm:text-base"
-            >
-              Download the latest Vegg Basket customer application.
-            </p>
-          </div>
-
-          <div
-            id="releaseCount"
-            class="text-xs font-bold text-slate-400 sm:text-sm"
-          ></div>
-        </div>
-
-        <div id="latestReleaseContainer"></div>
-      </section>
-
-      <!-- PREVIOUS RELEASES -->
-
-      <section class="mt-12 sm:mt-16">
-        <div
-          class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div>
-            <h2 class="text-xl font-black sm:text-2xl">Previous Versions</h2>
-
-            <p class="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
-              Older versions of the Vegg Basket app.
-            </p>
-          </div>
-
-          <div class="relative w-full sm:w-64">
-            <i
-              class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-            ></i>
-
-            <input
-              id="searchInput"
-              type="search"
-              placeholder="Search version..."
-              class="input-field w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm"
-            />
-          </div>
-        </div>
-
-        <div id="previousReleasesContainer"></div>
-      </section>
-
-      <!-- FEATURES -->
-
-      <section class="mt-14 sm:mt-16">
-        <div class="mb-6 text-center sm:mb-8">
-          <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
-            Why Use Vegg Basket?
-          </h2>
-
-          <p
-            class="mx-auto mt-2 max-w-xl text-xs leading-5 text-slate-500 sm:text-sm"
-          >
-            Everything you need for a simple grocery shopping experience.
-          </p>
-        </div>
-
-        <div
-          class="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4"
-        >
-          <div
-            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
-          >
-            <div
-              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-xl text-green-600"
-            >
-              <i class="ri-leaf-line"></i>
-            </div>
-
-            <h3 class="font-black">Fresh Products</h3>
-
-            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
-              Fresh vegetables, fruits and grocery essentials.
-            </p>
-          </div>
-
-          <div
-            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
-          >
-            <div
-              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl text-blue-600"
-            >
-              <i class="ri-truck-line"></i>
-            </div>
-
-            <h3 class="font-black">Fast Delivery</h3>
-
-            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
-              Track your order from confirmation to delivery.
-            </p>
-          </div>
-
-          <div
-            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
-          >
-            <div
-              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-xl text-purple-600"
-            >
-              <i class="ri-secure-payment-line"></i>
-            </div>
-
-            <h3 class="font-black">Easy Payments</h3>
-
-            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
-              Choose from the available secure payment options.
-            </p>
-          </div>
-
-          <div
-            class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
-          >
-            <div
-              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-xl text-orange-600"
-            >
-              <i class="ri-heart-3-line"></i>
-            </div>
-
-            <h3 class="font-black">Easy Shopping</h3>
-
-            <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
-              Wishlist, cart, offers and simple checkout.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- INSTALLATION -->
-
-      <section class="mt-14 sm:mt-16">
-        <div
-          class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl"
-        >
-          <div class="p-6 sm:p-8 lg:p-10">
-            <div
-              class="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between"
-            >
-              <div class="max-w-xl">
-                <div
-                  class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-green-300 sm:text-xs"
-                >
-                  <i class="ri-smartphone-line"></i>
-                  Installation
-                </div>
-
-                <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
-                  How to install?
-                </h2>
-
-                <p
-                  class="mt-2.5 text-xs leading-6 text-slate-300 sm:text-sm sm:leading-7"
-                >
-                  Download the APK and install it on your Android device. If
-                  Android asks for permission to install from unknown sources,
-                  allow it for your browser or file manager.
-                </p>
-              </div>
-
-              <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:w-[520px]">
-                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-                  <div class="mb-2.5 text-xl text-green-400">
-                    <i class="ri-download-2-line"></i>
-                  </div>
-
-                  <div class="text-xs font-black sm:text-sm">01. Download</div>
-
-                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
-                    Download the APK.
-                  </div>
-                </div>
-
-                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-                  <div class="mb-2.5 text-xl text-green-400">
-                    <i class="ri-folder-open-line"></i>
-                  </div>
-
-                  <div class="text-xs font-black sm:text-sm">02. Open</div>
-
-                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
-                    Open the downloaded APK.
-                  </div>
-                </div>
-
-                <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
-                  <div class="mb-2.5 text-xl text-green-400">
-                    <i class="ri-checkbox-circle-line"></i>
-                  </div>
-
-                  <div class="text-xs font-black sm:text-sm">03. Install</div>
-
-                  <div class="mt-1 text-[11px] leading-4 text-slate-400">
-                    Complete installation.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ============================================================
-         FOOTER
-    ============================================================= -->
-
-    <footer class="border-t border-slate-200 bg-white">
+    <section>
       <div
-        class="safe-bottom mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-7 text-center sm:px-6 sm:py-8 lg:px-8"
+        class="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:items-end sm:justify-between"
       >
         <div>
           <div
-            class="flex items-center justify-center gap-2 text-lg font-black text-slate-900"
+            class="mb-2 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-green-600 sm:text-sm"
           >
-            <span
-              class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
-            >
-              <i class="ri-shopping-basket-2-fill"></i>
-            </span>
-
-            Vegg Basket
+            <i class="ri-download-cloud-2-line"></i>
+            Download
           </div>
 
-          <div class="mt-1 text-xs text-slate-400">Customer Application</div>
+          <h2
+            class="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl"
+          >
+            Latest Version
+          </h2>
+
+          <p
+            class="mt-1.5 max-w-xl text-sm leading-6 text-slate-500 sm:text-base"
+          >
+            Download the latest Vegg Basket customer application.
+          </p>
         </div>
 
-        <div class="text-xs text-slate-500 sm:text-sm">
-          ©
-          <span id="currentYear"></span>
+        <div
+          id="releaseCount"
+          class="text-xs font-bold text-slate-400 sm:text-sm"
+        ></div>
+      </div>
 
-          <span class="font-bold text-slate-700"> Vegg Basket </span>
+      <div id="latestReleaseContainer"></div>
+    </section>
 
-          · All Rights Reserved
+
+    <!-- PREVIOUS RELEASES -->
+
+    <section class="mt-12 sm:mt-16">
+
+      <div
+        class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <h2 class="text-xl font-black sm:text-2xl">
+            Previous Versions
+          </h2>
+
+          <p class="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+            Older versions of the Vegg Basket app.
+          </p>
+        </div>
+
+        <div class="relative w-full sm:w-64">
+
+          <i
+            class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+          ></i>
+
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search version..."
+            class="input-field w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm"
+          />
+
         </div>
       </div>
-    </footer>
 
-    <!-- ============================================================
-         LOGIN MODAL
-    ============================================================= -->
+      <div id="previousReleasesContainer"></div>
 
-    <div
-      id="loginModal"
-      class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-5"
-    >
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="mt-14 sm:mt-16">
+
+      <div class="mb-6 text-center sm:mb-8">
+
+        <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
+          Why Use Vegg Basket?
+        </h2>
+
+        <p
+          class="mx-auto mt-2 max-w-xl text-xs leading-5 text-slate-500 sm:text-sm"
+        >
+          Everything you need for a simple grocery shopping experience.
+        </p>
+
+      </div>
+
       <div
-        class="scale-in max-h-[92vh] w-full overflow-y-auto rounded-t-[2rem] bg-white shadow-2xl sm:max-w-md sm:rounded-3xl"
+        class="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4"
       >
-        <div class="border-b border-slate-100 p-5 sm:p-7">
-          <div class="flex items-start justify-between">
-            <div>
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+        >
+          <div
+            class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-xl text-green-600"
+          >
+            <i class="ri-leaf-line"></i>
+          </div>
+
+          <h3 class="font-black">
+            Fresh Products
+          </h3>
+
+          <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+            Fresh vegetables, fruits and grocery essentials.
+          </p>
+        </div>
+
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+        >
+          <div
+            class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl text-blue-600"
+          >
+            <i class="ri-truck-line"></i>
+          </div>
+
+          <h3 class="font-black">
+            Fast Delivery
+          </h3>
+
+          <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+            Track your order from confirmation to delivery.
+          </p>
+        </div>
+
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+        >
+          <div
+            class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-xl text-purple-600"
+          >
+            <i class="ri-secure-payment-line"></i>
+          </div>
+
+          <h3 class="font-black">
+            Easy Payments
+          </h3>
+
+          <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+            Choose from the available secure payment options.
+          </p>
+        </div>
+
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+        >
+          <div
+            class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-xl text-orange-600"
+          >
+            <i class="ri-heart-3-line"></i>
+          </div>
+
+          <h3 class="font-black">
+            Easy Shopping
+          </h3>
+
+          <p class="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm">
+            Wishlist, cart, offers and simple checkout.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- INSTALLATION -->
+
+    <section class="mt-14 sm:mt-16">
+
+      <div
+        class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl"
+      >
+
+        <div class="p-6 sm:p-8 lg:p-10">
+
+          <div
+            class="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between"
+          >
+
+            <div class="max-w-xl">
+
               <div
-                class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg text-white"
+                class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-green-300 sm:text-xs"
               >
-                <i class="ri-lock-password-line"></i>
+                <i class="ri-smartphone-line"></i>
+                Installation
               </div>
 
-              <h2 class="text-xl font-black sm:text-2xl">Developer Login</h2>
+              <h2 class="text-xl font-black sm:text-2xl lg:text-3xl">
+                How to install?
+              </h2>
 
-              <p class="mt-1 text-xs text-slate-500 sm:text-sm">
-                Access version management.
+              <p
+                class="mt-2.5 text-xs leading-6 text-slate-300 sm:text-sm sm:leading-7"
+              >
+                Download the APK and install it on your Android device.
+                If Android asks for permission to install from unknown
+                sources, allow it for your browser or file manager.
               </p>
+
             </div>
 
+
+            <div
+              class="grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:w-[520px]"
+            >
+
+              <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
+                <div class="mb-2.5 text-xl text-green-400">
+                  <i class="ri-download-2-line"></i>
+                </div>
+
+                <div class="text-xs font-black sm:text-sm">
+                  01. Download
+                </div>
+
+                <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                  Download the APK.
+                </div>
+              </div>
+
+
+              <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
+                <div class="mb-2.5 text-xl text-green-400">
+                  <i class="ri-folder-open-line"></i>
+                </div>
+
+                <div class="text-xs font-black sm:text-sm">
+                  02. Open
+                </div>
+
+                <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                  Open the downloaded APK.
+                </div>
+              </div>
+
+
+              <div class="rounded-2xl bg-white/5 p-4 sm:p-5">
+                <div class="mb-2.5 text-xl text-green-400">
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+
+                <div class="text-xs font-black sm:text-sm">
+                  03. Install
+                </div>
+
+                <div class="mt-1 text-[11px] leading-4 text-slate-400">
+                  Complete installation.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================= -->
+
+  <footer class="border-t border-slate-200 bg-white">
+
+    <div
+      class="safe-bottom mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-7 text-center sm:px-6 sm:py-8 lg:px-8"
+    >
+
+      <div>
+
+        <div
+          class="flex items-center justify-center gap-2 text-lg font-black text-slate-900"
+        >
+
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
+          >
+            <i class="ri-shopping-basket-2-fill"></i>
+          </span>
+
+          Vegg Basket
+
+        </div>
+
+        <div class="mt-1 text-xs text-slate-400">
+          Customer Application
+        </div>
+
+      </div>
+
+
+      <div class="text-xs text-slate-500 sm:text-sm">
+
+        ©
+        <span id="currentYear"></span>
+
+        <span class="font-bold text-slate-700">
+          Vegg Basket
+        </span>
+
+        · All Rights Reserved
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ============================================================
+       LOGIN MODAL
+  ============================================================= -->
+
+  <div
+    id="loginModal"
+    class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-5"
+  >
+
+    <div
+      class="scale-in max-h-[92vh] w-full overflow-y-auto rounded-t-[2rem] bg-white shadow-2xl sm:max-w-md sm:rounded-3xl"
+    >
+
+      <div class="border-b border-slate-100 p-5 sm:p-7">
+
+        <div class="flex items-start justify-between">
+
+          <div>
+
+            <div
+              class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-lg text-white"
+            >
+              <i class="ri-lock-password-line"></i>
+            </div>
+
+            <h2 class="text-xl font-black sm:text-2xl">
+              Developer Login
+            </h2>
+
+            <p class="mt-1 text-xs text-slate-500 sm:text-sm">
+              Access version management.
+            </p>
+
+          </div>
+
+
+          <button
+            id="closeLoginButton"
+            type="button"
+            aria-label="Close"
+            class="flex h-9 w-9 items-center justify-center rounded-xl text-xl text-slate-400 hover:bg-slate-100"
+          >
+            <i class="ri-close-line"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <form id="loginForm" class="space-y-4 p-5 sm:p-7">
+
+        <div>
+
+          <label
+            class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
+          >
+            Login ID
+          </label>
+
+          <div class="relative">
+
+            <i
+              class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            ></i>
+
+            <input
+              id="loginEmail"
+              type="email"
+              autocomplete="username"
+              placeholder="Developer email"
+              required
+              class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm"
+            />
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <label
+            class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
+          >
+            Password
+          </label>
+
+          <div class="relative">
+
+            <i
+              class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            ></i>
+
+            <input
+              id="loginPassword"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Developer password"
+              required
+              class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-12 text-sm"
+            />
+
             <button
-              id="closeLoginButton"
+              id="togglePassword"
+              type="button"
+              aria-label="Show password"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-slate-400"
+            >
+              <i class="ri-eye-line"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="loginError"
+          class="hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-xs font-bold text-red-600"
+        ></div>
+
+
+        <button
+          type="submit"
+          class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-black text-white shadow-lg transition hover:bg-slate-800 active:scale-[0.99]"
+        >
+          <i class="ri-login-box-line"></i>
+          Login
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       DASHBOARD MODAL
+  ============================================================= -->
+
+  <div
+    id="dashboardModal"
+    class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-4"
+  >
+
+    <div
+      class="slide-up flex max-h-[96vh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-slate-50 shadow-2xl sm:max-h-[94vh] sm:max-w-6xl sm:rounded-3xl"
+    >
+
+      <!-- DASHBOARD HEADER -->
+
+      <div
+        class="border-b border-slate-200 bg-white px-4 py-3.5 sm:px-7 sm:py-4"
+      >
+
+        <div class="flex items-center justify-between gap-3">
+
+          <div class="flex min-w-0 items-center gap-3">
+
+            <div
+              class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900 text-base text-white sm:h-11 sm:w-11 sm:text-lg"
+            >
+              <i class="ri-settings-3-line"></i>
+            </div>
+
+            <div class="min-w-0">
+
+              <h2 class="truncate text-sm font-black sm:text-base">
+                Developer Dashboard
+              </h2>
+
+              <p
+                id="dashboardUserEmail"
+                class="truncate text-[10px] text-slate-500 sm:text-xs"
+              >
+                Manage customer app releases
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="flex flex-shrink-0 items-center gap-1.5">
+
+            <button
+              id="logoutButton"
+              type="button"
+              class="flex h-9 items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 text-[10px] font-bold text-slate-700 sm:px-3 sm:text-xs"
+            >
+              <i class="ri-logout-box-r-line"></i>
+              <span class="hidden sm:inline">
+                Logout
+              </span>
+            </button>
+
+
+            <button
+              id="closeDashboardButton"
               type="button"
               aria-label="Close"
-              class="flex h-9 w-9 items-center justify-center rounded-xl text-xl text-slate-400 hover:bg-slate-100"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-xl text-slate-400 hover:bg-slate-100"
             >
               <i class="ri-close-line"></i>
             </button>
+
           </div>
+
         </div>
 
-        <form id="loginForm" class="space-y-4 p-5 sm:p-7">
-          <div>
-            <label
-              class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
-            >
-              Login ID
-            </label>
-
-            <div class="relative">
-              <i
-                class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-              ></i>
-
-              <input
-                id="loginEmail"
-                type="email"
-                autocomplete="username"
-                placeholder="Developer email"
-                required
-                class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label
-              class="mb-1.5 block text-xs font-bold text-slate-700 sm:text-sm"
-            >
-              Password
-            </label>
-
-            <div class="relative">
-              <i
-                class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-              ></i>
-
-              <input
-                id="loginPassword"
-                type="password"
-                autocomplete="current-password"
-                placeholder="Developer password"
-                required
-                class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-12 text-sm"
-              />
-
-              <button
-                id="togglePassword"
-                type="button"
-                aria-label="Show password"
-                class="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-slate-400"
-              >
-                <i class="ri-eye-line"></i>
-              </button>
-            </div>
-          </div>
-
-          <div
-            id="loginError"
-            class="hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-xs font-bold text-red-600"
-          ></div>
-
-          <button
-            type="submit"
-            class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-black text-white shadow-lg"
-          >
-            <i class="ri-login-box-line"></i>
-            Login
-          </button>
-        </form>
       </div>
-    </div>
 
-    <!-- ============================================================
-         DEVELOPER DASHBOARD
-    ============================================================= -->
 
-    <div
-      id="dashboardModal"
-      class="modal-bg fixed inset-0 z-50 hidden items-end justify-center p-0 sm:items-center sm:p-4"
-    >
-      <div
-        class="slide-up flex max-h-[96vh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-slate-50 shadow-2xl sm:max-h-[94vh] sm:max-w-6xl sm:rounded-3xl"
-      >
+      <!-- DASHBOARD CONTENT -->
+
+      <div class="scrollbar overflow-y-auto p-4 sm:p-6 lg:p-7">
+
         <div
-          class="border-b border-slate-200 bg-white px-4 py-3.5 sm:px-7 sm:py-4"
+          class="grid grid-cols-1 gap-5 lg:grid-cols-[400px_1fr]"
         >
-          <div class="flex items-center justify-between gap-3">
-            <div class="flex min-w-0 items-center gap-3">
-              <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900 text-base text-white sm:h-11 sm:w-11 sm:text-lg"
-              >
-                <i class="ri-settings-3-line"></i>
-              </div>
 
-              <div class="min-w-0">
-                <h2 class="truncate text-sm font-black sm:text-base">
-                  Developer Dashboard
-                </h2>
+          <!-- RELEASE FORM -->
 
-                <p class="truncate text-[10px] text-slate-500 sm:text-xs">
-                  Manage customer app releases
-                </p>
-              </div>
-            </div>
+          <section>
 
-            <div class="flex flex-shrink-0 items-center gap-1.5">
-              <button
-                id="logoutButton"
-                type="button"
-                class="flex h-9 items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 text-[10px] font-bold text-slate-700 sm:px-3 sm:text-xs"
-              >
-                <i class="ri-logout-box-r-line"></i>
+            <div
+              class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+            >
 
-                <span class="hidden sm:inline"> Logout </span>
-              </button>
-
-              <button
-                id="closeDashboardButton"
-                type="button"
-                aria-label="Close"
-                class="flex h-9 w-9 items-center justify-center rounded-lg text-xl text-slate-400 hover:bg-slate-100"
-              >
-                <i class="ri-close-line"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="scrollbar overflow-y-auto p-4 sm:p-6 lg:p-7">
-          <div class="grid grid-cols-1 gap-5 lg:grid-cols-[400px_1fr]">
-            <!-- FORM -->
-
-            <section>
-              <div
-                class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
-              >
-                <div class="mb-5">
-                  <div
-                    id="formIcon"
-                    class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
-                  >
-                    <i class="ri-add-line"></i>
-                  </div>
-
-                  <h3
-                    id="releaseFormTitle"
-                    class="text-lg font-black sm:text-xl"
-                  >
-                    Add New Version
-                  </h3>
-
-                  <p class="mt-1 text-xs text-slate-500 sm:text-sm">
-                    Add and publish a new APK release.
-                  </p>
-                </div>
-
-                <form id="releaseForm" class="space-y-3.5">
-                  <input id="editingId" type="hidden" />
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                    >
-                      App Version
-                    </label>
-
-                    <input
-                      id="versionInput"
-                      type="text"
-                      placeholder="Example: 2.0.0"
-                      required
-                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold"
-                    />
-
-                    <p class="mt-1 text-[10px] text-slate-400">
-                      Example: 2.0.0
-                    </p>
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                    >
-                      Release Date
-                    </label>
-
-                    <input
-                      id="releaseDateInput"
-                      type="date"
-                      required
-                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                    >
-                      APK Download URL
-                    </label>
-
-                    <input
-                      id="apkUrlInput"
-                      type="url"
-                      placeholder="https://github.com/..."
-                      required
-                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
-                    />
-
-                    <p class="mt-1 text-[10px] leading-4 text-slate-400">
-                      Paste the direct GitHub APK release asset URL.
-                    </p>
-                  </div>
-
-                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <div>
-                      <label
-                        class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                      >
-                        APK Size
-                      </label>
-
-                      <input
-                        id="apkSizeInput"
-                        type="text"
-                        placeholder="62.5 MB"
-                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                      >
-                        Platform
-                      </label>
-
-                      <select
-                        id="platformInput"
-                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
-                      >
-                        <option value="Android">Android</option>
-
-                        <option value="iOS">iOS</option>
-
-                        <option value="Windows">Windows</option>
-
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
-                    >
-                      Release Notes
-                    </label>
-
-                    <textarea
-                      id="releaseNotesInput"
-                      rows="4"
-                      placeholder="What's new in this version?"
-                      class="input-field w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
-                    ></textarea>
-                  </div>
-
-                  <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-green-100 bg-green-50 p-3.5"
-                  >
-                    <input
-                      id="publishedInput"
-                      type="checkbox"
-                      checked
-                      class="mt-0.5 h-4 w-4 accent-green-600"
-                    />
-
-                    <div>
-                      <div class="text-xs font-black text-green-800 sm:text-sm">
-                        Publish this version
-                      </div>
-
-                      <div
-                        class="mt-0.5 text-[10px] leading-4 text-green-700 sm:text-xs"
-                      >
-                        Published releases are visible to customers.
-                      </div>
-                    </div>
-                  </label>
-
-                  <div class="flex gap-2">
-                    <button
-                      id="saveReleaseButton"
-                      type="submit"
-                      class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-xs font-black text-white shadow-lg shadow-green-600/20 sm:text-sm"
-                    >
-                      <i class="ri-upload-cloud-2-line"></i>
-                      Publish Version
-                    </button>
-
-                    <button
-                      id="cancelEditButton"
-                      type="button"
-                      class="hidden rounded-xl bg-slate-100 px-4 py-3 text-xs font-bold text-slate-700"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </section>
-
-            <!-- RELEASE HISTORY -->
-
-            <section>
-              <div class="mb-4 flex items-center justify-between">
-                <div>
-                  <h3 class="text-lg font-black sm:text-xl">Release History</h3>
-
-                  <p class="mt-1 text-[10px] text-slate-500 sm:text-xs">
-                    Newest release appears first.
-                  </p>
-                </div>
+              <div class="mb-5">
 
                 <div
-                  id="dashboardReleaseCount"
-                  class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600"
-                ></div>
-              </div>
-
-              <div id="dashboardReleases" class="space-y-2.5"></div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         TOAST
-    ============================================================= -->
-
-    <div
-      id="toast"
-      class="pointer-events-none fixed bottom-4 left-1/2 z-[100] hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2"
-    >
-      <div
-        id="toastContent"
-        class="flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm"
-      >
-        <i
-          id="toastIcon"
-          class="ri-checkbox-circle-fill text-lg text-green-400"
-        ></i>
-
-        <span id="toastMessage"></span>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         JAVASCRIPT
-    ============================================================= -->
-
-    <script>
-      /* ============================================================
-         CONFIG
-      ============================================================= */
-
-      const API_BASE_URL = "http://localhost:8080/api";
-
-      const TOKEN_KEY = "vegg_basket_developer_token";
-
-      const EMAIL_KEY = "vegg_basket_developer_email";
-
-      /* ============================================================
-         APK URL
-      ============================================================= */
-
-      const LATEST_APK_URL =
-        "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/customer-app-v1.9.1.apk";
-
-      /* ============================================================
-         DEFAULT RELEASES
-      ============================================================= */
-
-      const DEFAULT_RELEASES = [
-        {
-          id: "release-191",
-
-          version: "1.9.1",
-
-          releaseDate: "2026-09-27",
-
-          apkUrl: LATEST_APK_URL,
-
-          apkSize: "",
-
-          platform: "Android",
-
-          releaseNotes: "Latest Vegg Basket customer app release.",
-
-          published: true,
-
-          createdAt: "2026-09-27T10:00:00",
-        },
-
-        {
-          id: "release-100",
-
-          version: "1.0.0",
-
-          releaseDate: "2026-09-25",
-
-          apkUrl:
-            "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.0.0/Vegg-Basket-App.apk",
-
-          apkSize: "",
-
-          platform: "Android",
-
-          releaseNotes: "Initial customer application release.",
-
-          published: true,
-
-          createdAt: "2026-09-25T10:00:00",
-        },
-      ];
-
-      /* ============================================================
-         STATE
-      ============================================================= */
-
-      let releases = [];
-
-      let toastTimer = null;
-
-      /* ============================================================
-         SELECTOR
-      ============================================================= */
-
-      const $ = (id) => document.getElementById(id);
-
-      /* ============================================================
-         LOAD RELEASES
-      ============================================================= */
-
-      function loadReleases() {
-        try {
-          const saved = localStorage.getItem(STORAGE_KEY);
-
-          if (!saved) {
-            releases = structuredClone(DEFAULT_RELEASES);
-
-            saveReleases();
-
-            return;
-          }
-
-          const parsed = JSON.parse(saved);
-
-          if (Array.isArray(parsed)) {
-            releases = parsed;
-          } else {
-            releases = structuredClone(DEFAULT_RELEASES);
-          }
-
-          /*
-           * IMPORTANT
-           *
-           * If an old v1.9.1 is already stored in
-           * localStorage with the old APK filename,
-           * automatically replace it with the new URL.
-           */
-
-          const latest191 = releases.find(
-            (release) => normalizeVersion(release.version) === "1.9.1",
-          );
-
-          if (latest191) {
-            latest191.apkUrl = LATEST_APK_URL;
-
-            latest191.version = "1.9.1";
-
-            latest191.published = true;
-
-            latest191.releaseDate = "2026-09-27";
-
-            saveReleases();
-          }
-        } catch (error) {
-          console.error("Release load error:", error);
-
-          releases = structuredClone(DEFAULT_RELEASES);
-        }
-      }
-
-      /* ============================================================
-         SAVE
-      ============================================================= */
-
-      function saveReleases() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(releases));
-      }
-
-      /* ============================================================
-         VERSION SORT
-      ============================================================= */
-
-      function compareVersions(a, b) {
-        const pa = String(a).replace(/^v/i, "").split(".").map(Number);
-
-        const pb = String(b).replace(/^v/i, "").split(".").map(Number);
-
-        for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
-          const na = pa[i] || 0;
-
-          const nb = pb[i] || 0;
-
-          if (na > nb) {
-            return 1;
-          }
-
-          if (na < nb) {
-            return -1;
-          }
-        }
-
-        return 0;
-      }
-
-      function getSortedReleases(list = releases) {
-        return [...list].sort((a, b) => {
-          const dateA = new Date(a.releaseDate || 0).getTime();
-
-          const dateB = new Date(b.releaseDate || 0).getTime();
-
-          if (dateB !== dateA) {
-            return dateB - dateA;
-          }
-
-          return compareVersions(b.version, a.version);
-        });
-      }
-
-      /* ============================================================
-         FORMAT DATE
-      ============================================================= */
-
-      function formatDate(dateString) {
-        if (!dateString) {
-          return "Date unavailable";
-        }
-
-        const date = new Date(dateString + "T00:00:00");
-
-        if (Number.isNaN(date.getTime())) {
-          return dateString;
-        }
-
-        return date.toLocaleDateString("en-IN", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        });
-      }
-
-      /* ============================================================
-         ESCAPE HTML
-      ============================================================= */
-
-      function escapeHTML(value) {
-        return String(value ?? "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-
-      /* ============================================================
-         NORMALIZE VERSION
-      ============================================================= */
-
-      function normalizeVersion(version) {
-        return String(version || "")
-          .trim()
-          .replace(/^v/i, "");
-      }
-
-      /* ============================================================
-         PUBLIC PAGE
-      ============================================================= */
-
-      function renderPublicPage() {
-        const published = getSortedReleases(
-          releases.filter((release) => release.published !== false),
-        );
-
-        $("releaseCount").textContent = `${published.length} release${
-          published.length === 1 ? "" : "s"
-        }`;
-
-        if (!published.length) {
-          $("latestReleaseContainer").innerHTML = `
-
-              <div
-                class="rounded-3xl border border-dashed border-slate-300 bg-white p-8 text-center sm:p-10"
-              >
-
-                <div
-                  class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-2xl text-slate-400"
+                  id="formIcon"
+                  class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600"
                 >
-                  <i class="ri-download-cloud-line"></i>
+                  <i class="ri-add-line"></i>
                 </div>
 
-                <h3 class="font-black">
-                  No releases available
+                <h3
+                  id="releaseFormTitle"
+                  class="text-lg font-black sm:text-xl"
+                >
+                  Add New Version
                 </h3>
 
                 <p class="mt-1 text-xs text-slate-500 sm:text-sm">
-                  Please check again later.
+                  Add and publish a new APK release.
                 </p>
 
               </div>
 
-            `;
 
-          $("previousReleasesContainer").innerHTML = "";
+              <form id="releaseForm" class="space-y-3.5">
 
-          $("heroVersionBadge").innerHTML = `
-              <i class="ri-price-tag-3-line"></i>
-              No release
-            `;
+                <input
+                  id="editingId"
+                  type="hidden"
+                />
 
-          return;
-        }
 
-        const latest = published[0];
-
-        $("heroVersionBadge").innerHTML = `
-            <i class="ri-price-tag-3-line"></i>
-            v${escapeHTML(latest.version)}
-          `;
-
-        $("latestReleaseContainer").innerHTML = createLatestReleaseCard(latest);
-
-        renderPreviousReleases(published.slice(1));
-      }
-
-      /* ============================================================
-         LATEST RELEASE CARD
-      ============================================================= */
-
-      function createLatestReleaseCard(release) {
-        return `
-
-          <article
-            class="release-card overflow-hidden rounded-3xl border border-green-200 bg-white shadow-lg shadow-green-900/5"
-          >
-
-            <div
-              class="bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 p-5 text-white sm:p-7 lg:p-8"
-            >
-
-              <div class="flex flex-col gap-6">
+                <!-- VERSION -->
 
                 <div>
 
-                  <div
-                    class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider backdrop-blur sm:text-xs"
+                  <label
+                    class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                   >
-                    <i class="ri-sparkling-2-fill"></i>
-                    Latest Version
-                  </div>
+                    App Version
+                  </label>
 
-                  <div
-                    class="flex flex-wrap items-center gap-2.5"
-                  >
-
-                    <h3
-                      class="text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl"
-                    >
-                      v${escapeHTML(release.version)}
-                    </h3>
-
-                    <span
-                      class="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-black backdrop-blur sm:text-xs"
-                    >
-                      ${escapeHTML(release.platform || "Android")}
-                    </span>
-
-                  </div>
-
-                  <div
-                    class="mt-3 flex flex-col gap-1.5 text-xs text-green-50 sm:flex-row sm:flex-wrap sm:gap-x-5"
-                  >
-
-                    <span
-                      class="inline-flex items-center gap-1.5"
-                    >
-                      <i class="ri-calendar-line"></i>
-
-                      Released on
-                      ${formatDate(release.releaseDate)}
-                    </span>
-
-                    ${
-                      release.apkSize
-                        ? `
-                          <span
-                            class="inline-flex items-center gap-1.5"
-                          >
-                            <i class="ri-file-download-line"></i>
-                            ${escapeHTML(release.apkSize)}
-                          </span>
-                        `
-                        : ""
-                    }
-
-                  </div>
+                  <input
+                    id="versionInput"
+                    type="text"
+                    placeholder="Example: 2.0.0"
+                    required
+                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold"
+                  />
 
                 </div>
 
 
-                <!-- DOWNLOAD -->
-
-                <a
-                  href="${escapeHTML(release.apkUrl)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onclick="handleDownload('${escapeHTML(release.id)}')"
-                  class="inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-2xl bg-white px-6 py-3.5 text-sm font-black text-green-700 shadow-xl transition hover:bg-green-50 sm:w-auto sm:self-start"
-                >
-
-                  <i class="ri-download-2-fill text-lg"></i>
-
-                  Download APK
-
-                </a>
-
-              </div>
-
-            </div>
-
-
-            <!-- CONTENT -->
-
-            <div class="p-5 sm:p-7 lg:p-8">
-
-              <div class="flex flex-col gap-5">
+                <!-- DATE -->
 
                 <div>
 
-                  <h4
-                    class="mb-2 flex items-center gap-2 text-sm font-black text-slate-800"
+                  <label
+                    class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                   >
-                    <i
-                      class="ri-file-list-3-line text-green-600"
-                    ></i>
+                    Release Date
+                  </label>
 
-                    What's new
-                  </h4>
+                  <input
+                    id="releaseDateInput"
+                    type="date"
+                    required
+                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                  />
 
-                  <p
-                    class="text-xs leading-6 text-slate-500 sm:text-sm sm:leading-7"
+                </div>
+
+
+                <!-- APK URL -->
+
+                <div>
+
+                  <label
+                    class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                   >
-                    ${escapeHTML(
-                      release.releaseNotes ||
-                        "Latest improvements and updates.",
-                    )}
+                    APK Download URL
+                  </label>
+
+                  <input
+                    id="apkUrlInput"
+                    type="url"
+                    placeholder="https://github.com/..."
+                    required
+                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                  />
+
+                  <p class="mt-1 text-[10px] leading-4 text-slate-400">
+                    Paste the direct GitHub APK release asset URL.
                   </p>
 
                 </div>
 
 
-                <div
-                  class="grid grid-cols-2 gap-2.5"
-                >
+                <!-- SIZE + PLATFORM -->
 
-                  <div
-                    class="rounded-xl bg-green-50 p-3"
-                  >
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 
-                    <div
-                      class="text-[10px] font-bold text-green-600"
+                  <div>
+
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
-                      Version
-                    </div>
+                      APK Size
+                    </label>
 
-                    <div
-                      class="mt-0.5 text-sm font-black text-green-800"
-                    >
-                      v${escapeHTML(release.version)}
-                    </div>
+                    <input
+                      id="apkSizeInput"
+                      type="text"
+                      placeholder="62.5 MB"
+                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                    />
 
                   </div>
 
 
-                  <div
-                    class="rounded-xl bg-slate-50 p-3"
-                  >
+                  <div>
 
-                    <div
-                      class="text-[10px] font-bold text-slate-400"
+                    <label
+                      class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
                     >
                       Platform
-                    </div>
+                    </label>
 
-                    <div
-                      class="mt-0.5 text-sm font-black text-slate-700"
+                    <select
+                      id="platformInput"
+                      class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
                     >
-                      ${escapeHTML(release.platform || "Android")}
-                    </div>
+                      <option value="Android">
+                        Android
+                      </option>
+
+                      <option value="iOS">
+                        iOS
+                      </option>
+
+                      <option value="Windows">
+                        Windows
+                      </option>
+
+                      <option value="Other">
+                        Other
+                      </option>
+                    </select>
 
                   </div>
 
                 </div>
 
-              </div>
+
+                <!-- RELEASE NOTES -->
+
+                <div>
+
+                  <label
+                    class="mb-1.5 block text-[10px] font-black uppercase tracking-wide text-slate-500 sm:text-xs"
+                  >
+                    Release Notes
+                  </label>
+
+                  <textarea
+                    id="releaseNotesInput"
+                    rows="4"
+                    placeholder="What's new in this version?"
+                    class="input-field w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm"
+                  ></textarea>
+
+                </div>
+
+
+                <!-- PUBLISH -->
+
+                <label
+                  class="flex cursor-pointer items-start gap-3 rounded-xl border border-green-100 bg-green-50 p-3.5"
+                >
+
+                  <input
+                    id="publishedInput"
+                    type="checkbox"
+                    checked
+                    class="mt-0.5 h-4 w-4 accent-green-600"
+                  />
+
+                  <div>
+
+                    <div
+                      class="text-xs font-black text-green-800 sm:text-sm"
+                    >
+                      Publish this version
+                    </div>
+
+                    <div
+                      class="mt-0.5 text-[10px] leading-4 text-green-700 sm:text-xs"
+                    >
+                      Published releases are visible to customers.
+                    </div>
+
+                  </div>
+
+                </label>
+
+
+                <!-- BUTTONS -->
+
+                <div class="flex gap-2">
+
+                  <button
+                    id="saveReleaseButton"
+                    type="submit"
+                    class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-xs font-black text-white shadow-lg shadow-green-600/20 transition hover:bg-green-700 active:scale-[0.99] sm:text-sm"
+                  >
+                    <i class="ri-upload-cloud-2-line"></i>
+                    Publish Version
+                  </button>
+
+
+                  <button
+                    id="cancelEditButton"
+                    type="button"
+                    class="hidden rounded-xl bg-slate-100 px-4 py-3 text-xs font-bold text-slate-700"
+                  >
+                    Cancel
+                  </button>
+
+                </div>
+
+              </form>
 
             </div>
 
-          </article>
+          </section>
 
-        `;
-      }
 
-      /* ============================================================
-         PREVIOUS RELEASES
-      ============================================================= */
+          <!-- RELEASE HISTORY -->
 
-      function renderPreviousReleases(previousReleases, searchTerm = "") {
-        const container = $("previousReleasesContainer");
+          <section>
 
-        let filtered = previousReleases;
+            <div class="mb-4 flex items-center justify-between">
 
-        if (searchTerm.trim()) {
-          const query = searchTerm.trim().toLowerCase();
+              <div>
 
-          filtered = previousReleases.filter((release) => {
-            return (
-              String(release.version).toLowerCase().includes(query) ||
-              String(release.releaseNotes || "")
-                .toLowerCase()
-                .includes(query) ||
-              String(release.platform || "")
-                .toLowerCase()
-                .includes(query)
-            );
-          });
-        }
+                <h3 class="text-lg font-black sm:text-xl">
+                  Release History
+                </h3>
 
-        if (!filtered.length) {
-          container.innerHTML = `
+                <p class="mt-1 text-[10px] text-slate-500 sm:text-xs">
+                  Newest release appears first.
+                </p>
+
+              </div>
+
+
+              <div
+                id="dashboardReleaseCount"
+                class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600"
+              ></div>
+
+            </div>
+
 
             <div
-              class="rounded-2xl border border-dashed border-slate-300 bg-white p-7 text-center sm:p-8"
-            >
+              id="dashboardReleases"
+              class="space-y-2.5"
+            ></div>
 
-              <div
-                class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-xl text-slate-400"
-              >
-                <i class="ri-search-line"></i>
-              </div>
+          </section>
 
-              <div
-                class="text-sm font-black text-slate-700"
-              >
-                No previous versions found
-              </div>
+        </div>
 
-              <p class="mt-1 text-xs text-slate-400">
-                Try another version number.
-              </p>
+      </div>
 
-            </div>
+    </div>
 
-          `;
+  </div>
+
+
+  <!-- ============================================================
+       TOAST
+  ============================================================= -->
+
+  <div
+    id="toast"
+    class="pointer-events-none fixed bottom-4 left-1/2 z-[100] hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2"
+  >
+
+    <div
+      id="toastContent"
+      class="flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm"
+    >
+
+      <i
+        id="toastIcon"
+        class="ri-checkbox-circle-fill text-lg text-green-400"
+      ></i>
+
+      <span id="toastMessage"></span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================= -->
+
+  <script>
+
+    /* ============================================================
+       CONFIGURATION
+    ============================================================= */
+
+    /*
+      IMPORTANT:
+      Change ONLY these two values.
+
+      This login is client-side because this is a static GitHub
+      Pages website.
+
+      For real production security, move authentication to your
+      backend.
+    */
+
+    const DEVELOPER_EMAIL = "YOUR_EMAIL_HERE";
+
+    const DEVELOPER_PASSWORD = "YOUR_PASSWORD_HERE";
+
+
+    /*
+      Local browser storage keys
+    */
+
+    const STORAGE_KEY =
+      "vegg_basket_customer_app_releases_v2";
+
+    const LOGIN_KEY =
+      "vegg_basket_developer_logged_in";
+
+    const EMAIL_KEY =
+      "vegg_basket_developer_email";
+
+
+    /*
+      Current APK
+    */
+
+    const LATEST_APK_URL =
+      "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/customer-app-v1.9.1.apk";
+
+
+    /* ============================================================
+       DEFAULT RELEASE
+    ============================================================= */
+
+    const DEFAULT_RELEASES = [
+
+      {
+        id: "release-191",
+
+        version: "1.9.1",
+
+        releaseDate: "2026-09-27",
+
+        apkUrl: LATEST_APK_URL,
+
+        apkSize: "",
+
+        platform: "Android",
+
+        releaseNotes:
+          "Latest Vegg Basket customer app release.",
+
+        published: true,
+
+        createdAt:
+          "2026-09-27T00:00:00.000Z"
+      }
+
+    ];
+
+
+    /* ============================================================
+       DOM HELPER
+    ============================================================= */
+
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+
+    /* ============================================================
+       GLOBAL STATE
+    ============================================================= */
+
+    let releases = [];
+
+    let toastTimer = null;
+
+
+    /* ============================================================
+       STORAGE
+    ============================================================= */
+
+    function saveReleases() {
+
+      try {
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(releases)
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Unable to save releases:",
+          error
+        );
+
+        showToast(
+          "Unable to save release data.",
+          "error"
+        );
+      }
+    }
+
+
+    function loadReleases() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (!saved) {
+
+          releases =
+            structuredClone(DEFAULT_RELEASES);
+
+          saveReleases();
 
           return;
         }
 
-        container.innerHTML = filtered.map(createPreviousReleaseCard).join("");
+
+        const parsed =
+          JSON.parse(saved);
+
+
+        if (!Array.isArray(parsed)) {
+
+          releases =
+            structuredClone(DEFAULT_RELEASES);
+
+          saveReleases();
+
+          return;
+        }
+
+
+        releases = parsed.map(normalizeRelease);
+
+
+      } catch (error) {
+
+        console.error(
+          "Unable to load releases:",
+          error
+        );
+
+        releases =
+          structuredClone(DEFAULT_RELEASES);
+
+        saveReleases();
+      }
+    }
+
+
+    function normalizeRelease(release) {
+
+      return {
+
+        id:
+          release.id ||
+          createId(),
+
+        version:
+          String(release.version || "")
+            .trim(),
+
+        releaseDate:
+          release.releaseDate ||
+          getToday(),
+
+        apkUrl:
+          String(release.apkUrl || "")
+            .trim(),
+
+        apkSize:
+          String(release.apkSize || "")
+            .trim(),
+
+        platform:
+          release.platform ||
+          "Android",
+
+        releaseNotes:
+          String(release.releaseNotes || "")
+            .trim(),
+
+        published:
+          release.published !== false,
+
+        createdAt:
+          release.createdAt ||
+          new Date().toISOString()
+
+      };
+    }
+
+
+    /* ============================================================
+       ID
+    ============================================================= */
+
+    function createId() {
+
+      return (
+        "release-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 8)
+      );
+    }
+
+
+    /* ============================================================
+       DATE
+    ============================================================= */
+
+    function getToday() {
+
+      const date =
+        new Date();
+
+      const year =
+        date.getFullYear();
+
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          date.getDate()
+        ).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    }
+
+
+    function formatDate(dateString) {
+
+      if (!dateString) {
+        return "Date unavailable";
       }
 
-      /* ============================================================
-         PREVIOUS RELEASE CARD
-      ============================================================= */
+      const date =
+        new Date(
+          `${dateString}T00:00:00`
+        );
 
-      function createPreviousReleaseCard(release) {
-        return `
+      if (Number.isNaN(date.getTime())) {
+        return dateString;
+      }
 
-          <article
-            class="release-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      return date.toLocaleDateString(
+        "en-IN",
+        {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }
+      );
+    }
+
+
+    /* ============================================================
+       VERSION SORTING
+    ============================================================= */
+
+    function versionParts(version) {
+
+      return String(version || "")
+        .replace(/^v/i, "")
+        .split(".")
+        .map((part) => {
+
+          const number =
+            parseInt(part, 10);
+
+          return Number.isNaN(number)
+            ? 0
+            : number;
+
+        });
+    }
+
+
+    function compareVersions(a, b) {
+
+      const av =
+        versionParts(a.version);
+
+      const bv =
+        versionParts(b.version);
+
+      const max =
+        Math.max(
+          av.length,
+          bv.length
+        );
+
+      for (
+        let i = 0;
+        i < max;
+        i++
+      ) {
+
+        const x =
+          av[i] || 0;
+
+        const y =
+          bv[i] || 0;
+
+        if (x !== y) {
+          return y - x;
+        }
+      }
+
+      return 0;
+    }
+
+
+    function getSortedReleases(
+      releaseList = releases
+    ) {
+
+      return [...releaseList]
+        .sort(compareVersions);
+    }
+
+
+    /* ============================================================
+       PUBLIC PAGE
+    ============================================================= */
+
+    function getPublishedReleases() {
+
+      return getSortedReleases(
+        releases.filter(
+          (release) =>
+            release.published !== false
+        )
+      );
+    }
+
+
+    function renderPublicPage() {
+
+      const published =
+        getPublishedReleases();
+
+
+      $("releaseCount").textContent =
+        published.length
+          ? `${published.length} published release${published.length === 1 ? "" : "s"}`
+          : "No published releases";
+
+
+      /*
+        Latest release
+      */
+
+      const latest =
+        published[0];
+
+
+      if (!latest) {
+
+        $("latestReleaseContainer").innerHTML = `
+          <div
+            class="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center"
+          >
+            <i class="ri-inbox-line text-4xl text-slate-300"></i>
+
+            <h3 class="mt-3 font-black">
+              No release available
+            </h3>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Please check again later.
+            </p>
+          </div>
+        `;
+
+      } else {
+
+        $("latestReleaseContainer").innerHTML =
+          createLatestRelease(latest);
+
+        $("heroVersionBadge").innerHTML = `
+          <i class="ri-price-tag-3-line"></i>
+          v${escapeHtml(latest.version)}
+        `;
+      }
+
+
+      /*
+        Previous releases
+      */
+
+      renderPreviousReleases(
+        published.slice(1)
+      );
+    }
+
+
+    /* ============================================================
+       LATEST RELEASE CARD
+    ============================================================= */
+
+    function createLatestRelease(
+      release
+    ) {
+
+      return `
+        <article
+          class="release-card overflow-hidden rounded-3xl border border-green-100 bg-white shadow-lg"
+        >
+
+          <div
+            class="bg-gradient-to-br from-green-50 to-emerald-50 p-5 sm:p-7 lg:p-8"
           >
 
             <div
-              class="flex flex-col gap-4"
+              class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"
             >
 
-              <div
-                class="flex items-start gap-3"
-              >
+              <div class="flex min-w-0 gap-4">
 
                 <div
-                  class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg text-slate-500"
+                  class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-green-600 text-3xl text-white shadow-lg shadow-green-600/20 sm:h-20 sm:w-20 sm:text-4xl"
                 >
-                  <i class="ri-android-line"></i>
+                  <i class="ri-android-fill"></i>
                 </div>
 
-
-                <div class="min-w-0 flex-1">
+                <div class="min-w-0">
 
                   <div
-                    class="flex flex-wrap items-center gap-2"
+                    class="mb-2 inline-flex items-center gap-2 rounded-full bg-green-600 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white"
                   >
-
-                    <h3
-                      class="text-base font-black sm:text-lg"
-                    >
-                      v${escapeHTML(release.version)}
-                    </h3>
-
-                    <span
-                      class="rounded-full bg-slate-100 px-2 py-1 text-[9px] font-black uppercase tracking-wide text-slate-500"
-                    >
-                      ${escapeHTML(release.platform || "Android")}
-                    </span>
-
+                    <i class="ri-star-fill"></i>
+                    Latest Release
                   </div>
 
+                  <h3
+                    class="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl"
+                  >
+                    Version ${escapeHtml(release.version)}
+                  </h3>
 
                   <div
-                    class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-400 sm:text-xs"
+                    class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500 sm:text-sm"
                   >
-
                     <span>
                       <i class="ri-calendar-line"></i>
-
-                      ${formatDate(release.releaseDate)}
+                      ${escapeHtml(formatDate(release.releaseDate))}
                     </span>
 
                     ${
@@ -1546,26 +1657,17 @@
                         ? `
                           <span>
                             <i class="ri-file-line"></i>
-                            ${escapeHTML(release.apkSize)}
+                            ${escapeHtml(release.apkSize)}
                           </span>
                         `
                         : ""
                     }
 
+                    <span>
+                      <i class="ri-android-line"></i>
+                      ${escapeHtml(release.platform)}
+                    </span>
                   </div>
-
-
-                  ${
-                    release.releaseNotes
-                      ? `
-                        <p
-                          class="line-clamp-2 mt-2 text-xs leading-5 text-slate-500 sm:text-sm"
-                        >
-                          ${escapeHTML(release.releaseNotes)}
-                        </p>
-                      `
-                      : ""
-                  }
 
                 </div>
 
@@ -1573,442 +1675,714 @@
 
 
               <a
-                href="${escapeHTML(release.apkUrl)}"
+                href="${safeUrl(release.apkUrl)}"
                 target="_blank"
                 rel="noopener noreferrer"
-                onclick="handleDownload('${escapeHTML(release.id)}')"
-                class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-2.5 text-xs font-black text-green-700 transition hover:bg-green-100 sm:w-auto sm:self-end sm:px-5 sm:text-sm"
+                download
+                class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-black text-white shadow-lg shadow-green-600/20 transition hover:bg-green-700 active:scale-[0.99] sm:w-auto"
               >
-
-                <i class="ri-download-2-line"></i>
-
-                Download
-
+                <i class="ri-download-2-line text-lg"></i>
+                Download APK
               </a>
 
             </div>
 
-          </article>
 
+            ${
+              release.releaseNotes
+                ? `
+                  <div
+                    class="mt-6 rounded-2xl border border-green-100 bg-white/80 p-4 sm:p-5"
+                  >
+
+                    <div
+                      class="mb-2 flex items-center gap-2 text-xs font-black text-green-700 sm:text-sm"
+                    >
+                      <i class="ri-sparkling-2-line"></i>
+                      What's New
+                    </div>
+
+                    <p
+                      class="whitespace-pre-line text-xs leading-6 text-slate-600 sm:text-sm"
+                    >
+                      ${escapeHtml(release.releaseNotes)}
+                    </p>
+
+                  </div>
+                `
+                : ""
+            }
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /* ============================================================
+       PREVIOUS RELEASES
+    ============================================================= */
+
+    function renderPreviousReleases(
+      list,
+      searchTerm = ""
+    ) {
+
+      const container =
+        $("previousReleasesContainer");
+
+      const query =
+        String(searchTerm || "")
+          .trim()
+          .toLowerCase();
+
+
+      let filtered =
+        list.filter((release) => {
+
+          if (!query) {
+            return true;
+          }
+
+          return [
+            release.version,
+            release.platform,
+            release.releaseNotes,
+            release.releaseDate
+          ]
+            .join(" ")
+            .toLowerCase()
+            .includes(query);
+        });
+
+
+      if (!filtered.length) {
+
+        container.innerHTML = `
+          <div
+            class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center"
+          >
+            <i class="ri-search-line text-3xl text-slate-300"></i>
+
+            <h3 class="mt-3 text-sm font-black">
+              ${
+                query
+                  ? "No matching versions"
+                  : "No previous versions"
+              }
+            </h3>
+
+            <p class="mt-1 text-xs text-slate-500">
+              ${
+                query
+                  ? "Try another version number."
+                  : "Older published releases will appear here."
+              }
+            </p>
+          </div>
         `;
+
+        return;
       }
 
-      /* ============================================================
-         DOWNLOAD
-      ============================================================= */
 
-      function handleDownload(id) {
-        console.log("Download:", id);
-      }
+      container.innerHTML =
+        filtered
+          .map(createPreviousRelease)
+          .join("");
+    }
 
-      /* ============================================================
-         LOGIN
-      ============================================================= */
 
-      function openLoginModal() {
-        $("loginModal").classList.remove("hidden");
+    function createPreviousRelease(
+      release
+    ) {
 
-        $("loginModal").classList.add("flex");
+      return `
+        <article
+          class="release-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+        >
 
-        $("loginError").classList.add("hidden");
+          <div
+            class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
 
-        setTimeout(() => $("loginEmail").focus(), 100);
-      }
-
-      function closeLoginModal() {
-        $("loginModal").classList.add("hidden");
-
-        $("loginModal").classList.remove("flex");
-
-        $("loginError").classList.add("hidden");
-
-        $("loginError").textContent = "";
-      }
-
-      function isDeveloperLoggedIn() {
-        return sessionStorage.getItem(LOGIN_KEY) === "true";
-      }
-
-      function setDeveloperLoggedIn(value) {
-        if (value) {
-          sessionStorage.setItem(LOGIN_KEY, "true");
-        } else {
-          sessionStorage.removeItem(LOGIN_KEY);
-        }
-      }
-
-      /* ============================================================
-         DASHBOARD
-      ============================================================= */
-
-      function openDashboard() {
-        $("dashboardModal").classList.remove("hidden");
-
-        $("dashboardModal").classList.add("flex");
-
-        renderDashboardReleases();
-      }
-
-      function closeDashboard() {
-        $("dashboardModal").classList.add("hidden");
-
-        $("dashboardModal").classList.remove("flex");
-      }
-
-      /* ============================================================
-         DASHBOARD RELEASE LIST
-      ============================================================= */
-
-      function renderDashboardReleases() {
-        const container = $("dashboardReleases");
-
-        const sorted = getSortedReleases();
-
-        $("dashboardReleaseCount").textContent = `${sorted.length} total`;
-
-        if (!sorted.length) {
-          container.innerHTML = `
-
-            <div
-              class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center"
-            >
-
-              <i
-                class="ri-inbox-line text-3xl text-slate-300"
-              ></i>
+            <div class="flex min-w-0 items-center gap-3">
 
               <div
-                class="mt-3 text-sm font-black"
+                class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg text-slate-500"
               >
-                No releases
+                <i class="ri-android-line"></i>
+              </div>
+
+              <div class="min-w-0">
+
+                <h3 class="truncate text-sm font-black sm:text-base">
+                  Version ${escapeHtml(release.version)}
+                </h3>
+
+                <div
+                  class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-400 sm:text-xs"
+                >
+                  <span>
+                    ${escapeHtml(formatDate(release.releaseDate))}
+                  </span>
+
+                  <span>
+                    ${escapeHtml(release.platform)}
+                  </span>
+
+                  ${
+                    release.apkSize
+                      ? `
+                        <span>
+                          ${escapeHtml(release.apkSize)}
+                        </span>
+                      `
+                      : ""
+                  }
+                </div>
+
               </div>
 
             </div>
 
-          `;
 
-          return;
-        }
+            <div class="flex gap-2">
 
-        container.innerHTML = sorted.map(createDashboardRelease).join("");
-      }
-
-      /* ============================================================
-         DASHBOARD CARD
-      ============================================================= */
-
-      function createDashboardRelease(release, index) {
-        const isLatest = index === 0 && release.published !== false;
-
-        return `
-
-          <div
-            class="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm sm:p-4"
-          >
-
-            <div
-              class="flex items-center gap-3"
-            >
-
-              <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${
-                  isLatest
-                    ? "bg-green-100 text-green-600"
-                    : "bg-slate-100 text-slate-500"
-                }"
+              <a
+                href="${safeUrl(release.apkUrl)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                class="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50 sm:flex-none"
               >
-
-                <i
-                  class="${isLatest ? "ri-star-fill" : "ri-history-line"}"
-                ></i>
-
-              </div>
-
-
-              <div
-                class="min-w-0 flex-1"
-              >
-
-                <div
-                  class="flex flex-wrap items-center gap-1.5"
-                >
-
-                  <span
-                    class="text-sm font-black"
-                  >
-                    v${escapeHTML(release.version)}
-                  </span>
-
-
-                  ${
-                    isLatest
-                      ? `
-                        <span
-                          class="rounded-full bg-green-100 px-1.5 py-0.5 text-[8px] font-black uppercase text-green-700"
-                        >
-                          Latest
-                        </span>
-                      `
-                      : ""
-                  }
-
-
-                  ${
-                    release.published === false
-                      ? `
-                        <span
-                          class="rounded-full bg-amber-100 px-1.5 py-0.5 text-[8px] font-black uppercase text-amber-700"
-                        >
-                          Draft
-                        </span>
-                      `
-                      : ""
-                  }
-
-                </div>
-
-
-                <div
-                  class="mt-0.5 flex flex-wrap gap-x-3 text-[9px] text-slate-400"
-                >
-
-                  <span>
-                    ${formatDate(release.releaseDate)}
-                  </span>
-
-                  <span>
-                    ${escapeHTML(release.platform || "Android")}
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <!-- ACTIONS -->
-
-              <div
-                class="flex flex-shrink-0 items-center gap-1"
-              >
-
-                <button
-                  type="button"
-                  onclick="editRelease('${escapeHTML(release.id)}')"
-                  title="Edit"
-                  class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600"
-                >
-                  <i class="ri-edit-line"></i>
-                </button>
-
-
-                <button
-                  type="button"
-                  onclick="togglePublished('${escapeHTML(release.id)}')"
-                  title="Publish / Unpublish"
-                  class="flex h-8 w-8 items-center justify-center rounded-lg ${
-                    release.published === false
-                      ? "bg-green-50 text-green-600"
-                      : "bg-amber-50 text-amber-600"
-                  }"
-                >
-
-                  <i
-                    class="${
-                      release.published === false
-                        ? "ri-eye-line"
-                        : "ri-eye-off-line"
-                    }"
-                  ></i>
-
-                </button>
-
-
-                <button
-                  type="button"
-                  onclick="deleteRelease('${escapeHTML(release.id)}')"
-                  title="Delete"
-                  class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600"
-                >
-                  <i class="ri-delete-bin-line"></i>
-                </button>
-
-              </div>
+                <i class="ri-download-2-line"></i>
+                Download
+              </a>
 
             </div>
 
           </div>
 
-        `;
-      }
 
-      /* ============================================================
-         RESET FORM
-      ============================================================= */
+          ${
+            release.releaseNotes
+              ? `
+                <div
+                  class="mt-4 border-t border-slate-100 pt-3 text-xs leading-5 text-slate-500"
+                >
+                  <span class="font-bold text-slate-700">
+                    What's new:
+                  </span>
 
-      function resetReleaseForm() {
-        $("releaseForm").reset();
-
-        $("editingId").value = "";
-
-        $("publishedInput").checked = true;
-
-        $("releaseFormTitle").textContent = "Add New Version";
-
-        $("formIcon").innerHTML = `<i class="ri-add-line"></i>`;
-
-        $("saveReleaseButton").innerHTML =
-          `<i class="ri-upload-cloud-2-line"></i>
-           Publish Version`;
-
-        $("cancelEditButton").classList.add("hidden");
-      }
-
-      /* ============================================================
-         EDIT RELEASE
-      ============================================================= */
-
-      function editRelease(id) {
-        const release = releases.find((item) => item.id === id);
-
-        if (!release) {
-          return;
-        }
-
-        $("editingId").value = release.id;
-
-        $("versionInput").value = release.version || "";
-
-        $("releaseDateInput").value = release.releaseDate || "";
-
-        $("apkUrlInput").value = release.apkUrl || "";
-
-        $("apkSizeInput").value = release.apkSize || "";
-
-        $("platformInput").value = release.platform || "Android";
-
-        $("releaseNotesInput").value = release.releaseNotes || "";
-
-        $("publishedInput").checked = release.published !== false;
-
-        $("releaseFormTitle").textContent = "Edit Version";
-
-        $("formIcon").innerHTML = `<i class="ri-edit-line"></i>`;
-
-        $("saveReleaseButton").innerHTML = `<i class="ri-save-3-line"></i>
-           Save Changes`;
-
-        $("cancelEditButton").classList.remove("hidden");
-
-        $("versionInput").focus();
-      }
-
-      /* ============================================================
-         SAVE RELEASE
-      ============================================================= */
-
-      function saveRelease(event) {
-        event.preventDefault();
-
-        const version = normalizeVersion($("versionInput").value);
-
-        const releaseDate = $("releaseDateInput").value;
-
-        const apkUrl = $("apkUrlInput").value.trim();
-
-        const apkSize = $("apkSizeInput").value.trim();
-
-        const platform = $("platformInput").value;
-
-        const releaseNotes = $("releaseNotesInput").value.trim();
-
-        const published = $("publishedInput").checked;
-
-        const editingId = $("editingId").value;
-
-        /* VALIDATION */
-
-        if (!version) {
-          showToast("Please enter app version.", "error");
-
-          return;
-        }
-
-        if (!/^\d+(\.\d+){0,3}$/.test(version)) {
-          showToast("Version example: 2.0.0", "error");
-
-          return;
-        }
-
-        if (!releaseDate) {
-          showToast("Please select release date.", "error");
-
-          return;
-        }
-
-        if (!apkUrl) {
-          showToast("Please enter APK URL.", "error");
-
-          return;
-        }
-
-        /* DUPLICATE */
-
-        const duplicate = releases.find(
-          (release) =>
-            String(release.version).toLowerCase() === version.toLowerCase() &&
-            release.id !== editingId,
-        );
-
-        if (duplicate) {
-          showToast(`Version ${version} already exists.`, "error");
-
-          return;
-        }
-
-        /* UPDATE */
-
-        if (editingId) {
-          const index = releases.findIndex(
-            (release) => release.id === editingId,
-          );
-
-          if (index !== -1) {
-            releases[index] = {
-              ...releases[index],
-
-              version,
-
-              releaseDate,
-
-              apkUrl,
-
-              apkSize,
-
-              platform,
-
-              releaseNotes,
-
-              published,
-            };
+                  <span class="whitespace-pre-line">
+                    ${escapeHtml(release.releaseNotes)}
+                  </span>
+                </div>
+              `
+              : ""
           }
 
-          saveReleases();
+        </article>
+      `;
+    }
 
-          renderPublicPage();
 
-          renderDashboardReleases();
+    /* ============================================================
+       DASHBOARD
+    ============================================================= */
 
-          resetReleaseForm();
+    function openDashboard() {
 
-          showToast(`Version ${version} updated.`, "success");
+      $("dashboardModal")
+        .classList
+        .remove("hidden");
+
+      $("dashboardModal")
+        .classList
+        .add("flex");
+
+
+      const email =
+        sessionStorage.getItem(
+          EMAIL_KEY
+        );
+
+      $("dashboardUserEmail")
+        .textContent =
+        email ||
+        "Manage customer app releases";
+
+
+      renderDashboardReleases();
+
+      resetReleaseForm();
+    }
+
+
+    function closeDashboard() {
+
+      $("dashboardModal")
+        .classList
+        .add("hidden");
+
+      $("dashboardModal")
+        .classList
+        .remove("flex");
+    }
+
+
+    /* ============================================================
+       DASHBOARD RELEASE LIST
+    ============================================================= */
+
+    function renderDashboardReleases() {
+
+      const container =
+        $("dashboardReleases");
+
+
+      const sorted =
+        getSortedReleases();
+
+
+      $("dashboardReleaseCount")
+        .textContent =
+        `${sorted.length} total`;
+
+
+      if (!sorted.length) {
+
+        container.innerHTML = `
+          <div
+            class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center"
+          >
+            <i class="ri-inbox-line text-3xl text-slate-300"></i>
+
+            <div class="mt-3 text-sm font-black">
+              No releases
+            </div>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        sorted
+          .map(
+            (release, index) =>
+              createDashboardRelease(
+                release,
+                index
+              )
+          )
+          .join("");
+    }
+
+
+    /* ============================================================
+       DASHBOARD RELEASE CARD
+    ============================================================= */
+
+    function createDashboardRelease(
+      release,
+      index
+    ) {
+
+      const isLatest =
+        index === 0 &&
+        release.published !== false;
+
+
+      return `
+        <div
+          class="rounded-2xl border ${
+            release.published
+              ? "border-slate-200"
+              : "border-red-100"
+          } bg-white p-3.5 shadow-sm sm:p-4"
+        >
+
+          <div
+            class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
+          >
+
+            <div class="flex min-w-0 gap-3">
+
+              <div
+                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${
+                  isLatest
+                    ? "bg-green-100 text-green-600"
+                    : release.published
+                      ? "bg-slate-100 text-slate-500"
+                      : "bg-red-100 text-red-500"
+                }"
+              >
+                <i
+                  class="${
+                    isLatest
+                      ? "ri-star-fill"
+                      : "ri-android-line"
+                  }"
+                ></i>
+              </div>
+
+
+              <div class="min-w-0">
+
+                <div class="flex flex-wrap items-center gap-2">
+
+                  <h4 class="text-sm font-black">
+                    v${escapeHtml(release.version)}
+                  </h4>
+
+                  ${
+                    isLatest
+                      ? `
+                        <span
+                          class="rounded-full bg-green-100 px-2 py-0.5 text-[9px] font-black text-green-700"
+                        >
+                          LATEST
+                        </span>
+                      `
+                      : ""
+                  }
+
+                  ${
+                    release.published
+                      ? `
+                        <span
+                          class="rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-black text-green-700"
+                        >
+                          PUBLISHED
+                        </span>
+                      `
+                      : `
+                        <span
+                          class="rounded-full bg-red-50 px-2 py-0.5 text-[9px] font-black text-red-600"
+                        >
+                          HIDDEN
+                        </span>
+                      `
+                  }
+
+                </div>
+
+
+                <div
+                  class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-400"
+                >
+
+                  <span>
+                    <i class="ri-calendar-line"></i>
+                    ${escapeHtml(formatDate(release.releaseDate))}
+                  </span>
+
+                  <span>
+                    ${escapeHtml(release.platform)}
+                  </span>
+
+                  ${
+                    release.apkSize
+                      ? `
+                        <span>
+                          ${escapeHtml(release.apkSize)}
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+
+                ${
+                  release.releaseNotes
+                    ? `
+                      <p
+                        class="mt-2 line-clamp-2 text-[10px] leading-4 text-slate-500"
+                      >
+                        ${escapeHtml(release.releaseNotes)}
+                      </p>
+                    `
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div
+              class="grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap"
+            >
+
+              <button
+                type="button"
+                onclick="editRelease('${escapeJs(release.id)}')"
+                class="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-[10px] font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                <i class="ri-edit-line"></i>
+                Edit
+              </button>
+
+
+              <button
+                type="button"
+                onclick="togglePublished('${escapeJs(release.id)}')"
+                class="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg ${
+                  release.published
+                    ? "bg-orange-50 text-orange-700 hover:bg-orange-100"
+                    : "bg-green-50 text-green-700 hover:bg-green-100"
+                } px-3 py-2 text-[10px] font-bold transition"
+              >
+                <i
+                  class="${
+                    release.published
+                      ? "ri-eye-off-line"
+                      : "ri-eye-line"
+                  }"
+                ></i>
+
+                ${
+                  release.published
+                    ? "Hide"
+                    : "Publish"
+                }
+              </button>
+
+
+              <a
+                href="${safeUrl(release.apkUrl)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg bg-blue-50 px-3 py-2 text-[10px] font-bold text-blue-700 transition hover:bg-blue-100"
+              >
+                <i class="ri-external-link-line"></i>
+                APK
+              </a>
+
+
+              <button
+                type="button"
+                onclick="deleteRelease('${escapeJs(release.id)}')"
+                class="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg bg-red-50 px-3 py-2 text-[10px] font-bold text-red-600 transition hover:bg-red-100"
+              >
+                <i class="ri-delete-bin-line"></i>
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    }
+
+
+    /* ============================================================
+       RELEASE FORM
+    ============================================================= */
+
+    function saveRelease(event) {
+
+      event.preventDefault();
+
+
+      const editingId =
+        $("editingId").value.trim();
+
+
+      const version =
+        $("versionInput")
+          .value
+          .trim();
+
+
+      const releaseDate =
+        $("releaseDateInput")
+          .value;
+
+
+      const apkUrl =
+        $("apkUrlInput")
+          .value
+          .trim();
+
+
+      const apkSize =
+        $("apkSizeInput")
+          .value
+          .trim();
+
+
+      const platform =
+        $("platformInput")
+          .value;
+
+
+      const releaseNotes =
+        $("releaseNotesInput")
+          .value
+          .trim();
+
+
+      const published =
+        $("publishedInput")
+          .checked;
+
+
+      /*
+        Basic validation
+      */
+
+      if (!version) {
+
+        showToast(
+          "Enter the app version.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (!releaseDate) {
+
+        showToast(
+          "Select the release date.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (!apkUrl) {
+
+        showToast(
+          "Enter the APK download URL.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      try {
+
+        new URL(apkUrl);
+
+      } catch {
+
+        showToast(
+          "Enter a valid APK URL.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      /*
+        Check duplicate version
+      */
+
+      const duplicate =
+        releases.find(
+          (release) =>
+            release.version.toLowerCase() ===
+              version.toLowerCase() &&
+            release.id !== editingId
+        );
+
+
+      if (duplicate) {
+
+        showToast(
+          `Version ${version} already exists.`,
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (editingId) {
+
+        /*
+          UPDATE
+        */
+
+        const index =
+          releases.findIndex(
+            (release) =>
+              release.id === editingId
+          );
+
+
+        if (index === -1) {
+
+          showToast(
+            "Release not found.",
+            "error"
+          );
 
           return;
         }
 
-        /* CREATE */
+
+        releases[index] = {
+
+          ...releases[index],
+
+          version,
+
+          releaseDate,
+
+          apkUrl,
+
+          apkSize,
+
+          platform,
+
+          releaseNotes,
+
+          published
+
+        };
+
+
+        saveReleases();
+
+        renderPublicPage();
+
+        renderDashboardReleases();
+
+        resetReleaseForm();
+
+
+        showToast(
+          `Version ${version} updated successfully.`,
+          "success"
+        );
+
+
+      } else {
+
+        /*
+          CREATE
+        */
 
         const newRelease = {
-          id: "release-" + Date.now(),
+
+          id:
+            createId(),
 
           version,
 
@@ -2024,10 +2398,16 @@
 
           published,
 
-          createdAt: new Date().toISOString(),
+          createdAt:
+            new Date().toISOString()
+
         };
 
-        releases.push(newRelease);
+
+        releases.push(
+          newRelease
+        );
+
 
         saveReleases();
 
@@ -2037,236 +2417,892 @@
 
         resetReleaseForm();
 
-        showToast(`Version ${version} published successfully.`, "success");
-      }
-
-      /* ============================================================
-         PUBLISH / UNPUBLISH
-      ============================================================= */
-
-      function togglePublished(id) {
-        const release = releases.find((item) => item.id === id);
-
-        if (!release) {
-          return;
-        }
-
-        release.published = release.published === false;
-
-        saveReleases();
-
-        renderPublicPage();
-
-        renderDashboardReleases();
 
         showToast(
-          release.published
-            ? `v${release.version} published.`
-            : `v${release.version} unpublished.`,
-
-          "success",
+          `Version ${version} ${published ? "published" : "saved as hidden"}.`,
+          "success"
         );
       }
+    }
 
-      /* ============================================================
-         DELETE
-      ============================================================= */
 
-      function deleteRelease(id) {
-        const release = releases.find((item) => item.id === id);
+    /* ============================================================
+       EDIT RELEASE
+    ============================================================= */
 
-        if (!release) {
+    function editRelease(id) {
+
+      const release =
+        releases.find(
+          (item) =>
+            item.id === id
+        );
+
+
+      if (!release) {
+
+        showToast(
+          "Release not found.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      $("editingId").value =
+        release.id;
+
+      $("versionInput").value =
+        release.version;
+
+      $("releaseDateInput").value =
+        release.releaseDate;
+
+      $("apkUrlInput").value =
+        release.apkUrl;
+
+      $("apkSizeInput").value =
+        release.apkSize;
+
+      $("platformInput").value =
+        release.platform;
+
+      $("releaseNotesInput").value =
+        release.releaseNotes;
+
+      $("publishedInput").checked =
+        release.published;
+
+
+      $("releaseFormTitle")
+        .textContent =
+        `Edit Version ${release.version}`;
+
+
+      $("formIcon").innerHTML =
+        `<i class="ri-edit-line"></i>`;
+
+
+      $("formIcon").className =
+        "mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-lg text-blue-600";
+
+
+      $("saveReleaseButton").innerHTML =
+        `<i class="ri-save-line"></i> Save Changes`;
+
+
+      $("cancelEditButton")
+        .classList
+        .remove("hidden");
+
+
+      $("versionInput")
+        .focus();
+
+
+      /*
+        Scroll dashboard form into view
+      */
+
+      $("releaseForm")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
+
+
+    /* ============================================================
+       RESET FORM
+    ============================================================= */
+
+    function resetReleaseForm() {
+
+      $("releaseForm").reset();
+
+
+      $("editingId").value =
+        "";
+
+
+      $("releaseDateInput").value =
+        getToday();
+
+
+      $("platformInput").value =
+        "Android";
+
+
+      $("publishedInput").checked =
+        true;
+
+
+      $("releaseFormTitle")
+        .textContent =
+        "Add New Version";
+
+
+      $("formIcon").innerHTML =
+        `<i class="ri-add-line"></i>`;
+
+
+      $("formIcon").className =
+        "mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-lg text-green-600";
+
+
+      $("saveReleaseButton").innerHTML =
+        `<i class="ri-upload-cloud-2-line"></i> Publish Version`;
+
+
+      $("cancelEditButton")
+        .classList
+        .add("hidden");
+    }
+
+
+    /* ============================================================
+       PUBLISH / UNPUBLISH
+    ============================================================= */
+
+    function togglePublished(id) {
+
+      const release =
+        releases.find(
+          (item) =>
+            item.id === id
+        );
+
+
+      if (!release) {
+
+        showToast(
+          "Release not found.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      release.published =
+        !release.published;
+
+
+      saveReleases();
+
+      renderPublicPage();
+
+      renderDashboardReleases();
+
+
+      showToast(
+        release.published
+          ? `v${release.version} published.`
+          : `v${release.version} hidden.`,
+        "success"
+      );
+    }
+
+
+    /* ============================================================
+       DELETE
+    ============================================================= */
+
+    function deleteRelease(id) {
+
+      const release =
+        releases.find(
+          (item) =>
+            item.id === id
+        );
+
+
+      if (!release) {
+
+        showToast(
+          "Release not found.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const confirmed =
+        window.confirm(
+          `Delete version v${release.version}?\n\nThis cannot be undone.`
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      releases =
+        releases.filter(
+          (item) =>
+            item.id !== id
+        );
+
+
+      saveReleases();
+
+      renderPublicPage();
+
+      renderDashboardReleases();
+
+
+      /*
+        If deleted release was being edited,
+        reset the form.
+      */
+
+      if (
+        $("editingId").value === id
+      ) {
+        resetReleaseForm();
+      }
+
+
+      showToast(
+        `Version ${release.version} deleted.`,
+        "success"
+      );
+    }
+
+
+    /* ============================================================
+       LOGIN
+    ============================================================= */
+
+    function openLoginModal() {
+
+      $("loginModal")
+        .classList
+        .remove("hidden");
+
+      $("loginModal")
+        .classList
+        .add("flex");
+
+
+      $("loginError")
+        .classList
+        .add("hidden");
+
+
+      $("loginError")
+        .textContent =
+        "";
+
+
+      setTimeout(
+        () =>
+          $("loginEmail").focus(),
+        100
+      );
+    }
+
+
+    function closeLoginModal() {
+
+      $("loginModal")
+        .classList
+        .add("hidden");
+
+      $("loginModal")
+        .classList
+        .remove("flex");
+
+
+      $("loginError")
+        .classList
+        .add("hidden");
+
+
+      $("loginError")
+        .textContent =
+        "";
+    }
+
+
+    function isDeveloperLoggedIn() {
+
+      return (
+        sessionStorage.getItem(
+          LOGIN_KEY
+        ) === "true"
+      );
+    }
+
+
+    function setDeveloperLoggedIn(
+      value,
+      email = ""
+    ) {
+
+      if (value) {
+
+        sessionStorage.setItem(
+          LOGIN_KEY,
+          "true"
+        );
+
+
+        if (email) {
+
+          sessionStorage.setItem(
+            EMAIL_KEY,
+            email
+          );
+        }
+
+      } else {
+
+        sessionStorage.removeItem(
+          LOGIN_KEY
+        );
+
+        sessionStorage.removeItem(
+          EMAIL_KEY
+        );
+      }
+    }
+
+
+    /* ============================================================
+       LOGIN SUBMIT
+    ============================================================= */
+
+    function handleLogin(event) {
+
+      event.preventDefault();
+
+
+      const email =
+        $("loginEmail")
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      const password =
+        $("loginPassword")
+          .value;
+
+
+      if (
+        !DEVELOPER_EMAIL ||
+        DEVELOPER_EMAIL ===
+          "YOUR_EMAIL_HERE" ||
+        !DEVELOPER_PASSWORD ||
+        DEVELOPER_PASSWORD ===
+          "YOUR_PASSWORD_HERE"
+      ) {
+
+        $("loginError")
+          .textContent =
+          "Developer login credentials are not configured in this HTML file.";
+
+        $("loginError")
+          .classList
+          .remove("hidden");
+
+        return;
+      }
+
+
+      if (
+        email ===
+          DEVELOPER_EMAIL
+            .trim()
+            .toLowerCase() &&
+        password ===
+          DEVELOPER_PASSWORD
+      ) {
+
+        setDeveloperLoggedIn(
+          true,
+          email
+        );
+
+
+        closeLoginModal();
+
+        $("loginForm").reset();
+
+        openDashboard();
+
+
+        showToast(
+          "Developer login successful.",
+          "success"
+        );
+
+      } else {
+
+        $("loginError")
+          .textContent =
+          "Invalid developer ID or password.";
+
+        $("loginError")
+          .classList
+          .remove("hidden");
+
+        $("loginPassword")
+          .focus();
+      }
+    }
+
+
+    /* ============================================================
+       PASSWORD TOGGLE
+    ============================================================= */
+
+    function togglePassword() {
+
+      const input =
+        $("loginPassword");
+
+      const button =
+        $("togglePassword");
+
+      const icon =
+        button.querySelector("i");
+
+
+      if (
+        input.type ===
+        "password"
+      ) {
+
+        input.type =
+          "text";
+
+        icon.className =
+          "ri-eye-off-line";
+
+        button.setAttribute(
+          "aria-label",
+          "Hide password"
+        );
+
+      } else {
+
+        input.type =
+          "password";
+
+        icon.className =
+          "ri-eye-line";
+
+        button.setAttribute(
+          "aria-label",
+          "Show password"
+        );
+      }
+    }
+
+
+    /* ============================================================
+       LOGOUT
+    ============================================================= */
+
+    function logout() {
+
+      setDeveloperLoggedIn(
+        false
+      );
+
+      closeDashboard();
+
+      showToast(
+        "Logged out successfully.",
+        "success"
+      );
+    }
+
+
+    /* ============================================================
+       TOAST
+    ============================================================= */
+
+    function showToast(
+      message,
+      type = "success"
+    ) {
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      const toast =
+        $("toast");
+
+      const content =
+        $("toastContent");
+
+      const icon =
+        $("toastIcon");
+
+
+      $("toastMessage")
+        .textContent =
+        message;
+
+
+      if (type === "error") {
+
+        content.className =
+          "flex items-center gap-3 rounded-xl bg-red-600 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
+
+        icon.className =
+          "ri-error-warning-fill text-lg text-white";
+
+      } else {
+
+        content.className =
+          "flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
+
+        icon.className =
+          "ri-checkbox-circle-fill text-lg text-green-400";
+      }
+
+
+      toast.classList.remove(
+        "hidden"
+      );
+
+
+      toastTimer =
+        setTimeout(
+          () =>
+            toast.classList.add(
+              "hidden"
+            ),
+          3000
+        );
+    }
+
+
+    /* ============================================================
+       SECURITY / HTML HELPERS
+    ============================================================= */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+    }
+
+
+    function escapeJs(value) {
+
+      return String(value ?? "")
+        .replace(
+          /\\/g,
+          "\\\\"
+        )
+        .replace(
+          /'/g,
+          "\\'"
+        )
+        .replace(
+          /"/g,
+          '\\"'
+        );
+    }
+
+
+    function safeUrl(value) {
+
+      try {
+
+        const url =
+          new URL(value);
+
+        if (
+          url.protocol !==
+            "https:" &&
+          url.protocol !==
+            "http:"
+        ) {
+          return "#";
+        }
+
+        return escapeHtml(
+          url.href
+        );
+
+      } catch {
+
+        return "#";
+      }
+    }
+
+
+    /* ============================================================
+       EVENT LISTENERS
+    ============================================================= */
+
+
+    /*
+      Official Customer App button
+    */
+
+    $("officialCustomerAppButton")
+      .addEventListener(
+        "click",
+        function () {
+
+          if (
+            isDeveloperLoggedIn()
+          ) {
+
+            openDashboard();
+
+          } else {
+
+            openLoginModal();
+
+          }
+
+        }
+      );
+
+
+    /*
+      Close login
+    */
+
+    $("closeLoginButton")
+      .addEventListener(
+        "click",
+        closeLoginModal
+      );
+
+
+    /*
+      Close dashboard
+    */
+
+    $("closeDashboardButton")
+      .addEventListener(
+        "click",
+        closeDashboard
+      );
+
+
+    /*
+      Login
+    */
+
+    $("loginForm")
+      .addEventListener(
+        "submit",
+        handleLogin
+      );
+
+
+    /*
+      Password toggle
+    */
+
+    $("togglePassword")
+      .addEventListener(
+        "click",
+        togglePassword
+      );
+
+
+    /*
+      Logout
+    */
+
+    $("logoutButton")
+      .addEventListener(
+        "click",
+        logout
+      );
+
+
+    /*
+      Release form
+    */
+
+    $("releaseForm")
+      .addEventListener(
+        "submit",
+        saveRelease
+      );
+
+
+    /*
+      Cancel edit
+    */
+
+    $("cancelEditButton")
+      .addEventListener(
+        "click",
+        resetReleaseForm
+      );
+
+
+    /*
+      Search
+    */
+
+    $("searchInput")
+      .addEventListener(
+        "input",
+        function () {
+
+          const published =
+            getPublishedReleases();
+
+          renderPreviousReleases(
+            published.slice(1),
+            this.value
+          );
+        }
+      );
+
+
+    /*
+      Login outside click
+    */
+
+    $("loginModal")
+      .addEventListener(
+        "click",
+        function (event) {
+
+          if (
+            event.target ===
+            this
+          ) {
+
+            closeLoginModal();
+
+          }
+        }
+      );
+
+
+    /*
+      Dashboard outside click
+    */
+
+    $("dashboardModal")
+      .addEventListener(
+        "click",
+        function (event) {
+
+          if (
+            event.target ===
+            this
+          ) {
+
+            closeDashboard();
+
+          }
+        }
+      );
+
+
+    /*
+      ESC key
+    */
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key !==
+          "Escape"
+        ) {
           return;
         }
 
-        const confirmed = confirm(
-          `Delete version v${release.version}?\n\nThis cannot be undone.`,
-        );
 
-        if (!confirmed) {
-          return;
-        }
-
-        releases = releases.filter((item) => item.id !== id);
-
-        saveReleases();
-
-        renderPublicPage();
-
-        renderDashboardReleases();
-
-        showToast(`Version ${release.version} deleted.`, "success");
-      }
-
-      /* ============================================================
-         TOAST
-      ============================================================= */
-
-      function showToast(message, type = "success") {
-        clearTimeout(toastTimer);
-
-        const toast = $("toast");
-
-        const content = $("toastContent");
-
-        const icon = $("toastIcon");
-
-        $("toastMessage").textContent = message;
-
-        if (type === "error") {
-          content.className =
-            "flex items-center gap-3 rounded-xl bg-red-600 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
-
-          icon.className = "ri-error-warning-fill text-lg text-white";
-        } else {
-          content.className =
-            "flex items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-xs font-bold text-white shadow-2xl sm:text-sm";
-
-          icon.className = "ri-checkbox-circle-fill text-lg text-green-400";
-        }
-
-        toast.classList.remove("hidden");
-
-        toastTimer = setTimeout(() => toast.classList.add("hidden"), 3000);
-      }
-
-      /* ============================================================
-         EVENT LISTENERS
-      ============================================================= */
-
-      $("officialCustomerAppButton").addEventListener("click", () => {
-        if (isDeveloperLoggedIn()) {
-          openDashboard();
-        } else {
-          openLoginModal();
-        }
-      });
-
-      /* CLOSE LOGIN */
-
-      $("closeLoginButton").addEventListener("click", closeLoginModal);
-
-      /* CLOSE DASHBOARD */
-
-      $("closeDashboardButton").addEventListener("click", closeDashboard);
-
-      /* LOGIN */
-
-      $("loginForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const email = $("loginEmail").value.trim();
-
-        const password = $("loginPassword").value;
-
-        if (email === DEVELOPER_EMAIL && password === DEVELOPER_PASSWORD) {
-          setDeveloperLoggedIn(true);
+        if (
+          !$("loginModal")
+            .classList
+            .contains("hidden")
+        ) {
 
           closeLoginModal();
 
-          openDashboard();
-
-          $("loginForm").reset();
-
-          showToast("Developer login successful.", "success");
-        } else {
-          $("loginError").textContent = "Invalid developer ID or password.";
-
-          $("loginError").classList.remove("hidden");
         }
-      });
 
-      /* PASSWORD TOGGLE */
 
-      $("togglePassword").addEventListener("click", () => {
-        const input = $("loginPassword");
+        if (
+          !$("dashboardModal")
+            .classList
+            .contains("hidden")
+        ) {
 
-        const icon = $("togglePassword").querySelector("i");
-
-        if (input.type === "password") {
-          input.type = "text";
-
-          icon.className = "ri-eye-off-line";
-        } else {
-          input.type = "password";
-
-          icon.className = "ri-eye-line";
-        }
-      });
-
-      /* LOGOUT */
-
-      $("logoutButton").addEventListener("click", () => {
-        setDeveloperLoggedIn(false);
-
-        closeDashboard();
-
-        showToast("Logged out successfully.", "success");
-      });
-
-      /* RELEASE FORM */
-
-      $("releaseForm").addEventListener("submit", saveRelease);
-
-      /* CANCEL EDIT */
-
-      $("cancelEditButton").addEventListener("click", resetReleaseForm);
-
-      /* SEARCH */
-
-      $("searchInput").addEventListener("input", function () {
-        const published = getSortedReleases(
-          releases.filter((release) => release.published !== false),
-        );
-
-        renderPreviousReleases(published.slice(1), this.value);
-      });
-
-      /* LOGIN OUTSIDE CLICK */
-
-      $("loginModal").addEventListener("click", function (event) {
-        if (event.target === this) {
-          closeLoginModal();
-        }
-      });
-
-      /* DASHBOARD OUTSIDE CLICK */
-
-      $("dashboardModal").addEventListener("click", function (event) {
-        if (event.target === this) {
           closeDashboard();
-        }
-      });
 
-      /* ESC */
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key !== "Escape") {
-          return;
         }
 
-        if (!$("loginModal").classList.contains("hidden")) {
-          closeLoginModal();
-        }
-
-        if (!$("dashboardModal").classList.contains("hidden")) {
-          closeDashboard();
-        }
-      });
-
-      /* ============================================================
-         INITIALIZE
-      ============================================================= */
-
-      function initialize() {
-        loadReleases();
-
-        renderPublicPage();
-
-        $("currentYear").textContent = new Date().getFullYear();
       }
+    );
 
-      initialize();
-    </script>
-  </body>
+
+    /* ============================================================
+       INITIALIZE
+    ============================================================= */
+
+    function initialize() {
+
+      loadReleases();
+
+      renderPublicPage();
+
+      $("currentYear")
+        .textContent =
+        new Date()
+          .getFullYear();
+
+
+      /*
+        If developer was already logged
+        in during this browser session,
+        dashboard remains accessible.
+      */
+
+      console.log(
+        "Vegg Basket release page initialized."
+      );
+    }
+
+
+    initialize();
+
+  </script>
+
+</body>
 </html>
