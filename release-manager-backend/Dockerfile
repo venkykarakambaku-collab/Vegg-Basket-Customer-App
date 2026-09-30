@@ -1,11 +1,11 @@
-FROM eclipse-temurin:21-jdk
+FROM maven:3.9-eclipse-temurin-21
 
 WORKDIR /app
 
 COPY . .
 
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/release-manager-backend-0.0.1-SNAPSHOT.jar"]
+CMD ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar target/release-manager-backend-0.0.1-SNAPSHOT.jar"]
