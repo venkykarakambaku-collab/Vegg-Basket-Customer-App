@@ -123,6 +123,7 @@
         from {
           opacity: 0;
         }
+
         to {
           opacity: 1;
         }
@@ -133,6 +134,7 @@
           opacity: 0;
           transform: scale(0.96);
         }
+
         to {
           opacity: 1;
           transform: scale(1);
@@ -144,6 +146,7 @@
           opacity: 0;
           transform: translateY(18px);
         }
+
         to {
           opacity: 1;
           transform: translateY(0);
@@ -263,7 +266,7 @@
               class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-bold backdrop-blur sm:text-sm"
             >
               <i class="ri-price-tag-3-line"></i>
-              Latest Version
+              Loading...
             </div>
           </div>
 
@@ -274,7 +277,7 @@
           >
             <div>
               Owned by
-              <span class="font-black text-white">KAMESWARI VEGETABLES</span>
+              <span class="font-black text-white"> KAMESWARI VEGETABLES </span>
             </div>
 
             <div>
@@ -332,7 +335,9 @@
           <div
             id="releaseCount"
             class="text-xs font-bold text-slate-400 sm:text-sm"
-          ></div>
+          >
+            Loading...
+          </div>
         </div>
 
         <div id="latestReleaseContainer"></div>
@@ -975,62 +980,6 @@
 
       const LOGIN_KEY = "vegg_basket_developer_logged_in";
 
-      const STORAGE_KEY = "vegg_basket_releases";
-
-      /* ============================================================
-         APK URL
-      ============================================================= */
-
-      const LATEST_APK_URL =
-        "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.9.1/customer-app-v1.9.1.apk";
-
-      /* ============================================================
-         DEFAULT RELEASES
-      ============================================================= */
-
-      const DEFAULT_RELEASES = [
-        {
-          id: "release-191",
-
-          version: "1.9.1",
-
-          releaseDate: "2026-09-27",
-
-          apkUrl: LATEST_APK_URL,
-
-          apkSize: "",
-
-          platform: "Android",
-
-          releaseNotes: "Latest Vegg Basket customer app release.",
-
-          published: true,
-
-          createdAt: "2026-09-27T10:00:00",
-        },
-
-        {
-          id: "release-100",
-
-          version: "1.0.0",
-
-          releaseDate: "2026-09-25",
-
-          apkUrl:
-            "https://github.com/venkykarakambaku-collab/Vegg-Basket-Customer-App/releases/download/v1.0.0/Vegg-Basket-App.apk",
-
-          apkSize: "",
-
-          platform: "Android",
-
-          releaseNotes: "Initial customer application release.",
-
-          published: true,
-
-          createdAt: "2026-09-25T10:00:00",
-        },
-      ];
-
       /* ============================================================
          STATE
       ============================================================= */
@@ -1046,65 +995,39 @@
       const $ = (id) => document.getElementById(id);
 
       /* ============================================================
-         LOAD RELEASES
+         API ERROR
       ============================================================= */
 
-      function loadReleases() {
+      async function getApiError(response) {
         try {
-          const saved = localStorage.getItem(STORAGE_KEY);
+          const data = await response.json();
 
-          if (!saved) {
-            releases = structuredClone(DEFAULT_RELEASES);
-
-            saveReleases();
-
-            return;
-          }
-
-          const parsed = JSON.parse(saved);
-
-          if (Array.isArray(parsed)) {
-            releases = parsed;
-          } else {
-            releases = structuredClone(DEFAULT_RELEASES);
-          }
-
-          /*
-           * IMPORTANT
-           *
-           * If an old v1.9.1 is already stored in
-           * localStorage with the old APK filename,
-           * automatically replace it with the new URL.
-           */
-
-          const latest191 = releases.find(
-            (release) => normalizeVersion(release.version) === "1.9.1",
+          return (
+            data.message ||
+            data.error ||
+            `Request failed with status ${response.status}`
           );
-
-          if (latest191) {
-            latest191.apkUrl = LATEST_APK_URL;
-
-            latest191.version = "1.9.1";
-
-            latest191.published = true;
-
-            latest191.releaseDate = "2026-09-27";
-
-            saveReleases();
-          }
-        } catch (error) {
-          console.error("Release load error:", error);
-
-          releases = structuredClone(DEFAULT_RELEASES);
+        } catch {
+          return `Request failed with status ${response.status}`;
         }
       }
 
       /* ============================================================
-         SAVE
+         AUTH HEADER
       ============================================================= */
 
-      function saveReleases() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(releases));
+      function getAuthHeaders() {
+        const token = sessionStorage.getItem(TOKEN_KEY);
+
+        return {
+          "Content-Type": "application/json",
+
+          ...(token
+            ? {
+                Authorization: `Bearer ${token}`,
+              }
+            : {}),
+        };
       }
 
       /* ============================================================
@@ -1135,6 +1058,14 @@
 
       function getSortedReleases(list = releases) {
         return [...list].sort((a, b) => {
+          const codeA = Number(a.versionCode || 0);
+
+          const codeB = Number(b.versionCode || 0);
+
+          if (codeB !== codeA) {
+            return codeB - codeA;
+          }
+
           const dateA = new Date(a.releaseDate || 0).getTime();
 
           const dateB = new Date(b.releaseDate || 0).getTime();
@@ -1145,6 +1076,40 @@
 
           return compareVersions(b.version, a.version);
         });
+      }
+
+      /* ============================================================
+         VERSION CODE
+      ============================================================= */
+
+      function getVersionCode(version) {
+        const clean = normalizeVersion(version);
+
+        const parts = clean.split(".").map((value) => {
+          const number = Number.parseInt(value, 10);
+
+          return Number.isFinite(number) ? number : 0;
+        });
+
+        const major = parts[0] || 0;
+
+        const minor = parts[1] || 0;
+
+        const patch = parts[2] || 0;
+
+        /*
+         * Version code scheme:
+         *
+         * 1.0.0 -> 1
+         * 1.0.1 -> 1
+         * 1.1.0 -> 1
+         * 2.0.0 -> 2
+         *
+         * This matches the current DB test
+         * where 2.0.0 uses versionCode 2.
+         */
+
+        return major;
       }
 
       /* ============================================================
@@ -1190,6 +1155,89 @@
         return String(version || "")
           .trim()
           .replace(/^v/i, "");
+      }
+
+      /* ============================================================
+         LOAD RELEASES FROM DATABASE
+      ============================================================= */
+
+      async function loadReleases(showError = false) {
+        try {
+          const response = await fetch(`${API_BASE_URL}/releases`, {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+            cache: "no-store",
+          });
+
+          if (!response.ok) {
+            throw new Error(await getApiError(response));
+          }
+
+          const data = await response.json();
+
+          if (!Array.isArray(data)) {
+            throw new Error("Invalid release data received from server.");
+          }
+
+          releases = data;
+
+          renderPublicPage();
+
+          renderDashboardReleases();
+
+          return true;
+        } catch (error) {
+          console.error("Load releases error:", error);
+
+          if (showError) {
+            showToast(error.message || "Unable to load releases.", "error");
+          }
+
+          /*
+           * IMPORTANT:
+           *
+           * No localStorage fallback.
+           *
+           * Database is the single source
+           * of truth.
+           */
+
+          releases = [];
+
+          renderPublicPage();
+
+          renderDashboardReleases();
+
+          return false;
+        }
+      }
+
+      /* ============================================================
+         LOAD LATEST RELEASE
+      ============================================================= */
+
+      async function loadLatestRelease() {
+        try {
+          const response = await fetch(`${API_BASE_URL}/releases/latest`, {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+            cache: "no-store",
+          });
+
+          if (!response.ok) {
+            return null;
+          }
+
+          return await response.json();
+        } catch (error) {
+          console.error("Latest release error:", error);
+
+          return null;
+        }
       }
 
       /* ============================================================
@@ -1326,9 +1374,6 @@
 
                 </div>
 
-
-                <!-- DOWNLOAD -->
-
                 <a
                   href="${escapeHTML(release.apkUrl)}"
                   target="_blank"
@@ -1346,9 +1391,6 @@
               </div>
 
             </div>
-
-
-            <!-- CONTENT -->
 
             <div class="p-5 sm:p-7 lg:p-8">
 
@@ -1377,7 +1419,6 @@
 
                 </div>
 
-
                 <div
                   class="grid grid-cols-2 gap-2.5"
                 >
@@ -1399,7 +1440,6 @@
                     </div>
 
                   </div>
-
 
                   <div
                     class="rounded-xl bg-slate-50 p-3"
@@ -1513,7 +1553,6 @@
                   <i class="ri-android-line"></i>
                 </div>
 
-
                 <div class="min-w-0 flex-1">
 
                   <div
@@ -1533,7 +1572,6 @@
                     </span>
 
                   </div>
-
 
                   <div
                     class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-400 sm:text-xs"
@@ -1558,7 +1596,6 @@
 
                   </div>
 
-
                   ${
                     release.releaseNotes
                       ? `
@@ -1574,7 +1611,6 @@
                 </div>
 
               </div>
-
 
               <a
                 href="${escapeHTML(release.apkUrl)}"
@@ -1602,7 +1638,7 @@
       ============================================================= */
 
       function handleDownload(id) {
-        console.log("Download:", id);
+        console.log("Download release:", id);
       }
 
       /* ============================================================
@@ -1630,7 +1666,10 @@
       }
 
       function isDeveloperLoggedIn() {
-        return sessionStorage.getItem(LOGIN_KEY) === "true";
+        return (
+          sessionStorage.getItem(LOGIN_KEY) === "true" &&
+          !!sessionStorage.getItem(TOKEN_KEY)
+        );
       }
 
       function setDeveloperLoggedIn(value) {
@@ -1638,6 +1677,10 @@
           sessionStorage.setItem(LOGIN_KEY, "true");
         } else {
           sessionStorage.removeItem(LOGIN_KEY);
+
+          sessionStorage.removeItem(TOKEN_KEY);
+
+          sessionStorage.removeItem(EMAIL_KEY);
         }
       }
 
@@ -1645,12 +1688,18 @@
          DASHBOARD
       ============================================================= */
 
-      function openDashboard() {
+      async function openDashboard() {
+        if (!isDeveloperLoggedIn()) {
+          openLoginModal();
+
+          return;
+        }
+
         $("dashboardModal").classList.remove("hidden");
 
         $("dashboardModal").classList.add("flex");
 
-        renderDashboardReleases();
+        await loadReleases(true);
       }
 
       function closeDashboard() {
@@ -1687,6 +1736,12 @@
                 No releases
               </div>
 
+              <p
+                class="mt-1 text-xs text-slate-400"
+              >
+                Add your first release from the form.
+              </p>
+
             </div>
 
           `;
@@ -1702,6 +1757,8 @@
       ============================================================= */
 
       function createDashboardRelease(release, index) {
+        const sorted = getSortedReleases();
+
         const isLatest = index === 0 && release.published !== false;
 
         return `
@@ -1728,7 +1785,6 @@
 
               </div>
 
-
               <div
                 class="min-w-0 flex-1"
               >
@@ -1743,7 +1799,6 @@
                     v${escapeHTML(release.version)}
                   </span>
 
-
                   ${
                     isLatest
                       ? `
@@ -1755,7 +1810,6 @@
                       `
                       : ""
                   }
-
 
                   ${
                     release.published === false
@@ -1771,7 +1825,6 @@
 
                 </div>
 
-
                 <div
                   class="mt-0.5 flex flex-wrap gap-x-3 text-[9px] text-slate-400"
                 >
@@ -1784,12 +1837,14 @@
                     ${escapeHTML(release.platform || "Android")}
                   </span>
 
+                  <span>
+                    Code:
+                    ${escapeHTML(release.versionCode || "-")}
+                  </span>
+
                 </div>
 
               </div>
-
-
-              <!-- ACTIONS -->
 
               <div
                 class="flex flex-shrink-0 items-center gap-1"
@@ -1804,11 +1859,10 @@
                   <i class="ri-edit-line"></i>
                 </button>
 
-
                 <button
                   type="button"
                   onclick="togglePublished('${escapeHTML(release.id)}')"
-                  title="Publish / Unpublish"
+                  title="Publish"
                   class="flex h-8 w-8 items-center justify-center rounded-lg ${
                     release.published === false
                       ? "bg-green-50 text-green-600"
@@ -1825,7 +1879,6 @@
                   ></i>
 
                 </button>
-
 
                 <button
                   type="button"
@@ -1872,9 +1925,11 @@
       ============================================================= */
 
       function editRelease(id) {
-        const release = releases.find((item) => item.id === id);
+        const release = releases.find((item) => String(item.id) === String(id));
 
         if (!release) {
+          showToast("Release not found.", "error");
+
           return;
         }
 
@@ -1907,10 +1962,10 @@
       }
 
       /* ============================================================
-         SAVE RELEASE
+         SAVE RELEASE - DATABASE
       ============================================================= */
 
-      function saveRelease(event) {
+      async function saveRelease(event) {
         event.preventDefault();
 
         const version = normalizeVersion($("versionInput").value);
@@ -1928,6 +1983,8 @@
         const published = $("publishedInput").checked;
 
         const editingId = $("editingId").value;
+
+        const saveButton = $("saveReleaseButton");
 
         /* VALIDATION */
 
@@ -1960,7 +2017,7 @@
         const duplicate = releases.find(
           (release) =>
             String(release.version).toLowerCase() === version.toLowerCase() &&
-            release.id !== editingId,
+            String(release.id) !== String(editingId),
         );
 
         if (duplicate) {
@@ -1969,52 +2026,23 @@
           return;
         }
 
-        /* UPDATE */
+        /*
+         * Generate versionCode.
+         *
+         * Current backend DB test:
+         * 2.0.0 -> 2
+         */
 
-        if (editingId) {
-          const index = releases.findIndex(
-            (release) => release.id === editingId,
-          );
+        const versionCode = getVersionCode(version);
 
-          if (index !== -1) {
-            releases[index] = {
-              ...releases[index],
+        /*
+         * Backend ReleaseRequest payload
+         */
 
-              version,
-
-              releaseDate,
-
-              apkUrl,
-
-              apkSize,
-
-              platform,
-
-              releaseNotes,
-
-              published,
-            };
-          }
-
-          saveReleases();
-
-          renderPublicPage();
-
-          renderDashboardReleases();
-
-          resetReleaseForm();
-
-          showToast(`Version ${version} updated.`, "success");
-
-          return;
-        }
-
-        /* CREATE */
-
-        const newRelease = {
-          id: "release-" + Date.now(),
-
+        const payload = {
           version,
+
+          versionCode,
 
           releaseDate,
 
@@ -2028,56 +2056,191 @@
 
           published,
 
-          createdAt: new Date().toISOString(),
+          forceUpdate: false,
         };
 
-        releases.push(newRelease);
+        try {
+          saveButton.disabled = true;
 
-        saveReleases();
+          saveButton.innerHTML = `
+              <i class="ri-loader-4-line animate-spin"></i>
+              ${editingId ? "Saving..." : "Uploading..."}
+            `;
 
-        renderPublicPage();
+          let response;
 
-        renderDashboardReleases();
+          /* ======================================================
+             UPDATE
+          ====================================================== */
 
-        resetReleaseForm();
+          if (editingId) {
+            response = await fetch(
+              `${API_BASE_URL}/releases/${encodeURIComponent(editingId)}`,
+              {
+                method: "PUT",
 
-        showToast(`Version ${version} published successfully.`, "success");
+                headers: getAuthHeaders(),
+
+                body: JSON.stringify(payload),
+              },
+            );
+          } else {
+
+          /* ======================================================
+             CREATE
+          ====================================================== */
+            response = await fetch(`${API_BASE_URL}/releases`, {
+              method: "POST",
+
+              headers: getAuthHeaders(),
+
+              body: JSON.stringify(payload),
+            });
+          }
+
+          if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+              setDeveloperLoggedIn(false);
+
+              closeDashboard();
+
+              showToast("Session expired. Please login again.", "error");
+
+              return;
+            }
+
+            throw new Error(await getApiError(response));
+          }
+
+          const savedRelease = await response.json();
+
+          /*
+           * If user selected Publish,
+           * make sure backend publish endpoint
+           * is also called.
+           */
+
+          if (published && savedRelease && savedRelease.id) {
+            const publishResponse = await fetch(
+              `${API_BASE_URL}/releases/${encodeURIComponent(
+                savedRelease.id,
+              )}/publish`,
+              {
+                method: "PATCH",
+                headers: getAuthHeaders(),
+              },
+            );
+
+            if (!publishResponse.ok) {
+              throw new Error(await getApiError(publishResponse));
+            }
+          }
+
+          /*
+           * Refresh directly from DB.
+           */
+
+          await loadReleases(true);
+
+          resetReleaseForm();
+
+          showToast(
+            editingId
+              ? `Version ${version} updated successfully.`
+              : `Version ${version} saved to database successfully.`,
+            "success",
+          );
+        } catch (error) {
+          console.error("Save release error:", error);
+
+          showToast(error.message || "Unable to save release.", "error");
+        } finally {
+          saveButton.disabled = false;
+
+          if ($("editingId").value) {
+            saveButton.innerHTML = `
+                <i class="ri-save-3-line"></i>
+                Save Changes
+              `;
+          } else {
+            saveButton.innerHTML = `
+                <i class="ri-upload-cloud-2-line"></i>
+                Publish Version
+              `;
+          }
+        }
       }
 
       /* ============================================================
-         PUBLISH / UNPUBLISH
+         PUBLISH
       ============================================================= */
 
-      function togglePublished(id) {
-        const release = releases.find((item) => item.id === id);
+      async function togglePublished(id) {
+        const release = releases.find((item) => String(item.id) === String(id));
 
         if (!release) {
           return;
         }
 
-        release.published = release.published === false;
+        /*
+         * Backend currently provides
+         * publish endpoint.
+         *
+         * It publishes the selected release
+         * and unpublishes the other releases.
+         */
 
-        saveReleases();
+        if (release.published !== false) {
+          showToast(
+            "Unpublish is not available from the current backend endpoint.",
+            "error",
+          );
 
-        renderPublicPage();
+          return;
+        }
 
-        renderDashboardReleases();
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/releases/${encodeURIComponent(id)}/publish`,
+            {
+              method: "PATCH",
 
-        showToast(
-          release.published
-            ? `v${release.version} published.`
-            : `v${release.version} unpublished.`,
+              headers: getAuthHeaders(),
+            },
+          );
 
-          "success",
-        );
+          if (response.status === 401 || response.status === 403) {
+            setDeveloperLoggedIn(false);
+
+            closeDashboard();
+
+            showToast("Session expired. Please login again.", "error");
+
+            return;
+          }
+
+          if (!response.ok) {
+            throw new Error(await getApiError(response));
+          }
+
+          await response.json();
+
+          await loadReleases(true);
+
+          showToast(`v${release.version} published.`, "success");
+        } catch (error) {
+          console.error("Publish error:", error);
+
+          showToast(error.message || "Unable to publish release.", "error");
+        }
       }
 
       /* ============================================================
          DELETE
       ============================================================= */
 
-      function deleteRelease(id) {
-        const release = releases.find((item) => item.id === id);
+      async function deleteRelease(id) {
+        const release = releases.find((item) => String(item.id) === String(id));
 
         if (!release) {
           return;
@@ -2091,15 +2254,43 @@
           return;
         }
 
-        releases = releases.filter((item) => item.id !== id);
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/releases/${encodeURIComponent(id)}`,
+            {
+              method: "DELETE",
 
-        saveReleases();
+              headers: getAuthHeaders(),
+            },
+          );
 
-        renderPublicPage();
+          if (response.status === 401 || response.status === 403) {
+            setDeveloperLoggedIn(false);
 
-        renderDashboardReleases();
+            closeDashboard();
 
-        showToast(`Version ${release.version} deleted.`, "success");
+            showToast("Session expired. Please login again.", "error");
+
+            return;
+          }
+
+          if (!response.ok) {
+            throw new Error(await getApiError(response));
+          }
+
+          await loadReleases(true);
+
+          resetReleaseForm();
+
+          showToast(
+            `Version ${release.version} deleted successfully.`,
+            "success",
+          );
+        } catch (error) {
+          console.error("Delete release error:", error);
+
+          showToast(error.message || "Unable to delete release.", "error");
+        }
       }
 
       /* ============================================================
@@ -2154,12 +2345,15 @@
 
       $("closeDashboardButton").addEventListener("click", closeDashboard);
 
-      /* LOGIN */
+      /* ============================================================
+         LOGIN
+      ============================================================= */
 
       $("loginForm").addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const email = $("loginEmail").value.trim();
+
         const password = $("loginPassword").value;
 
         const loginButton = this.querySelector('button[type="submit"]');
@@ -2168,38 +2362,50 @@
           loginButton.disabled = true;
 
           loginButton.innerHTML = `
-      <i class="ri-loader-4-line animate-spin"></i>
-      Logging in...
-    `;
+                  <i class="ri-loader-4-line animate-spin"></i>
+                  Logging in...
+                `;
 
           $("loginError").classList.add("hidden");
 
           const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: "POST",
+
             headers: {
               "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
-              email: email,
-              password: password,
+              email,
+              password,
             }),
           });
 
           const data = await response.json();
 
           if (!response.ok) {
-            throw new Error(data.message || "Invalid email or password.");
+            throw new Error(
+              data.message || data.error || "Invalid email or password.",
+            );
+          }
+
+          if (!data.token) {
+            throw new Error(
+              "Login successful but server did not return a token.",
+            );
           }
 
           sessionStorage.setItem(TOKEN_KEY, data.token);
-          sessionStorage.setItem(EMAIL_KEY, data.email);
+
+          sessionStorage.setItem(EMAIL_KEY, data.email || email);
+
           sessionStorage.setItem(LOGIN_KEY, "true");
 
           closeLoginModal();
 
-          openDashboard();
-
           this.reset();
+
+          await openDashboard();
 
           showToast("Developer login successful.", "success");
         } catch (error) {
@@ -2213,9 +2419,9 @@
           loginButton.disabled = false;
 
           loginButton.innerHTML = `
-      <i class="ri-login-box-line"></i>
-      Login
-    `;
+                  <i class="ri-login-box-line"></i>
+                  Login
+                `;
         }
       });
 
@@ -2237,12 +2443,16 @@
         }
       });
 
-      /* LOGOUT */
+      /* ============================================================
+         LOGOUT
+      ============================================================= */
 
       $("logoutButton").addEventListener("click", () => {
         setDeveloperLoggedIn(false);
 
         closeDashboard();
+
+        resetReleaseForm();
 
         showToast("Logged out successfully.", "success");
       });
@@ -2301,12 +2511,16 @@
          INITIALIZE
       ============================================================= */
 
-      function initialize() {
-        loadReleases();
-
-        renderPublicPage();
-
+      async function initialize() {
         $("currentYear").textContent = new Date().getFullYear();
+
+        /*
+         * Load releases from backend DB.
+         *
+         * There is NO localStorage fallback.
+         */
+
+        await loadReleases(false);
       }
 
       initialize();
